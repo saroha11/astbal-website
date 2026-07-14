@@ -1,0 +1,42 @@
+[
+  {
+    "id": 1,
+    "name": "Priya & Rohan",
+    "location": "Gurgaon",
+    "rating": 5,
+    "text": "ASTBAL was exactly the weekend escape we needed. The container house is beautifully designed, the horses were a highlight for our kids, and the farm-to-table dinner was divine. We're already planning our next visit!",
+    "avatar": "P"
+  },
+  {
+    "id": 2,
+    "name": "Amit Sharma",
+    "location": "Delhi",
+    "rating": 5,
+    "text": "Just 1 hour from Delhi and you're in a different world. The guava orchard experience was incredible — my daughter hasn't stopped talking about picking her own guavas. The dogs made it even more special. Highly recommend!",
+    "avatar": "A"
+  },
+  {
+    "id": 3,
+    "name": "Sneha Kapoor",
+    "location": "Noida",
+    "rating": 5,
+    "text": "We booked for my birthday and it was the best decision. Horse riding through open fields, fresh farm food, and that grass bed under the stars... pure magic. The team takes such good care of you.",
+    "avatar": "S"
+  },
+  {
+    "id": 4,
+    "name": "Vikram & Family",
+    "location": "Faridabad",
+    "rating": 4,
+    "text": "Perfect family getaway! The kitchen garden experience was so much fun — harvesting vegetables and then cooking with the chef. Kids loved it. The Labradors were the cherry on top. Will come again soon.",
+    "avatar": "V"
+  },
+  {
+    "id": 5,
+    "name": "Meera Patel",
+    "location": "Mumbai",
+    "rating": 5,
+    "text": "Visited from Mumbai and this place exceeded all expectations. The 2-acre property feels so private and serene. Waking up to birdsong, picking fresh vegetables, and riding horses — what a life! ASTBAL is a gem.",
+    "avatar": "M"
+  }
+]

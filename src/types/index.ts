@@ -1,0 +1,76 @@
+export interface BookingDate {
+  date: string;
+  status: "available" | "booked" | "limited";
+  price: number;
+  isWeekend: boolean;
+  isPeak: boolean;
+}
+
+export interface AddonItem {
+  id: string;
+  name: string;
+  description: string;
+  price: number;
+  duration: string;
+  icon: string;
+}
+
+export interface PricingConfig {
+  accommodation: {
+    weekday: number;
+    weekend: number;
+    peakSeason: number;
+    peakSeasonStart: string;
+    peakSeasonEnd: string;
+    minNights: number;
+    maxNights: number;
+    extraGuest: number;
+    maxGuests: number;
+    baseGuests: number;
+    currency: string;
+    currencySymbol: string;
+  };
+  addons: AddonItem[];
+  weekendDays: number[];
+}
+
+export interface Experience {
+  id: string;
+  title: string;
+  subtitle: string;
+  description: string;
+  longDescription: string;
+  image: string;
+  gallery: string[];
+  included: boolean;
+  addonId: string | null;
+  highlights: string[];
+}
+
+export interface Testimonial {
+  id: number;
+  name: string;
+  location: string;
+  rating: number;
+  text: string;
+  avatar: string;
+}
+
+export interface BookingFormData {
+  name: string;
+  email: string;
+  phone: string;
+  guests: number;
+  checkIn: string;
+  checkOut: string;
+  addons: string[];
+  specialRequests: string;
+}
+
+export interface GalleryImage {
+  src: string;
+  alt: string;
+  category: string;
+  width: number;
+  height: number;
+}
