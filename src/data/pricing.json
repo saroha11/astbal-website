@@ -1,0 +1,83 @@
+{
+  "accommodation": {
+    "weekday": 4500,
+    "weekend": 6500,
+    "peakSeason": 8500,
+    "peakSeasonStart": "2025-12-20",
+    "peakSeasonEnd": "2026-01-05",
+    "minNights": 1,
+    "maxNights": 7,
+    "extraGuest": 500,
+    "maxGuests": 4,
+    "baseGuests": 2,
+    "currency": "INR",
+    "currencySymbol": "₹"
+  },
+  "addons": [
+    {
+      "id": "horse-riding-lesson",
+      "name": "Horse Riding Lesson",
+      "description": "Learn horse riding basics in our 1-acre arena with expert guidance",
+      "price": 1500,
+      "duration": "1 hour",
+      "icon": "horse"
+    },
+    {
+      "id": "leisure-ride",
+      "name": "Leisure Ride",
+      "description": "Enjoy a peaceful ride through open fields around the property",
+      "price": 2000,
+      "duration": "45 mins",
+      "icon": "mountain"
+    },
+    {
+      "id": "orchard-visit",
+      "name": "Guava Orchard Pick",
+      "description": "Visit our guava orchard and hand-pick fresh guavas to enjoy",
+      "price": 500,
+      "duration": "30 mins",
+      "icon": "trees"
+    },
+    {
+      "id": "farm-experience",
+      "name": "Kitchen Garden Harvest",
+      "description": "Harvest fresh vegetables from our kitchen garden and cook with our chef",
+      "price": 800,
+      "duration": "1.5 hours",
+      "icon": "sprout"
+    },
+    {
+      "id": "farm-dinner",
+      "name": "Farm-to-Table Dinner",
+      "description": "Multi-course dinner prepared with organic ingredients from our farm",
+      "price": 1200,
+      "duration": "2 hours",
+      "icon": "utensils"
+    },
+    {
+      "id": "breakfast-spread",
+      "name": "Farm Fresh Breakfast",
+      "description": "Hearty breakfast with fresh juice, eggs, bread, farm produce",
+      "price": 600,
+      "duration": "1 hour",
+      "icon": "coffee"
+    },
+    {
+      "id": "bonfire-night",
+      "name": "Bonfire Night",
+      "description": "Cozy bonfire under the stars with music and snacks",
+      "price": 1500,
+      "duration": "3 hours",
+      "icon": "flame"
+    },
+    {
+      "id": "nature-walk",
+      "name": "Guided Nature Walk",
+      "description": "Explore the 2-acre property and learn about local flora and fauna",
+      "price": 300,
+      "duration": "45 mins",
+      "icon": "footprints"
+    }
+  ],
+  "weekendDays": [0, 5, 6]
+}

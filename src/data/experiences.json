@@ -1,0 +1,97 @@
+[
+  {
+    "id": "horse-riding",
+    "title": "Horse Riding",
+    "subtitle": "Ride through open fields",
+    "description": "Experience the thrill of horseback riding in our expansive 1-acre riding arena surrounded by open fields. Whether you're a beginner or an experienced rider, our horses and handlers will ensure a memorable experience. We offer structured riding lessons and leisurely rides through the scenic countryside.",
+    "longDescription": "Our stable houses beautiful, well-trained horses that love company. The riding arena is set in the middle of open fields, giving you a true countryside riding experience. Beginners get a safety briefing and basic riding lesson before heading out. Experienced riders can enjoy longer trail rides through the surrounding farmland.",
+    "image": "/images/experiences/horse-riding.jpg",
+    "gallery": [
+      "/images/experiences/horse-riding.jpg",
+      "/images/experiences/horse-arena.jpg",
+      "/images/gallery/horse-closeup.jpg",
+      "/images/gallery/stable.jpg"
+    ],
+    "included": true,
+    "addonId": "horse-riding-lesson",
+    "highlights": [
+      "1-acre dedicated riding arena",
+      "Trained horses for all skill levels",
+      "Professional riding instruction",
+      "Scenic open field trail rides",
+      "Safety equipment provided"
+    ]
+  },
+  {
+    "id": "guava-orchard",
+    "title": "Guava Orchard",
+    "subtitle": "Pick your own fresh guavas",
+    "description": "Step into our lush guava orchard and hand-pick the freshest, juiciest guavas you've ever tasted. There's nothing quite like eating fruit straight from the tree. Take a basket, wander through the trees, and fill it with nature's candy.",
+    "longDescription": "Our guava orchard is a labor of love — rows upon rows of guava trees heavy with fruit. The experience of walking among the trees, smelling the sweet fragrance, and picking guavas at peak ripeness is something that connects you to the land. You can eat them fresh or take some back to the kitchen where our cook can prepare guava desserts and salads.",
+    "image": "/images/experiences/guava-orchard.jpg",
+    "gallery": ["/images/experiences/guava-orchard.jpg", "/images/gallery/nature-plants.jpg"],
+    "included": true,
+    "addonId": "orchard-visit",
+    "highlights": [
+      "Hand-pick fresh guavas",
+      "Organic & pesticide-free",
+      "Seasonal — best from July to February",
+      "Take your harvest to the kitchen",
+      "Perfect for families with kids"
+    ]
+  },
+  {
+    "id": "kitchen-garden",
+    "title": "Kitchen Garden",
+    "subtitle": "Harvest & cook with our chef",
+    "description": "Visit our kitchen garden where we grow fresh vegetables, herbs, and greens. Pick your favorites and head straight to the kitchen where our cook will transform your harvest into a delicious meal. It doesn't get fresher than this!",
+    "longDescription": "Our kitchen garden is the heart of ASTBAL's farm-to-table philosophy. Rows of tomatoes, peppers, spinach, herbs, seasonal vegetables — all grown organically on the property. Our cook will guide you through the garden, help you pick the best produce, and then show you how to turn it into a mouth-watering dish in our in-house kitchen.",
+    "image": "/images/experiences/kitchen-garden.jpg",
+    "gallery": ["/images/experiences/kitchen-garden.jpg", "/images/gallery/nature-plants.jpg"],
+    "included": true,
+    "addonId": "farm-experience",
+    "highlights": [
+      "Fresh organic vegetables & herbs",
+      "Guided harvest with our cook",
+      "Cook what you pick",
+      "Seasonal varieties throughout the year",
+      "Great activity for children"
+    ]
+  },
+  {
+    "id": "farm-restaurant",
+    "title": "In-House Restaurant",
+    "subtitle": "Farm-to-table dining",
+    "description": "Our in-house kitchen serves delicious, home-style meals prepared by our talented cook using fresh ingredients from the property. From hearty breakfasts to multi-course dinners, every meal is a celebration of local flavors and farm freshness.",
+    "longDescription": "Food at ASTBAL is more than just meals — it's an experience. Our cook specializes in rustic, home-style cooking that showcases the best of Haryana's culinary traditions. Every dish uses ingredients sourced from our kitchen garden, guava orchard, and local farms. Enjoy your meals al fresco with views of the open fields, or cozy up indoors during the cooler months.",
+    "image": "/images/experiences/farm-restaurant.jpg",
+    "gallery": ["/images/experiences/farm-restaurant.jpg", "/images/gallery/farm-food.jpg"],
+    "included": false,
+    "addonId": "farm-dinner",
+    "highlights": [
+      "Farm-to-table cuisine",
+      "Home-style Haryanvi cooking",
+      "Fresh ingredients from our garden",
+      "Breakfast, lunch & dinner available",
+      "Al fresco dining with field views"
+    ]
+  },
+  {
+    "id": "meet-dogs",
+    "title": "Meet Our Dogs",
+    "subtitle": "Your furry companions await",
+    "description": "ASTBAL is home to friendly dogs — both Indian canines and Labradors — who love meeting guests. They'll greet you at the gate, accompany you on walks around the property, and fill your stay with unconditional love and joy. Dog lovers, this is heaven!",
+    "longDescription": "Our dogs are part of the ASTBAL family. The Labradors are gentle, playful, and great with children — they love belly rubs and playing fetch in the fields. Our Indian canines are loyal, intelligent, and the perfect companions for nature walks around the 2-acre property. They add warmth and life to every stay.",
+    "image": "/images/dogs/labrador.jpg",
+    "gallery": ["/images/dogs/labrador.jpg", "/images/dogs/canine.jpg"],
+    "included": true,
+    "addonId": null,
+    "highlights": [
+      "Friendly Labradors & Indian canines",
+      "Perfect walking companions",
+      "Great with kids and families",
+      "Part of the ASTBAL family",
+      "Free cuddles included!"
+    ]
+  }
+]
