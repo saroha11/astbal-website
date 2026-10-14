@@ -1,0 +1,8 @@
+node_modules
+.git
+.next
+*.log
+.env.local
+.env.*.local
+public/images/Drone videeo .MP4
+public/images/**/*.jpeg
