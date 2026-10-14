@@ -28,6 +28,7 @@ export default function Hero() {
         loop
         muted
         playsInline
+        suppressHydrationWarning
         className="absolute inset-0 w-full h-full object-cover"
         poster="/images/hero/nature-retreat.jpg"
       >
