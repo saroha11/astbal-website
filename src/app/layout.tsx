@@ -3,6 +3,7 @@ import "./globals.css";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import WhatsAppButton from "@/components/layout/WhatsAppButton";
+import StickyBookingBar from "@/components/home/StickyBookingBar";
 
 export const metadata: Metadata = {
   title: {
@@ -44,6 +45,7 @@ export default function RootLayout({
     <html lang="en" className="scroll-smooth">
       <body className="min-h-screen flex flex-col">
         <Navbar />
+        <StickyBookingBar />
         <main className="flex-1">{children}</main>
         <Footer />
         <WhatsAppButton />
