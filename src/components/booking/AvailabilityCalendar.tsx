@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useMemo } from "react";
+import { useState, useEffect, useMemo } from "react";
 import { ChevronLeft, ChevronRight, Info } from "lucide-react";
 import { format, startOfMonth, endOfMonth, eachDayOfInterval, isToday, isSameDay } from "date-fns";
 import {
@@ -25,6 +25,8 @@ export default function AvailabilityCalendar({
 }: AvailabilityCalendarProps) {
   const [viewDate, setViewDate] = useState(new Date());
   const [hoveredDate, setHoveredDate] = useState<string | null>(null);
+  const [monthDates, setMonthDates] = useState<BookingDate[]>([]);
+  const [loading, setLoading] = useState(true);
 
   const year = viewDate.getFullYear();
   const month = viewDate.getMonth();
@@ -32,7 +34,17 @@ export default function AvailabilityCalendar({
   const monthStart = startOfMonth(viewDate);
   const startDay = monthStart.getDay();
 
-  const monthDates = useMemo(() => getMonthDates(year, month), [year, month]);
+  useEffect(() => {
+    let cancelled = false;
+    setLoading(true);
+    getMonthDates(year, month).then((dates) => {
+      if (!cancelled) {
+        setMonthDates(dates);
+        setLoading(false);
+      }
+    });
+    return () => { cancelled = true; };
+  }, [year, month]);
 
   const prevMonth = () => setViewDate(new Date(year, month - 1));
   const nextMonth = () => setViewDate(new Date(year, month + 1));

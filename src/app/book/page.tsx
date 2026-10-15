@@ -2,10 +2,11 @@
 
 import { useState, useMemo } from "react";
 import { motion } from "framer-motion";
-import { Send, User, Mail, Phone, MessageSquare } from "lucide-react";
+import { Send, User, Mail, Phone, MessageSquare, CheckCircle, AlertCircle } from "lucide-react";
 import AvailabilityCalendar from "@/components/booking/AvailabilityCalendar";
 import AddOnsSelector from "@/components/booking/AddOnsSelector";
 import PriceBreakdown from "@/components/booking/PriceBreakdown";
+import BookingCard from "@/components/booking/BookingCard";
 import PageHero from "@/components/layout/PageHero";
 import { calculateTotalPrice, formatPrice } from "@/lib/bookingEngine";
 import { siteConfig } from "@/data/siteConfig";
@@ -32,16 +33,49 @@ export default function BookPage() {
     setSelectedAddons((prev) => prev.includes(addonId) ? prev.filter((id) => id !== addonId) : [...prev, addonId]);
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState<string | null>(null);
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!checkIn || !checkOut || !pricing) return;
-    const message = `🌿 *New Booking — ASTBAL*\n\n*Name:* ${formData.name}\n*Phone:* ${formData.phone}\n*Email:* ${formData.email}\n*Check-in:* ${checkIn}\n*Check-out:* ${checkOut}\n*Guests:* ${guests}\n*Add-ons:* ${selectedAddons.length > 0 ? selectedAddons.join(", ") : "None"}\n*Requests:* ${formData.specialRequests || "None"}\n*Total:* ${formatPrice(pricing.total)}`;
-    window.open(`https://wa.me/${siteConfig.whatsapp}?text=${encodeURIComponent(message)}`, "_blank");
-    const booking = { ...formData, checkIn, checkOut, guests, addons: selectedAddons, total: pricing.total, timestamp: new Date().toISOString() };
-    const existing = JSON.parse(localStorage.getItem("astbal_bookings") || "[]");
-    existing.push(booking);
-    localStorage.setItem("astbal_bookings", JSON.stringify(existing));
-    setSubmitted(true);
+    setIsSubmitting(true);
+    setSubmitError(null);
+
+    try {
+      const response = await fetch("/api/bookings", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name: formData.name,
+          email: formData.email,
+          phone: formData.phone,
+          checkIn,
+          checkOut,
+          guests,
+          addons: selectedAddons,
+          specialRequests: formData.specialRequests,
+          total: pricing.total,
+        }),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        setSubmitError(data.error || "Booking failed. Please try again.");
+        return;
+      }
+
+      // Also send WhatsApp as backup
+      const message = `🌿 *New Booking — ASTBAL*\n\n*Name:* ${formData.name}\n*Phone:* ${formData.phone}\n*Email:* ${formData.email}\n*Check-in:* ${checkIn}\n*Check-out:* ${checkOut}\n*Guests:* ${guests}\n*Add-ons:* ${selectedAddons.length > 0 ? selectedAddons.join(", ") : "None"}\n*Requests:* ${formData.specialRequests || "None"}\n*Total:* ${formatPrice(pricing.total)}`;
+      window.open(`https://wa.me/${siteConfig.whatsapp}?text=${encodeURIComponent(message)}`, "_blank");
+
+      setSubmitted(true);
+    } catch (err) {
+      setSubmitError("Network error. Please try again.");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   if (submitted) {
@@ -51,10 +85,10 @@ export default function BookPage() {
           <motion.div initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }}
             className="bg-white rounded-2xl shadow-sm border border-stone-100 p-8 sm:p-10 text-center">
             <div className="w-16 h-16 bg-green-50 rounded-full flex items-center justify-center mx-auto mb-5">
-              <Send className="w-8 h-8 text-green-600" />
+              <CheckCircle className="w-8 h-8 text-green-600" />
             </div>
             <h2 className="text-2xl font-bold text-stone-900 mb-3" style={{ fontFamily: "var(--font-heading)" }}>Booking Request Sent!</h2>
-            <p className="text-stone-500 text-sm leading-relaxed mb-6">Your request has been sent via WhatsApp. Our team will confirm within a few hours.</p>
+            <p className="text-stone-500 text-sm leading-relaxed mb-6">Your request has been saved and sent via WhatsApp. Our team will confirm within a few hours.</p>
             <div className="bg-stone-50 rounded-xl p-4 mb-6 text-left space-y-1.5 text-xs sm:text-sm">
               <p><span className="text-stone-400">Check-in:</span> <span className="font-medium text-stone-800">{checkIn}</span></p>
               <p><span className="text-stone-400">Check-out:</span> <span className="font-medium text-stone-800">{checkOut}</span></p>

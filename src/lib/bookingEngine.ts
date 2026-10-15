@@ -1,7 +1,8 @@
 import { format, addDays, parseISO, isWithinInterval, isWeekend, getDay } from "date-fns";
+import { supabase } from "./supabase";
 import availabilityData from "@/data/availability.json";
 import pricingData from "@/data/pricing.json";
-import type { BookingDate, PricingConfig } from "@/types";
+import type { BookingDate, PricingConfig, Booking } from "@/types";
 
 const pricing: PricingConfig = pricingData;
 
@@ -13,11 +14,36 @@ export function getLimitedDates(): Set<string> {
   return new Set(availabilityData.limitedDates);
 }
 
-export function getDateStatus(dateStr: string): "available" | "booked" | "limited" {
+export async function getBookedDates(): Promise<Set<string>> {
+  const { data, error } = await supabase
+    .from("bookings")
+    .select("check_in, check_out")
+    .eq("status", "confirmed");
+
+  if (error) {
+    console.error("Error fetching booked dates:", error);
+    return new Set();
+  }
+
+  const booked = new Set<string>();
+  if (data) {
+    for (const booking of data) {
+      const start = parseISO(booking.check_in);
+      const end = parseISO(booking.check_out);
+      for (let d = new Date(start); d < end; d.setDate(d.getDate() + 1)) {
+        booked.add(format(d, "yyyy-MM-dd"));
+      }
+    }
+  }
+  return booked;
+}
+
+export async function getDateStatus(dateStr: string): Promise<"available" | "booked" | "limited"> {
   const blocked = getBlockedDates();
   const limited = getLimitedDates();
+  const booked = await getBookedDates();
 
-  if (blocked.has(dateStr)) return "booked";
+  if (blocked.has(dateStr) || booked.has(dateStr)) return "booked";
   if (limited.has(dateStr)) return "limited";
   return "available";
 }
@@ -38,11 +64,11 @@ export function getPriceForDate(dateStr: string): number {
   return isWeekendDay ? pricing.accommodation.weekend : pricing.accommodation.weekday;
 }
 
-export function getBookingDate(dateStr: string): BookingDate {
+export async function getBookingDate(dateStr: string): Promise<BookingDate> {
   const date = parseISO(dateStr);
   return {
     date: dateStr,
-    status: getDateStatus(dateStr),
+    status: await getDateStatus(dateStr),
     price: getPriceForDate(dateStr),
     isWeekend: pricing.weekendDays.includes(getDay(date)),
     isPeak: isWithinInterval(date, {
@@ -52,13 +78,13 @@ export function getBookingDate(dateStr: string): BookingDate {
   };
 }
 
-export function getMonthDates(year: number, month: number): BookingDate[] {
+export async function getMonthDates(year: number, month: number): Promise<BookingDate[]> {
   const dates: BookingDate[] = [];
   const daysInMonth = new Date(year, month + 1, 0).getDate();
 
   for (let day = 1; day <= daysInMonth; day++) {
     const dateStr = format(new Date(year, month, day), "yyyy-MM-dd");
-    const bookingDate = getBookingDate(dateStr);
+    const bookingDate = await getBookingDate(dateStr);
     // Only show dates from today onwards
     const today = new Date();
     today.setHours(0, 0, 0, 0);

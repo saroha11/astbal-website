@@ -67,6 +67,21 @@ export interface BookingFormData {
   specialRequests: string;
 }
 
+export interface Booking {
+  id: number;
+  name: string;
+  email: string;
+  phone: string;
+  check_in: string;
+  check_out: string;
+  guests: number;
+  addons: string[];
+  special_requests: string;
+  total: number;
+  status: "pending" | "confirmed" | "cancelled";
+  created_at: string;
+}
+
 export interface GalleryImage {
   src: string;
   alt: string;
