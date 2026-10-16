@@ -42,3 +42,6 @@ next-env.d.ts
 public/images/Drone videeo .MP4
 
 .vercel
+
+# allow the committed template
+!.env.example

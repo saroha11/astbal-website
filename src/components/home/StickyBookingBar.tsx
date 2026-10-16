@@ -3,9 +3,10 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
-import { Calendar, Users, ArrowRight } from "lucide-react";
+import { Calendar, Users } from "lucide-react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import { getQuote, getStartingPrice } from "@/lib/bookingEngine";
 
 export default function StickyBookingBar() {
   const [isVisible, setIsVisible] = useState(false);
@@ -16,10 +17,8 @@ export default function StickyBookingBar() {
   const today = new Date();
   today.setHours(0, 0, 0, 0);
 
-  // Calculate price
-  const pricePerNight = 6000;
-  const nights = checkIn && checkOut ? Math.ceil((checkOut.getTime() - checkIn.getTime()) / (1000 * 60 * 60 * 24)) : 0;
-  const totalPrice = nights > 0 ? nights * pricePerNight : 0;
+  const pricePerNight = getStartingPrice();
+  const { nights, total: totalPrice, href: bookHref } = getQuote(checkIn, checkOut, guests);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -107,27 +106,21 @@ export default function StickyBookingBar() {
 
                 {/* CTA Button with Price */}
                 <Link
-                  href="/book"
+                  href={bookHref}
                   className="bg-green-600 text-white rounded-lg px-4 py-2 flex flex-col items-center justify-center hover:bg-green-700 transition-colors"
                 >
                   {totalPrice > 0 ? (
                     <>
-                      <span className="text-xs font-medium">₹{totalPrice.toLocaleString()}</span>
+                      <span className="text-xs font-medium">₹{totalPrice.toLocaleString("en-IN")}</span>
                       <span className="text-xs opacity-90">{nights} {nights === 1 ? 'night' : 'nights'}</span>
                     </>
                   ) : (
                     <>
                       <span className="text-sm font-semibold">Book Now</span>
-                      <span className="text-xs opacity-90">₹{pricePerNight.toLocaleString()}/nt</span>
+                      <span className="text-xs opacity-90">from ₹{pricePerNight.toLocaleString("en-IN")}/nt</span>
                     </>
                   )}
                 </Link>
-              </div>
-
-              {/* Availability Indicator */}
-              <div className="hidden xl:flex items-center gap-2 text-xs whitespace-nowrap">
-                <span className="inline-block w-2 h-2 bg-green-500 rounded-full animate-pulse"></span>
-                <span className="text-stone-600 font-medium">3 slots left</span>
               </div>
             </div>
           </div>
