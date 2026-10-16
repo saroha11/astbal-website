@@ -16,8 +16,9 @@ npm run dev
 | --- | --- |
 | `SUPABASE_URL` | Supabase project URL (server-side) |
 | `SUPABASE_SERVICE_ROLE_KEY` | Service-role key, used only by API routes. **Never** expose it as `NEXT_PUBLIC_*`. |
-| `ADMIN_PASSWORD` | Password for `/admin` (HTTP Basic auth). `/admin` returns 503 if unset. |
+| `ADMIN_PASSWORD` | Password for the `/admin/login` page. `/admin` returns 503 if unset. |
 | `ADMIN_USER` | Admin username (default `admin`) |
+| `SESSION_SECRET` | Optional; signs the login cookie (defaults to `ADMIN_PASSWORD`). Use a long random string. |
 
 ## Database
 
@@ -29,8 +30,11 @@ through `/api/*` using the service-role key.
 
 1. Import the repo, framework preset **Next.js**, production branch `main`.
 2. Add the four environment variables above for **Production**.
-3. Deploy, then check: `/` loads, `/book` calendar loads, a test booking appears
-   in `/admin`, and `/admin` prompts for a password.
+3. Enable **Analytics** in the Vercel project for visitor stats.
+4. Deploy, then check: `/` loads, `/book` calendar loads, a test booking appears
+   in `/admin` after logging in at `/admin/login`.
+
+See `LAUNCH_PLAN.md` for the full plan.
 
 ## Before going live — owner content to confirm
 

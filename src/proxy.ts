@@ -1,41 +1,25 @@
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
+import { SESSION_COOKIE, verifySessionToken } from "@/lib/adminSession";
 
-function safeEqual(a: string, b: string): boolean {
-  if (a.length !== b.length) return false;
-  let diff = 0;
-  for (let i = 0; i < a.length; i++) diff |= a.charCodeAt(i) ^ b.charCodeAt(i);
-  return diff === 0;
-}
+// Gate for the admin dashboard and its API. Fails closed if ADMIN_PASSWORD is unset.
+export async function proxy(request: NextRequest) {
+  const { pathname } = request.nextUrl;
+  const isApi = pathname.startsWith("/api/");
 
-// HTTP Basic auth gate for the admin dashboard and its API. Fails closed when
-// ADMIN_PASSWORD is not configured.
-export function proxy(request: NextRequest) {
-  const password = process.env.ADMIN_PASSWORD;
-  if (!password) {
+  if (!process.env.ADMIN_PASSWORD) {
     return new NextResponse("Admin is not configured", { status: 503 });
   }
-  const user = process.env.ADMIN_USER || "admin";
 
-  const header = request.headers.get("authorization") ?? "";
-  if (header.startsWith("Basic ")) {
-    try {
-      const decoded = atob(header.slice(6));
-      const sep = decoded.indexOf(":");
-      if (sep > -1) {
-        const okUser = safeEqual(decoded.slice(0, sep), user);
-        const okPass = safeEqual(decoded.slice(sep + 1), password);
-        if (okUser && okPass) return NextResponse.next();
-      }
-    } catch {
-      // fall through to 401
-    }
+  // Login endpoints/page are public.
+  if (pathname === "/admin/login" || pathname === "/api/admin/login") return NextResponse.next();
+
+  if (await verifySessionToken(request.cookies.get(SESSION_COOKIE)?.value)) {
+    return NextResponse.next();
   }
 
-  return new NextResponse("Authentication required", {
-    status: 401,
-    headers: { "WWW-Authenticate": 'Basic realm="ASTBAL Admin", charset="UTF-8"' },
-  });
+  if (isApi) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+  return NextResponse.redirect(new URL("/admin/login", request.url));
 }
 
 export const config = {
