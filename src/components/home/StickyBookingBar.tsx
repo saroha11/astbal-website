@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { Calendar, Users } from "lucide-react";
 import DatePicker from "react-datepicker";
@@ -29,6 +30,10 @@ export default function StickyBookingBar() {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  // The booking page already is the booking form, and admin pages don't need it
+  const pathname = usePathname();
+  if (pathname.startsWith("/book") || pathname.startsWith("/admin")) return null;
 
   return (
     <AnimatePresence>
