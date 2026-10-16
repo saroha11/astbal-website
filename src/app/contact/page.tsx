@@ -9,7 +9,7 @@ export default function ContactPage() {
   return (
     <>
       <PageHero
-        image="/images/gallery/sunrise-field.jpg"
+        image="/images/hero/nature-retreat.jpg"
         title="Contact & Location"
         subtitle="We're here to help you plan your perfect escape"
         height="sm"

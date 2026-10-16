@@ -11,7 +11,7 @@ const images = [
   { src: "/images/experiences/kitchen-garden.jpg", alt: "Kitchen Garden", span: "" },
   { src: "/images/dogs/labrador.jpg", alt: "Labradors", span: "" },
   { src: "/images/experiences/guava-orchard.jpg", alt: "Guava Orchard", span: "row-span-2" },
-  { src: "/images/gallery/farm-food.jpg", alt: "Farm to Table Food", span: "" },
+  { src: "/images/gallery/horse-white.jpg", alt: "White Horse", span: "" },
 ];
 
 export default function GalleryPreview() {

@@ -7,27 +7,32 @@ import { X, ChevronLeft, ChevronRight } from "lucide-react";
 import type { GalleryImage } from "@/types";
 import PageHero from "@/components/layout/PageHero";
 
-const categories = ["All", "Property", "Horses", "Stable", "Dogs", "Orchard", "Food", "Nature"];
+const categories = ["All", "Property", "Horses", "Dogs", "Orchard", "Nature"];
+
+const L = { w: 800, h: 533 }; // landscape photos (3:2)
+const P = { w: 800, h: 1200 }; // portrait photos (2:3)
 
 const galleryImages: GalleryImage[] = [
-  { src: "/images/property/container-house.jpg", alt: "Container House Exterior", category: "Property", width: 800, height: 600 },
-  { src: "/images/property/container-interior.jpg", alt: "Container House Interior", category: "Property", width: 800, height: 500 },
-  { src: "/images/property/grass-bed.jpg", alt: "Grass Bed Outdoor", category: "Nature", width: 800, height: 530 },
-  { src: "/images/gallery/bedroom-modern.jpg", alt: "Bedroom", category: "Property", width: 800, height: 500 },
-  { src: "/images/gallery/bathroom.jpg", alt: "Bathroom", category: "Property", width: 800, height: 800 },
-  { src: "/images/experiences/horse-riding.jpg", alt: "Horse Riding", category: "Horses", width: 800, height: 600 },
-  { src: "/images/experiences/horse-arena.jpg", alt: "Riding Arena", category: "Horses", width: 800, height: 530 },
-  { src: "/images/gallery/horse-closeup.jpg", alt: "Horse Close Up", category: "Horses", width: 800, height: 700 },
-  { src: "/images/gallery/stable.jpg", alt: "Horse Stable", category: "Stable", width: 800, height: 600 },
-  { src: "/images/experiences/guava-orchard.jpg", alt: "Guava Orchard", category: "Orchard", width: 800, height: 600 },
-  { src: "/images/experiences/kitchen-garden.jpg", alt: "Kitchen Garden", category: "Orchard", width: 800, height: 530 },
-  { src: "/images/experiences/farm-restaurant.jpg", alt: "Farm Restaurant", category: "Food", width: 800, height: 600 },
-  { src: "/images/gallery/farm-food.jpg", alt: "Farm Fresh Food", category: "Food", width: 800, height: 700 },
-  { src: "/images/dogs/labrador.jpg", alt: "Labrador", category: "Dogs", width: 800, height: 600 },
-  { src: "/images/dogs/canine.jpg", alt: "Indian Canine", category: "Dogs", width: 800, height: 700 },
-  { src: "/images/gallery/nature-plants.jpg", alt: "Green Plants", category: "Nature", width: 800, height: 600 },
-  { src: "/images/gallery/mountain-view.jpg", alt: "Mountain View", category: "Nature", width: 800, height: 530 },
-  { src: "/images/gallery/sunrise-field.jpg", alt: "Sunrise Over Fields", category: "Nature", width: 800, height: 500 },
+  { src: "/images/property/container-house.jpg", alt: "Container House & Lawn Seating", category: "Property", width: L.w, height: L.h },
+  { src: "/images/hero/farmhouse-luxury.jpg", alt: "Container House Lawn", category: "Property", width: L.w, height: L.h },
+  { src: "/images/property/grass-bed.jpg", alt: "Outdoor Grass Bed Area", category: "Property", width: L.w, height: L.h },
+  { src: "/images/property/farmhouse.jpg", alt: "Farmhouse & Parking", category: "Property", width: L.w, height: L.h },
+  { src: "/images/experiences/horse-riding.jpg", alt: "Horse Rearing in the Arena", category: "Horses", width: P.w, height: P.h },
+  { src: "/images/experiences/horse-arena.jpg", alt: "Riding Arena with Jumps", category: "Horses", width: L.w, height: L.h },
+  { src: "/images/gallery/arena-wide.jpg", alt: "Riding Arena", category: "Horses", width: L.w, height: L.h },
+  { src: "/images/gallery/riding-arena.jpg", alt: "Riding in the Arena", category: "Horses", width: L.w, height: L.h },
+  { src: "/images/gallery/horse-saddled.jpg", alt: "Saddled Horse", category: "Horses", width: L.w, height: L.h },
+  { src: "/images/gallery/horse-pair.jpg", alt: "Horses with Handlers", category: "Horses", width: L.w, height: L.h },
+  { src: "/images/gallery/horse-white.jpg", alt: "White Horse", category: "Horses", width: L.w, height: L.h },
+  { src: "/images/gallery/pony-running.jpg", alt: "Pony at Play", category: "Horses", width: P.w, height: P.h },
+  { src: "/images/dogs/labrador.jpg", alt: "Our Labrador", category: "Dogs", width: P.w, height: P.h },
+  { src: "/images/dogs/labrador-resting.jpg", alt: "Labrador Resting", category: "Dogs", width: L.w, height: L.h },
+  { src: "/images/dogs/malinois.jpg", alt: "Our Malinois", category: "Dogs", width: P.w, height: P.h },
+  { src: "/images/dogs/canine.jpg", alt: "Our Malinois at the Farm", category: "Dogs", width: P.w, height: P.h },
+  { src: "/images/experiences/guava-orchard.jpg", alt: "Guava Orchard from Above", category: "Orchard", width: L.w, height: L.h },
+  { src: "/images/experiences/kitchen-garden.jpg", alt: "Orchard Rows", category: "Orchard", width: L.w, height: L.h },
+  { src: "/images/gallery/farm-walkway.jpg", alt: "Farm Walkway", category: "Nature", width: L.w, height: L.h },
+  { src: "/images/gallery/farm-gate.jpg", alt: "Farm Gate", category: "Nature", width: L.w, height: L.h },
 ];
 
 export default function GalleryPage() {
@@ -46,7 +51,7 @@ export default function GalleryPage() {
   return (
     <>
       <PageHero
-        image="/images/gallery/sunrise-field.jpg"
+        image="/images/hero/nature-retreat.jpg"
         title="Gallery"
         subtitle="A visual journey through ASTBAL"
         height="sm"

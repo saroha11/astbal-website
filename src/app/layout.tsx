@@ -3,9 +3,12 @@ import "./globals.css";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import WhatsAppButton from "@/components/layout/WhatsAppButton";
+import { Analytics } from "@vercel/analytics/next";
+import { siteConfig } from "@/data/siteConfig";
 import StickyBookingBar from "@/components/home/StickyBookingBar";
 
 export const metadata: Metadata = {
+  metadataBase: new URL(siteConfig.url),
   title: {
     default: "ASTBAL — Farm & Retreat | Nature Stay Near Delhi NCR",
     template: "%s | ASTBAL Farm & Retreat",
@@ -49,6 +52,7 @@ export default function RootLayout({
         <main className="flex-1">{children}</main>
         <Footer />
         <WhatsAppButton />
+        <Analytics />
       </body>
     </html>
   );

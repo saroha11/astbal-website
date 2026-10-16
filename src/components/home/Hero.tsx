@@ -6,6 +6,7 @@ import { motion } from "framer-motion";
 import { ChevronDown, Calendar, Users, ArrowRight, Star, MapPin } from "lucide-react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import { getQuote, getStartingPrice } from "@/lib/bookingEngine";
 
 export default function Hero() {
   const [checkIn, setCheckIn] = useState<Date | null>(null);
@@ -15,10 +16,8 @@ export default function Hero() {
   const today = new Date();
   today.setHours(0, 0, 0, 0);
 
-  // Calculate price preview
-  const pricePerNight = 6000;
-  const nights = checkIn && checkOut ? Math.ceil((checkOut.getTime() - checkIn.getTime()) / (1000 * 60 * 60 * 24)) : 0;
-  const totalPrice = nights > 0 ? nights * pricePerNight : 0;
+  const pricePerNight = getStartingPrice();
+  const { nights, total: totalPrice, href: bookHref } = getQuote(checkIn, checkOut, guests);
 
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
@@ -66,7 +65,7 @@ export default function Hero() {
               <span>1hr from Delhi NCR</span>
             </div>
             <div className="flex items-center gap-1.5">
-              <span className="text-amber-400 font-semibold">₹{pricePerNight.toLocaleString()}/night</span>
+              <span className="text-amber-400 font-semibold">from ₹{pricePerNight.toLocaleString("en-IN")}/night</span>
             </div>
           </div>
         </motion.div>
@@ -136,7 +135,7 @@ export default function Hero() {
               {/* Search Button */}
               <div className="flex items-end">
                 <Link
-                  href="/book"
+                  href={bookHref}
                   className="w-full inline-flex items-center justify-center gap-2 bg-green-600 text-white px-6 py-3.5 rounded-xl text-sm sm:text-base font-semibold hover:bg-green-700 transition-all shadow-lg hover:shadow-xl"
                 >
                   Check Availability
@@ -149,18 +148,12 @@ export default function Hero() {
             <div className="flex flex-col sm:flex-row items-center justify-between gap-3 pt-3 border-t border-stone-200">
               {totalPrice > 0 ? (
                 <div className="text-stone-700">
-                  <span className="font-semibold text-lg text-green-600">₹{totalPrice.toLocaleString()}</span>
+                  <span className="font-semibold text-lg text-green-600">₹{totalPrice.toLocaleString("en-IN")}</span>
                   <span className="text-sm ml-2">for {nights} {nights === 1 ? 'night' : 'nights'}</span>
-                  <span className="text-xs text-stone-500 ml-2">• ₹{pricePerNight.toLocaleString()}/night</span>
                 </div>
               ) : (
                 <div className="text-stone-500 text-sm">Select dates to see pricing</div>
               )}
-
-              <div className="flex items-center gap-2 text-sm">
-                <span className="inline-block w-2 h-2 bg-green-500 rounded-full animate-pulse"></span>
-                <span className="text-stone-600 font-medium">3 slots left this weekend</span>
-              </div>
             </div>
 
             {/* Trust Badges */}
@@ -171,7 +164,7 @@ export default function Hero() {
               </div>
               <div className="flex items-center gap-1.5">
                 <span className="text-green-600">✓</span>
-                <span>Instant Confirmation</span>
+                <span>Quick Confirmation</span>
               </div>
               <div className="flex items-center gap-1.5">
                 <span className="text-green-600">✓</span>

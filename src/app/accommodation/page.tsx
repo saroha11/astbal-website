@@ -20,10 +20,9 @@ const amenities = [
 
 const images = [
   { src: "/images/property/container-house.jpg", alt: "ASTBAL Container House Exterior" },
-  { src: "/images/property/container-interior.jpg", alt: "Container House Interior" },
+  { src: "/images/hero/farmhouse-luxury.jpg", alt: "Container House and Lawn" },
   { src: "/images/property/grass-bed.jpg", alt: "Outdoor Grass Bed Area" },
-  { src: "/images/gallery/bedroom-modern.jpg", alt: "Bedroom" },
-  { src: "/images/gallery/bathroom.jpg", alt: "Bathroom" },
+  { src: "/images/property/farmhouse.jpg", alt: "Farmhouse and Parking" },
 ];
 
 export default function AccommodationPage() {

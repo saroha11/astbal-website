@@ -4,7 +4,6 @@ import { useState, useEffect, useMemo } from "react";
 import { ChevronLeft, ChevronRight, Info } from "lucide-react";
 import { format, startOfMonth, endOfMonth, eachDayOfInterval, isToday, isSameDay } from "date-fns";
 import {
-  getBookingDate,
   getMonthDates,
   monthNames,
   weekdays,
@@ -26,7 +25,6 @@ export default function AvailabilityCalendar({
   const [viewDate, setViewDate] = useState(new Date());
   const [hoveredDate, setHoveredDate] = useState<string | null>(null);
   const [monthDates, setMonthDates] = useState<BookingDate[]>([]);
-  const [loading, setLoading] = useState(true);
 
   const year = viewDate.getFullYear();
   const month = viewDate.getMonth();
@@ -36,12 +34,8 @@ export default function AvailabilityCalendar({
 
   useEffect(() => {
     let cancelled = false;
-    setLoading(true);
     getMonthDates(year, month).then((dates) => {
-      if (!cancelled) {
-        setMonthDates(dates);
-        setLoading(false);
-      }
+      if (!cancelled) setMonthDates(dates);
     });
     return () => { cancelled = true; };
   }, [year, month]);

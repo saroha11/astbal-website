@@ -1,36 +1,43 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# ASTBAL — Farm & Retreat
 
-## Getting Started
+Next.js 16 (App Router) site with a booking flow backed by Supabase.
 
-First, run the development server:
+## Local development
 
 ```bash
+npm install
+cp .env.example .env.local   # fill in the values
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Environment variables
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+| Variable | Purpose |
+| --- | --- |
+| `SUPABASE_URL` | Supabase project URL (server-side) |
+| `SUPABASE_SERVICE_ROLE_KEY` | Service-role key, used only by API routes. **Never** expose it as `NEXT_PUBLIC_*`. |
+| `ADMIN_PASSWORD` | Password for the `/admin/login` page. `/admin` returns 503 if unset. |
+| `ADMIN_USER` | Admin username (default `admin`) |
+| `SESSION_SECRET` | Optional; signs the login cookie (defaults to `ADMIN_PASSWORD`). Use a long random string. |
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Database
 
-## Learn More
+Run `supabase-schema.sql` in the Supabase SQL editor. RLS is enabled with no
+policies, so the public anon key cannot read or write bookings; all access goes
+through `/api/*` using the service-role key.
 
-To learn more about Next.js, take a look at the following resources:
+## Deploying (Vercel)
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+1. Import the repo, framework preset **Next.js**, production branch `main`.
+2. Add the four environment variables above for **Production**.
+3. Enable **Analytics** in the Vercel project for visitor stats.
+4. Deploy, then check: `/` loads, `/book` calendar loads, a test booking appears
+   in `/admin` after logging in at `/admin/login`.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+See `LAUNCH_PLAN.md` for the full plan.
 
-## Deploy on Vercel
+## Before going live — owner content to confirm
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Placeholder values still in the code: `src/data/siteConfig.ts` (phone, WhatsApp
+number, map embed, social links, domain), `src/data/testimonials.json`, and the
+"4.9/5 (127 reviews)" / "127 Happy Guests" claims in `src/components/home/Hero.tsx`.

@@ -1,5 +1,6 @@
--- ASTBAL Bookings Table
--- Run this in Supabase SQL Editor: https://supabase.com/dashboard/project/dsrprfidvqvrzjwabdji/sql
+-- ASTBAL bookings. Run in the Supabase SQL editor.
+-- All access goes through the Next.js API routes using the service-role key,
+-- so RLS is enabled with NO policies: the public anon key can read/write nothing.
 
 CREATE TABLE IF NOT EXISTS bookings (
   id SERIAL PRIMARY KEY,
@@ -13,15 +14,14 @@ CREATE TABLE IF NOT EXISTS bookings (
   special_requests TEXT,
   total INT NOT NULL,
   status TEXT DEFAULT 'pending' CHECK (status IN ('pending', 'confirmed', 'cancelled')),
-  created_at TIMESTAMPTZ DEFAULT NOW()
+  created_at TIMESTAMPTZ DEFAULT NOW(),
+  CONSTRAINT bookings_dates_valid CHECK (check_out > check_in)
 );
 
--- Enable Row Level Security
 ALTER TABLE bookings ENABLE ROW LEVEL SECURITY;
 
--- Allow all operations (for development)
-CREATE POLICY IF NOT EXISTS "Allow all" ON bookings FOR ALL USING (true);
+-- IMPORTANT if you ran the earlier version of this file: remove the open policy.
+DROP POLICY IF EXISTS "Allow all" ON bookings;
 
--- Index for faster availability queries
 CREATE INDEX IF NOT EXISTS idx_bookings_dates ON bookings (check_in, check_out);
 CREATE INDEX IF NOT EXISTS idx_bookings_status ON bookings (status);

@@ -9,8 +9,8 @@
     "gallery": [
       "/images/experiences/horse-riding.jpg",
       "/images/experiences/horse-arena.jpg",
-      "/images/gallery/horse-closeup.jpg",
-      "/images/gallery/stable.jpg"
+      "/images/gallery/riding-arena.jpg",
+      "/images/gallery/horse-saddled.jpg"
     ],
     "included": true,
     "addonId": "horse-riding-lesson",
@@ -29,7 +29,7 @@
     "description": "Step into our lush guava orchard and hand-pick the freshest, juiciest guavas you've ever tasted. There's nothing quite like eating fruit straight from the tree. Take a basket, wander through the trees, and fill it with nature's candy.",
     "longDescription": "Our guava orchard is a labor of love — rows upon rows of guava trees heavy with fruit. The experience of walking among the trees, smelling the sweet fragrance, and picking guavas at peak ripeness is something that connects you to the land. You can eat them fresh or take some back to the kitchen where our cook can prepare guava desserts and salads.",
     "image": "/images/experiences/guava-orchard.jpg",
-    "gallery": ["/images/experiences/guava-orchard.jpg", "/images/gallery/nature-plants.jpg"],
+    "gallery": ["/images/experiences/guava-orchard.jpg", "/images/experiences/kitchen-garden.jpg"],
     "included": true,
     "addonId": "orchard-visit",
     "highlights": [
@@ -47,7 +47,7 @@
     "description": "Visit our kitchen garden where we grow fresh vegetables, herbs, and greens. Pick your favorites and head straight to the kitchen where our cook will transform your harvest into a delicious meal. It doesn't get fresher than this!",
     "longDescription": "Our kitchen garden is the heart of ASTBAL's farm-to-table philosophy. Rows of tomatoes, peppers, spinach, herbs, seasonal vegetables — all grown organically on the property. Our cook will guide you through the garden, help you pick the best produce, and then show you how to turn it into a mouth-watering dish in our in-house kitchen.",
     "image": "/images/experiences/kitchen-garden.jpg",
-    "gallery": ["/images/experiences/kitchen-garden.jpg", "/images/gallery/nature-plants.jpg"],
+    "gallery": ["/images/experiences/kitchen-garden.jpg", "/images/experiences/guava-orchard.jpg"],
     "included": true,
     "addonId": "farm-experience",
     "highlights": [
@@ -64,8 +64,8 @@
     "subtitle": "Farm-to-table dining",
     "description": "Our in-house kitchen serves delicious, home-style meals prepared by our talented cook using fresh ingredients from the property. From hearty breakfasts to multi-course dinners, every meal is a celebration of local flavors and farm freshness.",
     "longDescription": "Food at ASTBAL is more than just meals — it's an experience. Our cook specializes in rustic, home-style cooking that showcases the best of Haryana's culinary traditions. Every dish uses ingredients sourced from our kitchen garden, guava orchard, and local farms. Enjoy your meals al fresco with views of the open fields, or cozy up indoors during the cooler months.",
-    "image": "/images/experiences/farm-restaurant.jpg",
-    "gallery": ["/images/experiences/farm-restaurant.jpg", "/images/gallery/farm-food.jpg"],
+    "image": "/images/property/container-house.jpg",
+    "gallery": ["/images/property/container-house.jpg", "/images/hero/farmhouse-luxury.jpg"],
     "included": false,
     "addonId": "farm-dinner",
     "highlights": [
@@ -83,7 +83,7 @@
     "description": "ASTBAL is home to friendly dogs — both Indian canines and Labradors — who love meeting guests. They'll greet you at the gate, accompany you on walks around the property, and fill your stay with unconditional love and joy. Dog lovers, this is heaven!",
     "longDescription": "Our dogs are part of the ASTBAL family. The Labradors are gentle, playful, and great with children — they love belly rubs and playing fetch in the fields. Our Indian canines are loyal, intelligent, and the perfect companions for nature walks around the 2-acre property. They add warmth and life to every stay.",
     "image": "/images/dogs/labrador.jpg",
-    "gallery": ["/images/dogs/labrador.jpg", "/images/dogs/canine.jpg"],
+    "gallery": ["/images/dogs/labrador.jpg", "/images/dogs/malinois.jpg", "/images/dogs/labrador-resting.jpg"],
     "included": true,
     "addonId": null,
     "highlights": [
