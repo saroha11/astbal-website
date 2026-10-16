@@ -9,7 +9,7 @@ All photos are real property photos in `public/images/`, named for what they sho
 | `experiences/` | `horse-riding` (rearing horse), `horse-arena`, `guava-orchard` (aerial), `kitchen-garden` (orchard rows, stand-in) |
 | `gallery/` | `arena-wide`, `riding-arena`, `horse-saddled`, `horse-pair`, `horse-white`, `pony-running`, `farm-walkway`, `farm-gate` |
 | `dogs/` | `labrador`, `labrador-resting`, `malinois`, `canine` |
-| root | `drone-video.mp4` (hero background, 1280px, ~4 MB) |
+| `hero/` | `drone-hero.mp4` (hero background, 1280px, ~2.6 MB) + `drone-poster.jpg` (its first frame, shown while it loads) |
 
 ## Still missing
 

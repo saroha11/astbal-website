@@ -3,10 +3,15 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Star, ChevronLeft, ChevronRight } from "lucide-react";
-import testimonials from "@/data/testimonials.json";
+import testimonialData from "@/data/testimonials.json";
+import type { Testimonial } from "@/types";
+
+// Add real guest reviews to src/data/testimonials.json; the section stays hidden while it's empty.
+const testimonials: Testimonial[] = testimonialData;
 
 export default function Testimonials() {
   const [current, setCurrent] = useState(0);
+  if (testimonials.length === 0) return null;
   const next = () => setCurrent((prev) => (prev + 1) % testimonials.length);
   const prev = () => setCurrent((prev) => (prev - 1 + testimonials.length) % testimonials.length);
 

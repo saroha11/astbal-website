@@ -2,7 +2,12 @@
 
 import { motion } from "framer-motion";
 import { Calendar, Users, Plus, Minus, Sparkles } from "lucide-react";
+import { format } from "date-fns";
 import { formatPrice } from "@/lib/bookingEngine";
+import pricingData from "@/data/pricing.json";
+
+const maxGuests = pricingData.accommodation.maxGuests;
+const shortDate = (d: string) => format(new Date(d + "T00:00:00"), "EEE, d MMM");
 
 interface PriceBreakdownProps {
   checkIn: string | null;
@@ -42,11 +47,11 @@ export default function PriceBreakdown({ checkIn, checkOut, guests, pricing, onG
       <div className="grid grid-cols-2 gap-2.5 mb-4">
         <div className="bg-stone-50 rounded-lg p-3">
           <p className="text-[10px] text-stone-400 font-medium uppercase tracking-wide">Check-in</p>
-          <p className="font-semibold text-stone-800 text-xs sm:text-sm mt-0.5">{checkIn}</p>
+          <p className="font-semibold text-stone-800 text-xs sm:text-sm mt-0.5">{checkIn && shortDate(checkIn)}</p>
         </div>
         <div className="bg-stone-50 rounded-lg p-3">
           <p className="text-[10px] text-stone-400 font-medium uppercase tracking-wide">Check-out</p>
-          <p className="font-semibold text-stone-800 text-xs sm:text-sm mt-0.5">{checkOut}</p>
+          <p className="font-semibold text-stone-800 text-xs sm:text-sm mt-0.5">{checkOut && shortDate(checkOut)}</p>
         </div>
       </div>
 
@@ -54,13 +59,13 @@ export default function PriceBreakdown({ checkIn, checkOut, guests, pricing, onG
       <div className="flex items-center justify-between p-3 bg-stone-50 rounded-lg mb-5">
         <span className="flex items-center gap-1.5 text-xs sm:text-sm text-stone-500"><Users className="w-3.5 h-3.5" />Guests</span>
         <div className="flex items-center gap-3">
-          <button onClick={() => onGuestsChange(Math.max(1, guests - 1))}
-            className="w-7 h-7 rounded-full border border-stone-200 flex items-center justify-center hover:bg-stone-100 transition-colors">
+          <button type="button" aria-label="Fewer guests" disabled={guests <= 1} onClick={() => onGuestsChange(Math.max(1, guests - 1))}
+            className="w-7 h-7 rounded-full border border-stone-200 flex items-center justify-center hover:bg-stone-100 transition-colors disabled:opacity-40 disabled:cursor-not-allowed">
             <Minus className="w-3 h-3" />
           </button>
           <span className="font-semibold text-stone-800 w-4 text-center text-sm">{guests}</span>
-          <button onClick={() => onGuestsChange(Math.min(4, guests + 1))}
-            className="w-7 h-7 rounded-full border border-stone-200 flex items-center justify-center hover:bg-stone-100 transition-colors">
+          <button type="button" aria-label="More guests" disabled={guests >= maxGuests} onClick={() => onGuestsChange(Math.min(maxGuests, guests + 1))}
+            className="w-7 h-7 rounded-full border border-stone-200 flex items-center justify-center hover:bg-stone-100 transition-colors disabled:opacity-40 disabled:cursor-not-allowed">
             <Plus className="w-3 h-3" />
           </button>
         </div>

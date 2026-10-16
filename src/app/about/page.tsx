@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { motion } from "framer-motion";
-import { TreePine, MapPin, Clock, Home, Maximize, Dog, Star } from "lucide-react";
+import { TreePine, MapPin, Clock, Home, Maximize, Dog, Sprout } from "lucide-react";
 import PageHero from "@/components/layout/PageHero";
 
 const stats = [
@@ -11,7 +11,7 @@ const stats = [
   { icon: Clock, label: "From Delhi", value: "1 Hour", description: "Easy weekend drive" },
   { icon: Home, label: "Accommodation", value: "1 BHK", description: "Modern container house" },
   { icon: Dog, label: "Our Dogs", value: "4+", description: "Labradors & Canines" },
-  { icon: Star, label: "Rating", value: "5.0", description: "From our guests" },
+  { icon: Sprout, label: "Kitchen Garden", value: "Farm-fresh", description: "Veggies for your meals" },
 ];
 
 export default function AboutPage() {

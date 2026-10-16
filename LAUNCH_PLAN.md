@@ -22,6 +22,7 @@ No online payment yet: payment is collected by you off-site. See "Phase 2".
 - Online advance payment (Razorpay) so dates are held only when paid.
 - Real bedroom/bathroom/kitchen-garden/restaurant photos.
 - Google Business Profile + reviews link; Search Console (sitemap is at `/sitemap.xml`).
+- Real guest reviews: add them to `src/data/testimonials.json` (name, location, rating, text, avatar letter). The "Guest Reviews" section on the home page appears automatically once the file has entries. Only add a star rating/review count to the hero once it reflects real reviews (e.g. from Google).
 
 ## Insights
 - `/admin` shows pending requests, confirmed revenue, 30-day occupancy, confirm rate, average stay/party, requests per month, upcoming stays and popular add-ons.

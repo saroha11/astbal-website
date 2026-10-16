@@ -2,6 +2,7 @@
 
 import { useState, useMemo } from "react";
 import { motion } from "framer-motion";
+import { format } from "date-fns";
 import { Send, User, Mail, Phone, MessageSquare, CheckCircle, AlertCircle } from "lucide-react";
 import AvailabilityCalendar from "@/components/booking/AvailabilityCalendar";
 import AddOnsSelector from "@/components/booking/AddOnsSelector";
@@ -9,6 +10,11 @@ import PriceBreakdown from "@/components/booking/PriceBreakdown";
 import PageHero from "@/components/layout/PageHero";
 import { calculateTotalPrice, formatPrice } from "@/lib/bookingEngine";
 import { siteConfig } from "@/data/siteConfig";
+
+// "2026-11-09" -> "Mon, 9 Nov 2026"
+function prettyDate(date: string) {
+  return format(new Date(date + "T00:00:00"), "EEE, d MMM yyyy");
+}
 
 interface BookingClientProps {
   initialCheckIn: string | null;
@@ -23,6 +29,7 @@ export default function BookingClient({ initialCheckIn, initialCheckOut, initial
   const [selectedAddons, setSelectedAddons] = useState<string[]>([]);
   const [formData, setFormData] = useState({ name: "", email: "", phone: "", specialRequests: "" });
   const [submitted, setSubmitted] = useState(false);
+  const [whatsappUrl, setWhatsappUrl] = useState("");
 
   const pricing = useMemo(() => {
     if (!checkIn || !checkOut) return null;
@@ -71,10 +78,15 @@ export default function BookingClient({ initialCheckIn, initialCheckOut, initial
       }
 
       // Also send WhatsApp so the owner is notified right away
-      const message = `🌿 *New Booking — ASTBAL*\n\n*Name:* ${formData.name}\n*Phone:* ${formData.phone}\n*Email:* ${formData.email}\n*Check-in:* ${checkIn}\n*Check-out:* ${checkOut}\n*Guests:* ${guests}\n*Add-ons:* ${selectedAddons.length > 0 ? selectedAddons.join(", ") : "None"}\n*Requests:* ${formData.specialRequests || "None"}\n*Total:* ${formatPrice(pricing.total)}`;
-      window.open(`https://wa.me/${siteConfig.whatsapp}?text=${encodeURIComponent(message)}`, "_blank");
+      const addonNames = pricing.addons.map((a) => a.name);
+      const message = `🌿 *New Booking — ASTBAL*\n\n*Booking #:* ${data.id}\n*Name:* ${formData.name}\n*Phone:* ${formData.phone}\n*Email:* ${formData.email}\n*Check-in:* ${prettyDate(checkIn)}\n*Check-out:* ${prettyDate(checkOut)}\n*Guests:* ${guests}\n*Add-ons:* ${addonNames.length > 0 ? addonNames.join(", ") : "None"}\n*Requests:* ${formData.specialRequests || "None"}\n*Total:* ${formatPrice(data.total ?? pricing.total)}`;
+      const url = `https://wa.me/${siteConfig.whatsapp}?text=${encodeURIComponent(message)}`;
+      setWhatsappUrl(url);
+      // Phones often block pop-ups opened after a network request; the success screen has a button as backup.
+      window.open(url, "_blank");
 
       setSubmitted(true);
+      window.scrollTo({ top: 0 });
     } catch {
       setSubmitError("Network error. Please try again.");
     } finally {
@@ -83,26 +95,47 @@ export default function BookingClient({ initialCheckIn, initialCheckOut, initial
   };
 
   if (submitted) {
+    const nextSteps = [
+      "We'll call or WhatsApp you within a few hours to confirm.",
+      "Once confirmed, pay by UPI or bank transfer to lock your dates.",
+      "Free cancellation up to 48 hours before check-in.",
+    ];
     return (
       <section className="min-h-screen pt-20 bg-stone-50">
-        <div className="max-w-lg mx-auto px-4 py-16 sm:py-20">
+        <div className="max-w-lg mx-auto px-4 py-12 sm:py-20">
           <motion.div initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }}
-            className="bg-white rounded-2xl shadow-sm border border-stone-100 p-8 sm:p-10 text-center">
+            className="bg-white rounded-2xl shadow-sm border border-stone-100 p-6 sm:p-10 text-center">
             <div className="w-16 h-16 bg-green-50 rounded-full flex items-center justify-center mx-auto mb-5">
               <CheckCircle className="w-8 h-8 text-green-600" />
             </div>
-            <h2 className="text-2xl font-bold text-stone-900 mb-3" style={{ fontFamily: "var(--font-heading)" }}>Booking Request Sent!</h2>
-            <p className="text-stone-500 text-sm leading-relaxed mb-6">Your request has been saved and shared with us on WhatsApp. Our team will confirm within a few hours.</p>
+            <h2 className="text-2xl font-bold text-stone-900 mb-2" style={{ fontFamily: "var(--font-heading)" }}>Request Received!</h2>
+            <p className="text-stone-500 text-sm leading-relaxed mb-6">Your dates are not confirmed yet. Here&rsquo;s what happens next:</p>
+            <ol className="text-left space-y-3 mb-6">
+              {nextSteps.map((step, i) => (
+                <li key={step} className="flex gap-3 text-sm text-stone-700">
+                  <span className="w-6 h-6 rounded-full bg-green-600 text-white text-xs font-bold flex items-center justify-center shrink-0">{i + 1}</span>
+                  <span className="pt-0.5">{step}</span>
+                </li>
+              ))}
+            </ol>
             <div className="bg-stone-50 rounded-xl p-4 mb-6 text-left space-y-1.5 text-xs sm:text-sm">
-              <p><span className="text-stone-400">Check-in:</span> <span className="font-medium text-stone-800">{checkIn}</span></p>
-              <p><span className="text-stone-400">Check-out:</span> <span className="font-medium text-stone-800">{checkOut}</span></p>
+              <p><span className="text-stone-400">Check-in:</span> <span className="font-medium text-stone-800">{checkIn && prettyDate(checkIn)}</span></p>
+              <p><span className="text-stone-400">Check-out:</span> <span className="font-medium text-stone-800">{checkOut && prettyDate(checkOut)}</span></p>
               <p><span className="text-stone-400">Guests:</span> <span className="font-medium text-stone-800">{guests}</span></p>
               {pricing && <p><span className="text-stone-400">Total:</span> <span className="font-bold text-green-600 text-base">{formatPrice(pricing.total)}</span></p>}
             </div>
-            <button onClick={() => { setSubmitted(false); setCheckIn(null); setCheckOut(null); setSelectedAddons([]); setFormData({ name: "", email: "", phone: "", specialRequests: "" }); }}
-              className="bg-green-600 text-white px-6 py-3 rounded-full font-semibold text-sm hover:bg-green-700 transition-colors">
-              Book Another Stay
-            </button>
+            <div className="flex flex-col gap-3">
+              {whatsappUrl && (
+                <a href={whatsappUrl} target="_blank" rel="noopener noreferrer"
+                  className="inline-flex items-center justify-center gap-2 bg-green-600 text-white px-6 py-3 rounded-full font-semibold text-sm hover:bg-green-700 transition-colors">
+                  <MessageSquare className="w-4 h-4" /> Send details on WhatsApp
+                </a>
+              )}
+              <button onClick={() => { setSubmitted(false); setWhatsappUrl(""); setCheckIn(null); setCheckOut(null); setSelectedAddons([]); setFormData({ name: "", email: "", phone: "", specialRequests: "" }); }}
+                className="text-stone-500 px-6 py-2 rounded-full font-medium text-sm hover:text-stone-800 transition-colors">
+                Book another stay
+              </button>
+            </div>
           </motion.div>
         </div>
       </section>
@@ -134,26 +167,26 @@ export default function BookingClient({ initialCheckIn, initialCheckOut, initial
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
                     <div className="relative">
                       <User className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-stone-400" />
-                      <input type="text" placeholder="Full Name *" required value={formData.name}
+                      <input type="text" placeholder="Full Name *" required autoComplete="name" aria-label="Full name" value={formData.name}
                         onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                         className="w-full pl-10 pr-4 py-3 rounded-xl border border-stone-200 focus:border-green-500 focus:ring-2 focus:ring-green-100 outline-none text-sm text-stone-800 bg-stone-50" />
                     </div>
                     <div className="relative">
                       <Mail className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-stone-400" />
-                      <input type="email" placeholder="Email *" required value={formData.email}
+                      <input type="email" placeholder="Email *" required autoComplete="email" aria-label="Email" value={formData.email}
                         onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                         className="w-full pl-10 pr-4 py-3 rounded-xl border border-stone-200 focus:border-green-500 focus:ring-2 focus:ring-green-100 outline-none text-sm text-stone-800 bg-stone-50" />
                     </div>
                   </div>
                   <div className="relative">
                     <Phone className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-stone-400" />
-                    <input type="tel" placeholder="Phone Number *" required value={formData.phone}
+                    <input type="tel" placeholder="Phone Number *" required autoComplete="tel" inputMode="tel" aria-label="Phone number" value={formData.phone}
                       onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
                       className="w-full pl-10 pr-4 py-3 rounded-xl border border-stone-200 focus:border-green-500 focus:ring-2 focus:ring-green-100 outline-none text-sm text-stone-800 bg-stone-50" />
                   </div>
                   <div className="relative">
                     <MessageSquare className="absolute left-3.5 top-3.5 w-4 h-4 text-stone-400" />
-                    <textarea placeholder="Special Requests (optional)" rows={3} value={formData.specialRequests}
+                    <textarea placeholder="Special Requests (optional)" rows={3} aria-label="Special requests" value={formData.specialRequests}
                       onChange={(e) => setFormData({ ...formData, specialRequests: e.target.value })}
                       className="w-full pl-10 pr-4 py-3 rounded-xl border border-stone-200 focus:border-green-500 focus:ring-2 focus:ring-green-100 outline-none text-sm text-stone-800 bg-stone-50 resize-none" />
                   </div>
@@ -162,13 +195,26 @@ export default function BookingClient({ initialCheckIn, initialCheckOut, initial
                       <AlertCircle className="w-4 h-4 shrink-0" /> {submitError}
                     </p>
                   )}
+                  {/* Total right above the button: on phones the price summary sits below the form */}
+                  {pricing ? (
+                    <div className="flex items-center justify-between gap-3 bg-green-50 rounded-xl px-4 py-3 text-sm">
+                      <span className="text-stone-600">
+                        {prettyDate(checkIn!)} → {prettyDate(checkOut!)} · {pricing.nights} night{pricing.nights > 1 ? "s" : ""}
+                      </span>
+                      <span className="font-bold text-green-700 text-base shrink-0">{formatPrice(pricing.total)}</span>
+                    </div>
+                  ) : (
+                    <p className="text-center text-xs sm:text-sm text-amber-700 bg-amber-50 rounded-xl px-4 py-2.5">
+                      {checkIn ? "Now pick your check-out date on the calendar" : "Pick your check-in date on the calendar to continue"}
+                    </p>
+                  )}
                   <button type="submit"
-                    disabled={!checkIn || !checkOut || !formData.name || !formData.phone || isSubmitting}
+                    disabled={!pricing || !formData.name || !formData.phone || isSubmitting}
                     className="w-full flex items-center justify-center gap-2 bg-green-600 text-white py-3.5 rounded-full font-semibold text-sm sm:text-base hover:bg-green-700 transition-all shadow-sm disabled:bg-stone-300 disabled:cursor-not-allowed">
                     <Send className="w-4 h-4" /> {isSubmitting ? "Sending..." : "Request Booking"}
                   </button>
                   <p className="text-center text-[10px] sm:text-xs text-stone-400">
-                    Your request is saved and also shared with us on WhatsApp. You can also call us at{" "}
+                    No payment now. We confirm on WhatsApp first. Questions? Call{" "}
                     <a href={`tel:${siteConfig.phone}`} className="text-green-600">{siteConfig.phone}</a>
                   </p>
                 </form>

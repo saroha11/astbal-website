@@ -17,12 +17,20 @@ interface AvailabilityCalendarProps {
   selectedCheckOut: string | null;
 }
 
+// 4500 -> "₹4.5k"
+function compactPrice(amount: number) {
+  return `₹${(amount / 1000).toFixed(1).replace(/\.0$/, "")}k`;
+}
+
 export default function AvailabilityCalendar({
   onSelectDates,
   selectedCheckIn,
   selectedCheckOut,
 }: AvailabilityCalendarProps) {
-  const [viewDate, setViewDate] = useState(new Date());
+  // Open on the month of a pre-selected check-in (e.g. coming from the home page search)
+  const [viewDate, setViewDate] = useState(() =>
+    selectedCheckIn ? new Date(selectedCheckIn + "T00:00:00") : new Date()
+  );
   const [hoveredDate, setHoveredDate] = useState<string | null>(null);
   const [monthDates, setMonthDates] = useState<BookingDate[]>([]);
 
@@ -51,25 +59,28 @@ export default function AvailabilityCalendar({
     return day > checkInDate && day < checkOutDate;
   };
 
-  const handleDateClick = (bookingDate: BookingDate) => {
-    if (bookingDate.status === "booked") return;
-    if (!selectedCheckIn || (selectedCheckIn && selectedCheckOut)) {
-      // Start new selection
-      onSelectDates(bookingDate.date, "");
-    } else if (bookingDate.date > selectedCheckIn) {
-      // Set check-out
-      onSelectDates(selectedCheckIn, bookingDate.date);
-    } else {
-      // Clicked before check-in, restart
-      onSelectDates(bookingDate.date, "");
-    }
-  };
-
   const bookingDateMap = useMemo(() => {
     const map = new Map<string, BookingDate>();
     for (const bd of monthDates) map.set(bd.date, bd);
     return map;
   }, [monthDates]);
+
+  // A stay needs every night from check-in up to (not including) check-out to be free.
+  // The check-out day itself may be booked: the next guest arrives that afternoon.
+  const hasBookedNight = (from: string, to: string) =>
+    monthDates.some((bd) => bd.status === "booked" && bd.date >= from && bd.date < to);
+
+  const canCheckOutOn = (dateStr: string) =>
+    !!selectedCheckIn && !selectedCheckOut && dateStr > selectedCheckIn && !hasBookedNight(selectedCheckIn, dateStr);
+
+  const handleDateClick = (bookingDate: BookingDate) => {
+    if (canCheckOutOn(bookingDate.date)) {
+      onSelectDates(selectedCheckIn!, bookingDate.date);
+    } else if (bookingDate.status !== "booked") {
+      // Start a new selection (also when clicking before check-in or across a booked night)
+      onSelectDates(bookingDate.date, "");
+    }
+  };
 
   const daysInMonth = eachDayOfInterval({ start: monthStart, end: endOfMonth(viewDate) });
 
@@ -159,6 +170,14 @@ export default function AvailabilityCalendar({
 
           const isBooked = bookingDate.status === "booked";
           const isLimited = bookingDate.status === "limited";
+          const checkoutOnly = isBooked && canCheckOutOn(dateStr);
+          const label = [
+            format(day, "EEEE d MMMM yyyy"),
+            isBooked
+              ? checkoutOnly ? "booked, available for check-out" : "booked"
+              : `${formatPrice(bookingDate.price)} per night${isLimited ? ", limited availability" : ""}`,
+            isCheckIn ? "check-in" : isCheckOut ? "check-out" : "",
+          ].filter(Boolean).join(", ");
 
           return (
             <div
@@ -169,13 +188,17 @@ export default function AvailabilityCalendar({
             >
               <button
                 onClick={() => handleDateClick(bookingDate)}
-                disabled={isBooked}
+                disabled={isBooked && !checkoutOnly}
+                aria-label={label}
+                aria-pressed={!!selected}
                 className={`
                   w-full aspect-square rounded-lg flex flex-col items-center justify-center
                   text-xs sm:text-sm font-semibold cursor-pointer transition-all duration-150
                   relative
-                  ${isBooked
-                    ? "bg-red-50 text-red-300 cursor-not-allowed line-through"
+                  ${isBooked && !selected
+                    ? checkoutOnly
+                      ? "bg-red-50 text-red-400 hover:bg-red-100"
+                      : "bg-red-50 text-red-300 cursor-not-allowed line-through"
                     : selected
                     ? "bg-sky-500 text-white shadow-md ring-2 ring-sky-300 ring-offset-1 scale-105"
                     : inRange
@@ -188,10 +211,10 @@ export default function AvailabilityCalendar({
                 `}
               >
                 <span>{format(day, "d")}</span>
-                {/* Weekend badge - only on available/limited, not selected or booked */}
-                {!isBooked && !selected && bookingDate.isWeekend && (
-                  <span className="text-[7px] sm:text-[8px] leading-none opacity-50 font-bold">
-                    WE
+                {/* Nightly price, so phone users (no hover) can compare dates */}
+                {!isBooked && !selected && (
+                  <span className="text-[8px] sm:text-[10px] leading-none opacity-70 font-medium mt-0.5">
+                    {compactPrice(bookingDate.price)}
                   </span>
                 )}
                 {/* Selected label */}
@@ -241,8 +264,7 @@ export default function AvailabilityCalendar({
         </div>
         <p className="text-center text-[11px] text-stone-400 mt-2.5 flex items-center justify-center gap-1">
           <Info className="w-3 h-3" />
-          <span className="hidden sm:inline">Hover dates for pricing · </span>
-          Tap check-in then check-out · WE = Weekend
+          Prices are per night · Tap check-in, then check-out
         </p>
       </div>
     </div>

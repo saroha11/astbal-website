@@ -25,3 +25,9 @@ export const siteConfig = {
 } as const;
 
 export type SiteConfig = typeof siteConfig;
+
+// Live address of the site. On Vercel this is the production domain (astbal-website.vercel.app today,
+// astbal.in automatically once that domain is connected), so sitemap and share links never point at a dead URL.
+export const siteUrl = process.env.VERCEL_PROJECT_PRODUCTION_URL
+  ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`
+  : siteConfig.url;
