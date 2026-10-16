@@ -26,3 +26,24 @@ No online payment yet: payment is collected by you off-site. See "Phase 2".
 ## Insights
 - `/admin` shows pending requests, confirmed revenue, 30-day occupancy, confirm rate, average stay/party, requests per month, upcoming stays and popular add-ons.
 - Website traffic (visitors, pages, countries, devices) comes from Vercel Analytics: Vercel project -> Analytics tab -> Enable. Free tier is enough to start.
+
+## Phase 1 step by step
+
+**A. Supabase (10 min)**
+1. supabase.com -> your project -> **SQL Editor** -> New query -> paste all of `supabase-schema.sql` -> Run.
+2. **Project Settings -> API**: copy the **Project URL** and the **service_role** key (keep it secret).
+3. Locally (optional): `cp .env.example .env.local`, fill it in, run `npm run check:setup`. Add `SUPABASE_ANON_KEY=` (the anon/public key) to also verify strangers can't read bookings.
+
+**B. Vercel (10 min)**
+1. vercel.com -> Add New -> Project -> import `saroha11/astbal-website`. Framework: Next.js.
+2. Environment Variables (Production): `SUPABASE_URL`, `SUPABASE_SERVICE_ROLE_KEY`, `ADMIN_USER`, `ADMIN_PASSWORD` (12+ chars), `SESSION_SECRET` (another long random string).
+3. Production branch: `main` (merge the PR first). Deploy.
+4. Project -> **Analytics** tab -> Enable.
+
+**C. Go-live checks**
+1. Open `/admin` -> redirected to login -> sign in.
+2. On `/book`, submit a test booking -> appears in `/admin` as Pending.
+3. Set it Confirmed -> reload `/book` -> those nights are greyed out. Then Cancel it.
+4. Open the site on your phone.
+
+**D. Domain**: Vercel -> Settings -> Domains -> add `astbal.in`; set the DNS records Vercel shows at your registrar.
