@@ -31,9 +31,9 @@ export default function StickyBookingBar() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // The booking page already is the booking form, and admin pages don't need it
+  // Pages that already have their own booking box (or don't need one)
   const pathname = usePathname();
-  if (pathname.startsWith("/book") || pathname.startsWith("/admin")) return null;
+  if (["/book", "/accommodation", "/admin"].some((p) => pathname.startsWith(p))) return null;
 
   return (
     <AnimatePresence>

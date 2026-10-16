@@ -17,6 +17,8 @@ export const siteConfig = {
     twitter: "",
   },
   address: "ASTBAL Farm & Retreat, Near Delhi NCR, Haryana, India",
+  checkIn: { label: "2:00 PM", time: "14:00" },
+  checkOut: { label: "11:00 AM", time: "11:00" },
   directions: [
     "From Delhi: Take NH48 towards Gurgaon, then follow state highways south for approx 1 hour.",
     "From Gurgaon: Head south via Sohna Road, continue for about 45 minutes.",

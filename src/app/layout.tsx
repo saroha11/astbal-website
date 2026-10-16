@@ -69,6 +69,8 @@ const jsonLd = {
   hasMap: siteConfig.mapUrl,
   priceRange: `₹${Math.min(weekday, weekend, peakSeason).toLocaleString("en-IN")} – ₹${Math.max(weekday, weekend, peakSeason).toLocaleString("en-IN")} per night`,
   currenciesAccepted: "INR",
+  checkinTime: siteConfig.checkIn.time,
+  checkoutTime: siteConfig.checkOut.time,
   amenityFeature: ["Horse riding", "Guava orchard", "Kitchen garden", "Farm-to-table dining", "Bonfire"].map((name) => ({
     "@type": "LocationFeatureSpecification",
     name,

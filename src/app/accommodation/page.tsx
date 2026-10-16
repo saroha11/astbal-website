@@ -1,144 +1,266 @@
-"use client";
-
 import Image from "next/image";
 import Link from "next/link";
-import { motion } from "framer-motion";
-import { Bed, Wifi, AirVent, Bath, UtensilsCrossed, Car, Tv, Coffee, CheckCircle2, Calendar } from "lucide-react";
+import {
+  Bed, Wifi, AirVent, Bath, UtensilsCrossed, Car, Tv, Coffee, MapPin, Clock,
+  PawPrint, Trees, CalendarCheck, Sun, ArrowRight, Navigation,
+} from "lucide-react";
 import { formatPrice } from "@/lib/bookingEngine";
-import PageHero from "@/components/layout/PageHero";
+import { siteConfig } from "@/data/siteConfig";
+import { galleryImages } from "@/data/gallery";
+import pricing from "@/data/pricing.json";
+import experiences from "@/data/experiences.json";
+import PhotoGrid from "@/components/stay/PhotoGrid";
+
+const { accommodation } = pricing;
+
+// The five photos shown in the grid; the photo tour shows all of them, these first
+const featured = [
+  "/images/property/container-house.jpg",
+  "/images/property/grass-bed.jpg",
+  "/images/hero/farmhouse-luxury.jpg",
+  "/images/experiences/horse-arena.jpg",
+  "/images/experiences/guava-orchard.jpg",
+];
+const photos = [
+  ...featured.map((src) => galleryImages.find((p) => p.src === src)!),
+  ...galleryImages.filter((p) => !featured.includes(p.src)),
+];
+
+const facts = [
+  `Up to ${accommodation.maxGuests} guests`,
+  "1 bedroom",
+  "1 queen bed",
+  "1 bathroom",
+];
+
+const highlights = [
+  { icon: PawPrint, title: "Horse riding on site", text: "A 1-acre riding arena with trained horses and handlers, for beginners and experienced riders." },
+  { icon: Trees, title: "Pick your own guavas", text: "Walk the orchard and kitchen garden, then have our cook turn your harvest into a meal." },
+  { icon: CalendarCheck, title: "Free cancellation", text: "Cancel up to 48 hours before check-in. You only pay after we confirm your dates." },
+];
 
 const amenities = [
-  { icon: Bed, label: "1 Bedroom with Queen Bed" },
-  { icon: Bath, label: "Attached Bathroom" },
-  { icon: AirVent, label: "Air Conditioning" },
-  { icon: Wifi, label: "Free WiFi" },
+  { icon: Bed, label: "Queen bed" },
+  { icon: Bath, label: "Attached bathroom" },
+  { icon: AirVent, label: "Air conditioning" },
+  { icon: Wifi, label: "WiFi" },
   { icon: Tv, label: "Smart TV" },
-  { icon: UtensilsCrossed, label: "Mini Kitchen" },
-  { icon: Coffee, label: "Coffee & Tea Maker" },
-  { icon: Car, label: "Free Parking" },
+  { icon: UtensilsCrossed, label: "Mini kitchen" },
+  { icon: Coffee, label: "Coffee & tea maker" },
+  { icon: Car, label: "Free parking on premises" },
 ];
 
-const images = [
-  { src: "/images/property/container-house.jpg", alt: "ASTBAL Container House Exterior" },
-  { src: "/images/hero/farmhouse-luxury.jpg", alt: "Container House and Lawn" },
-  { src: "/images/property/grass-bed.jpg", alt: "Outdoor Grass Bed Area" },
-  { src: "/images/property/farmhouse.jpg", alt: "Farmhouse and Parking" },
+const driveTimes = [
+  { from: "Delhi", time: "~1 hr" },
+  { from: "Gurgaon", time: "~45 min" },
+  { from: "Faridabad", time: "~50 min" },
 ];
+
+const prices = [
+  { label: "Weekday", note: "Mon – Thu nights", price: accommodation.weekday },
+  { label: "Weekend", note: "Fri – Sun nights", price: accommodation.weekend },
+  { label: "Peak season", note: "20 Dec – 5 Jan", price: accommodation.peakSeason },
+];
+
+function Divider() {
+  return <hr className="border-stone-200" />;
+}
+
+function SectionTitle({ children }: { children: React.ReactNode }) {
+  return (
+    <h2 className="text-xl sm:text-2xl font-bold text-stone-900 mb-5" style={{ fontFamily: "var(--font-heading)" }}>
+      {children}
+    </h2>
+  );
+}
 
 export default function AccommodationPage() {
   return (
-    <>
-      <PageHero
-        image="/images/property/container-house.jpg"
-        title="The Container House"
-        subtitle="Modern 1 BHK · Surrounded by Nature · Farm Views"
-      />
-
-      {/* Image Gallery */}
-      <section className="py-8 sm:py-12 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4 auto-rows-[140px] sm:auto-rows-[200px]">
-            {images.map((img, index) => (
-              <motion.div key={img.src} initial={{ opacity: 0, scale: 0.95 }} whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true }} transition={{ delay: index * 0.08 }}
-                className={`relative rounded-xl sm:rounded-2xl overflow-hidden ${index === 0 ? "col-span-2 row-span-2" : ""}`}>
-                <Image src={img.src} alt={img.alt} fill className="object-cover hover:scale-105 transition-transform duration-500" sizes="(max-width: 640px) 50vw, 25vw" />
-              </motion.div>
-            ))}
-          </div>
+    <div className="bg-white pt-20 lg:pt-24 pb-16">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        {/* Title */}
+        <div className="mb-4 sm:mb-6">
+          <h1 className="text-2xl sm:text-3xl font-bold text-stone-900" style={{ fontFamily: "var(--font-heading)" }}>
+            The Container House at ASTBAL
+          </h1>
+          <p className="flex items-center gap-1.5 text-sm text-stone-600 mt-1.5">
+            <MapPin className="w-4 h-4 shrink-0" />
+            Farm stay near Delhi NCR, Haryana · 1 hr from Delhi
+          </p>
         </div>
-      </section>
 
-      {/* Details + Pricing */}
-      <section className="py-12 sm:py-16 lg:py-20 bg-stone-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 lg:gap-10">
-            {/* Left */}
-            <div className="lg:col-span-2 space-y-10 sm:space-y-12">
-              <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
-                <h2 className="text-2xl sm:text-3xl font-bold text-stone-900 mb-4" style={{ fontFamily: "var(--font-heading)" }}>
-                  Your Home Away From Home
-                </h2>
-                <p className="text-stone-600 leading-relaxed mb-4 text-sm sm:text-base">
-                  Our container house is a beautifully converted shipping container that proves sustainable living can be luxurious. This modern 1 BHK is designed with floor-to-ceiling windows that frame the surrounding farmland, letting natural light flood in while you wake up to birdsong and green views.
-                </p>
-                <p className="text-stone-600 leading-relaxed text-sm sm:text-base">
-                  Step outside to your private grass bed area — a perfect spot for morning yoga, evening stargazing, or simply lying down with a book. The house comes with everything you need: air conditioning, smart TV, WiFi, a mini kitchen, and a plush queen bed that ensures a restful night.
-                </p>
-              </motion.div>
+        <PhotoGrid photos={photos} />
 
-              {/* Amenities */}
-              <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
-                <h3 className="text-xl sm:text-2xl font-bold text-stone-900 mb-5" style={{ fontFamily: "var(--font-heading)" }}>Amenities</h3>
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                  {amenities.map((item, index) => (
-                    <motion.div key={item.label} initial={{ opacity: 0, x: -10 }} whileInView={{ opacity: 1, x: 0 }}
-                      viewport={{ once: true }} transition={{ delay: index * 0.04 }}
-                      className="flex items-center gap-3 p-3 bg-white rounded-xl border border-stone-100">
-                      <div className="w-9 h-9 bg-green-50 rounded-lg flex items-center justify-center shrink-0">
-                        <item.icon className="w-4 h-4 text-green-600" />
-                      </div>
-                      <span className="text-stone-700 text-xs sm:text-sm font-medium">{item.label}</span>
-                      <CheckCircle2 className="w-4 h-4 text-green-600 ml-auto shrink-0" />
-                    </motion.div>
-                  ))}
-                </div>
-              </motion.div>
-
-              {/* Grass Bed */}
-              <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
-                className="relative rounded-2xl overflow-hidden">
-                <div className="h-56 sm:h-64 relative">
-                  <Image src="/images/property/grass-bed.jpg" alt="Grass Bed" fill className="object-cover" />
-                  <div className="absolute inset-0 bg-gradient-to-r from-black/60 to-transparent" />
-                  <div className="absolute bottom-0 left-0 p-5 sm:p-6">
-                    <h3 className="text-xl sm:text-2xl font-bold text-white mb-1" style={{ fontFamily: "var(--font-heading)" }}>Your Private Grass Bed</h3>
-                    <p className="text-white/70 text-xs sm:text-sm max-w-sm">
-                      Step outside to your own grassy outdoor area — perfect for morning tea, evening bonfires, yoga, or watching the sunset.
-                    </p>
-                  </div>
-                </div>
-              </motion.div>
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-10 lg:gap-16 mt-8 sm:mt-10">
+          {/* Left: listing details */}
+          <div className="lg:col-span-2 space-y-8">
+            <div>
+              <h2 className="text-xl sm:text-2xl font-bold text-stone-900" style={{ fontFamily: "var(--font-heading)" }}>
+                Private container house on a 2-acre farm
+              </h2>
+              <p className="text-stone-600 mt-1">{facts.join(" · ")}</p>
             </div>
 
-            {/* Pricing Card */}
-            <div className="lg:col-span-1">
-              <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
-                className="bg-white rounded-2xl shadow-sm border border-stone-100 p-6 sm:p-7 lg:sticky lg:top-24">
-                <h3 className="text-xl font-bold text-stone-900 mb-5" style={{ fontFamily: "var(--font-heading)" }}>Pricing</h3>
-                <div className="space-y-3 mb-6">
-                  <div className="flex items-center justify-between p-3.5 bg-stone-50 rounded-xl">
-                    <div><p className="font-medium text-stone-800 text-sm">Weekday</p><p className="text-[10px] text-stone-400">Mon – Thu</p></div>
-                    <p className="text-lg font-bold text-stone-800">{formatPrice(4500)}<span className="text-xs font-normal text-stone-400">/night</span></p>
+            <Divider />
+
+            <ul className="space-y-6">
+              {highlights.map((h) => (
+                <li key={h.title} className="flex gap-4">
+                  <h.icon className="w-7 h-7 text-stone-800 shrink-0 mt-0.5" strokeWidth={1.5} />
+                  <div>
+                    <p className="font-semibold text-stone-900">{h.title}</p>
+                    <p className="text-sm text-stone-500 mt-0.5">{h.text}</p>
                   </div>
-                  <div className="flex items-center justify-between p-3.5 bg-amber-50 rounded-xl">
-                    <div><p className="font-medium text-stone-800 text-sm">Weekend</p><p className="text-[10px] text-stone-400">Fri – Sun</p></div>
-                    <p className="text-lg font-bold text-stone-800">{formatPrice(6500)}<span className="text-xs font-normal text-stone-400">/night</span></p>
-                  </div>
-                  <div className="flex items-center justify-between p-3.5 bg-red-50 rounded-xl">
-                    <div><p className="font-medium text-stone-800 text-sm">Peak Season</p><p className="text-[10px] text-stone-400">Dec 20 – Jan 5</p></div>
-                    <p className="text-lg font-bold text-stone-800">{formatPrice(8500)}<span className="text-xs font-normal text-stone-400">/night</span></p>
-                  </div>
-                </div>
-                <div className="space-y-2 mb-6 text-xs sm:text-sm text-stone-500">
-                  <p>✓ Up to 2 guests included</p>
-                  <p>✓ Extra guest: {formatPrice(500)}/night</p>
-                  <p>✓ Max 4 guests</p>
-                  <p>✓ Min 1 night · Max 7 nights</p>
-                </div>
-                <Link href="/book"
-                  className="w-full flex items-center justify-center gap-2 bg-green-600 text-white px-6 py-3.5 rounded-full font-semibold hover:bg-green-700 transition-colors shadow-sm text-sm sm:text-base">
-                  <Calendar className="w-4 h-4" />
-                  Check Availability &amp; Book
-                </Link>
-                <p className="text-center text-[10px] sm:text-xs text-stone-400 mt-3">
-                  Free cancellation up to 48 hours before check-in
-                </p>
-              </motion.div>
+                </li>
+              ))}
+            </ul>
+
+            <Divider />
+
+            <div className="space-y-4 text-stone-700 leading-relaxed">
+              <p>
+                Our container house is a converted shipping container with large windows that frame the
+                surrounding farmland. Wake up to birdsong and green views, with air conditioning, WiFi, a smart
+                TV and a mini kitchen inside.
+              </p>
+              <p>
+                Step outside to the grass bed area for morning tea, yoga or stargazing. Around you: a riding
+                arena, a guava orchard, a kitchen garden and our friendly dogs.
+              </p>
             </div>
+
+            <Divider />
+
+            {/* Where you'll sleep */}
+            <section>
+              <SectionTitle>Where you&rsquo;ll sleep</SectionTitle>
+              <div className="grid grid-cols-2 gap-4 max-w-xl">
+                <div className="rounded-xl border border-stone-200 p-5 flex flex-col justify-end aspect-[4/3]">
+                  <Bed className="w-8 h-8 text-stone-800 mb-auto" strokeWidth={1.5} />
+                  <p className="font-semibold text-stone-900">Bedroom</p>
+                  <p className="text-sm text-stone-500">1 queen bed</p>
+                </div>
+                <div>
+                  <div className="relative aspect-[4/3] rounded-xl overflow-hidden mb-2">
+                    <Image src="/images/property/grass-bed.jpg" alt="Outdoor grass bed area" fill sizes="(max-width: 640px) 50vw, 280px" className="object-cover" />
+                  </div>
+                  <p className="font-semibold text-stone-900">Outdoor grass bed</p>
+                  <p className="text-sm text-stone-500">Charpai on the lawn, for lounging & stargazing</p>
+                </div>
+              </div>
+            </section>
+
+            <Divider />
+
+            {/* Amenities */}
+            <section>
+              <SectionTitle>What this place offers</SectionTitle>
+              <ul className="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-4">
+                {amenities.map((a) => (
+                  <li key={a.label} className="flex items-center gap-4 text-stone-700">
+                    <a.icon className="w-6 h-6 text-stone-800 shrink-0" strokeWidth={1.5} />
+                    {a.label}
+                  </li>
+                ))}
+              </ul>
+            </section>
+
+            <Divider />
+
+            {/* Experiences */}
+            <section>
+              <SectionTitle>Things to do on the farm</SectionTitle>
+              <div className="flex gap-4 overflow-x-auto no-scrollbar -mx-4 px-4 sm:mx-0 sm:px-0 sm:grid sm:grid-cols-3 sm:overflow-visible">
+                {experiences.slice(0, 3).map((exp) => (
+                  <Link key={exp.id} href="/experiences" className="group shrink-0 w-56 sm:w-auto">
+                    <div className="relative aspect-square rounded-xl overflow-hidden mb-2">
+                      <Image src={exp.image} alt={exp.title} fill sizes="(max-width: 640px) 224px, 240px" className="object-cover group-hover:scale-105 transition-transform duration-300" />
+                    </div>
+                    <p className="font-semibold text-stone-900">{exp.title}</p>
+                    <p className="text-sm text-stone-500">{exp.subtitle}</p>
+                  </Link>
+                ))}
+              </div>
+            </section>
+
+            <Divider />
+
+            {/* Location */}
+            <section>
+              <SectionTitle>Where you&rsquo;ll be</SectionTitle>
+              <p className="text-stone-700 mb-4">{siteConfig.address}</p>
+              <ul className="grid grid-cols-3 gap-3 max-w-md mb-5">
+                {driveTimes.map((d) => (
+                  <li key={d.from} className="rounded-xl bg-stone-50 p-3 text-center">
+                    <p className="font-semibold text-stone-900">{d.time}</p>
+                    <p className="text-xs text-stone-500">from {d.from}</p>
+                  </li>
+                ))}
+              </ul>
+              <a
+                href={siteConfig.mapUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 text-sm font-semibold text-stone-900 underline underline-offset-4 hover:text-green-700"
+              >
+                <Navigation className="w-4 h-4" /> Open in Google Maps
+              </a>
+            </section>
           </div>
+
+          {/* Right: price card (sticks while scrolling on computers) */}
+          <aside className="lg:col-span-1">
+            <div className="lg:sticky lg:top-28 rounded-2xl border border-stone-200 shadow-[0_6px_16px_rgba(0,0,0,0.12)] p-6">
+              <p className="text-stone-900">
+                <span className="text-2xl font-bold">{formatPrice(accommodation.weekday)}</span>
+                <span className="text-stone-500"> night</span>
+                <span className="text-xs text-stone-400 ml-1">from</span>
+              </p>
+
+              <ul className="mt-5 rounded-xl border border-stone-200 divide-y divide-stone-200">
+                {prices.map((p) => (
+                  <li key={p.label} className="flex items-center justify-between px-4 py-3">
+                    <div>
+                      <p className="text-sm font-medium text-stone-900">{p.label}</p>
+                      <p className="text-[11px] text-stone-500">{p.note}</p>
+                    </div>
+                    <p className="font-semibold text-stone-900">{formatPrice(p.price)}</p>
+                  </li>
+                ))}
+              </ul>
+
+              <div className="grid grid-cols-2 mt-4 rounded-xl border border-stone-200 divide-x divide-stone-200">
+                <div className="px-4 py-2.5">
+                  <p className="flex items-center gap-1 text-[10px] font-bold uppercase tracking-wide text-stone-900">
+                    <Sun className="w-3 h-3" /> Check-in
+                  </p>
+                  <p className="text-sm text-stone-600">After {siteConfig.checkIn.label}</p>
+                </div>
+                <div className="px-4 py-2.5">
+                  <p className="flex items-center gap-1 text-[10px] font-bold uppercase tracking-wide text-stone-900">
+                    <Clock className="w-3 h-3" /> Checkout
+                  </p>
+                  <p className="text-sm text-stone-600">Before {siteConfig.checkOut.label}</p>
+                </div>
+              </div>
+
+              <Link
+                href="/book"
+                className="mt-5 w-full inline-flex items-center justify-center gap-2 bg-green-600 text-white py-3.5 rounded-xl font-semibold hover:bg-green-700 transition-colors"
+              >
+                Check availability <ArrowRight className="w-4 h-4" />
+              </Link>
+              <p className="text-center text-xs text-stone-500 mt-3">You won&rsquo;t pay anything yet</p>
+
+              <ul className="mt-5 pt-5 border-t border-stone-200 space-y-1.5 text-xs text-stone-500">
+                <li>{accommodation.baseGuests} guests included · extra guest {formatPrice(accommodation.extraGuest)}/night</li>
+                <li>Up to {accommodation.maxGuests} guests · {accommodation.minNights}–{accommodation.maxNights} nights</li>
+                <li>Free cancellation up to 48 hours before check-in</li>
+              </ul>
+            </div>
+          </aside>
         </div>
-      </section>
-    </>
+      </div>
+    </div>
   );
 }
