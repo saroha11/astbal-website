@@ -13,8 +13,8 @@ export const siteConfig = {
   geo: { lat: 28.894349, lng: 76.75149 },
   mapEmbedUrl: "https://maps.google.com/maps?q=28.894349,76.751490&z=13&output=embed",
   socials: {
-    instagram: "https://instagram.com/astbal",
-    facebook: "https://facebook.com/astbal",
+    instagram: "https://www.instagram.com/astbal.retreat/",
+    facebook: "", // add the real page link when there is one
     youtube: "",
     twitter: "",
   },
