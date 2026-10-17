@@ -1,105 +1,124 @@
-"use client";
+import Image from "next/image";
+import Link from "next/link";
+import { Home, TreePine, UtensilsCrossed, Dog, Wheat, PawPrint, ArrowUpRight } from "lucide-react";
 
-import { motion } from "framer-motion";
-import { Home, TreePine, UtensilsCrossed, Dog, Star, PawPrint } from "lucide-react";
-
+// Photo grid ("bento"): on large screens 4 columns x 3 rows, on phones 2 columns.
+// `span` classes place each tile; together they fill the grid with no gaps.
 const highlights = [
   {
     icon: Home,
     title: "Container House",
-    description: "Modern 1 BHK container home with all amenities, surrounded by nature",
-    color: "bg-green-50 text-green-600",
+    description: "A cosy, modern 1 BHK with AC and WiFi, surrounded by green fields",
+    image: "/images/property/container-house.jpg",
+    href: "/accommodation",
+    span: "col-span-2 lg:row-span-2",
+    big: true,
   },
   {
     icon: PawPrint,
     title: "Horse Riding",
-    description: "1-acre riding arena in open fields with trained horses & expert handlers",
-    color: "bg-sky-50 text-sky-600",
+    description: "A 1-acre arena with trained horses and handlers",
+    image: "/images/experiences/horse-riding.jpg",
+    href: "/experiences",
+    span: "row-span-2",
   },
   {
     icon: TreePine,
     title: "Guava Orchard",
-    description: "Hand-pick fresh guavas from our lush organic orchard",
-    color: "bg-amber-50 text-amber-600",
-  },
-  {
-    icon: UtensilsCrossed,
-    title: "Farm Kitchen",
-    description: "Harvest vegetables & cook with our chef — farm-to-table dining",
-    color: "bg-green-50 text-green-600",
+    description: "Pick guavas straight from the tree",
+    image: "/images/experiences/guava-orchard.jpg",
+    href: "/experiences",
+    span: "",
   },
   {
     icon: Dog,
     title: "Friendly Dogs",
-    description: "Our Labradors & canines will make your stay even more joyful",
-    color: "bg-amber-50 text-amber-600",
+    description: "Our dogs love company. Bring your pets too",
+    image: "/images/dogs/labrador.jpg",
+    href: "/gallery",
+    span: "",
   },
   {
-    icon: Star,
-    title: "2 Acres of Nature",
-    description: "Open fields, grass beds, and serene countryside just 1hr from Delhi",
-    color: "bg-sky-50 text-sky-600",
+    icon: UtensilsCrossed,
+    title: "Farm Kitchen",
+    description: "Harvest vegetables and cook them with our chef",
+    image: "/images/experiences/kitchen-garden.jpg",
+    href: "/experiences",
+    span: "col-span-2",
+  },
+  {
+    icon: Wheat,
+    title: "2 Acres of Open Fields",
+    description: "Quiet nights, starry skies, just 1 hr from Delhi",
+    image: "/images/gallery/arena-wide.jpg",
+    href: "/gallery",
+    span: "col-span-2",
   },
 ];
 
-const containerVariants = {
-  hidden: {},
-  visible: { transition: { staggerChildren: 0.08 } },
-};
-
-const itemVariants = {
-  hidden: { opacity: 0, y: 20 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.5 } },
-};
-
 export default function Highlights() {
   return (
-    <section className="py-16 sm:py-20 bg-white">
+    <section id="why-astbal" className="py-16 sm:py-20 bg-white scroll-mt-16">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-12 sm:mb-16">
-          <motion.span
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            className="text-green-600 font-semibold text-xs sm:text-sm uppercase tracking-widest"
+        <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 mb-8 sm:mb-10">
+          <div>
+            <span className="text-green-600 font-semibold text-xs sm:text-sm uppercase tracking-widest">
+              What Awaits You
+            </span>
+            <h2
+              className="text-2xl sm:text-3xl lg:text-4xl font-bold mt-2 text-stone-900"
+              style={{ fontFamily: "var(--font-heading)" }}
+            >
+              Why Choose ASTBAL?
+            </h2>
+            <p className="text-stone-500 mt-2 max-w-xl">
+              Horses, orchards, open fields and a cosy container house, all on one farm an hour from the city.
+            </p>
+          </div>
+          <Link
+            href="/gallery"
+            className="inline-flex items-center gap-1.5 text-sm font-semibold text-stone-900 underline underline-offset-4 hover:text-green-700 shrink-0"
           >
-            What Awaits You
-          </motion.span>
-          <motion.h2
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-2xl sm:text-3xl lg:text-4xl font-bold mt-2 text-stone-900" style={{ fontFamily: "var(--font-heading)" }}
-          >
-            Why Choose ASTBAL?
-          </motion.h2>
+            See all photos <ArrowUpRight className="w-4 h-4" />
+          </Link>
         </div>
 
-        <motion.div
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
-          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6"
-        >
+        <div className="grid grid-cols-2 lg:grid-cols-4 auto-rows-[190px] sm:auto-rows-[230px] lg:auto-rows-[250px] gap-3 sm:gap-4">
           {highlights.map((item) => (
-            <motion.div
-              key={item.title}
-              variants={itemVariants}
-              className="p-5 sm:p-6 rounded-2xl bg-stone-50 hover:bg-white hover:shadow-lg transition-all duration-300 border border-stone-100 hover:border-stone-200"
-            >
-              <div className={`w-12 h-12 ${item.color} rounded-xl flex items-center justify-center mb-4`}>
-                <item.icon className="w-6 h-6" />
-              </div>
-              <h3 className="text-base sm:text-lg font-semibold text-stone-900 mb-1.5" style={{ fontFamily: "var(--font-heading)" }}>
-                {item.title}
-              </h3>
-              <p className="text-stone-500 text-sm leading-relaxed">
-                {item.description}
-              </p>
-            </motion.div>
+            <div key={item.title} className={item.span}>
+              <Link
+                href={item.href}
+                className="group relative block h-full rounded-2xl overflow-hidden bg-stone-200"
+              >
+                <Image
+                  src={item.image}
+                  alt={item.title}
+                  fill
+                  sizes={item.big ? "(max-width: 1024px) 100vw, 50vw" : "(max-width: 1024px) 50vw, 25vw"}
+                  className="object-cover transition-transform duration-700 group-hover:scale-105"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/15 to-transparent" />
+                <div className="absolute inset-x-0 bottom-0 p-4 sm:p-5">
+                  <span className="inline-flex w-9 h-9 rounded-full bg-white/20 backdrop-blur-sm items-center justify-center mb-2.5">
+                    <item.icon className="w-4 h-4 text-white" />
+                  </span>
+                  <h3
+                    className={`font-bold text-white leading-tight ${item.big ? "text-2xl sm:text-3xl" : "text-base sm:text-lg"}`}
+                    style={{ fontFamily: "var(--font-heading)" }}
+                  >
+                    {item.title}
+                  </h3>
+                  <p className={`text-white/85 mt-1 ${item.big ? "text-sm sm:text-base max-w-md" : "text-xs sm:text-sm"}`}>
+                    {item.description}
+                  </p>
+                </div>
+                <span className="absolute top-3 right-3 w-8 h-8 rounded-full bg-white/90 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+                  <ArrowUpRight className="w-4 h-4 text-stone-900" />
+                </span>
+              </Link>
+            </div>
           ))}
-        </motion.div>
+        </div>
       </div>
     </section>
   );
