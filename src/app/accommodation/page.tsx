@@ -25,7 +25,7 @@ const featured = [
 ];
 const photos = [
   ...featured.map((src) => galleryImages.find((p) => p.src === src)!),
-  ...galleryImages.filter((p) => !featured.includes(p.src)),
+  ...galleryImages.filter((p) => !p.video && !featured.includes(p.src)),
 ];
 
 const facts = [

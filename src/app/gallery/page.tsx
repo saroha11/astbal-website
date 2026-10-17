@@ -3,7 +3,7 @@
 import { useState } from "react";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
-import { X, ChevronLeft, ChevronRight } from "lucide-react";
+import { X, ChevronLeft, ChevronRight, Play } from "lucide-react";
 import { galleryImages, galleryCategories as categories } from "@/data/gallery";
 import PageHero from "@/components/layout/PageHero";
 
@@ -13,6 +13,8 @@ export default function GalleryPage() {
 
   const filteredImages = activeCategory === "All"
     ? galleryImages
+    : activeCategory === "Videos"
+    ? galleryImages.filter((img) => img.video)
     : galleryImages.filter((img) => img.category === activeCategory);
 
   const openLightbox = (index: number) => setLightboxIndex(index);
@@ -58,6 +60,13 @@ export default function GalleryPage() {
                   onClick={() => openLightbox(index)}>
                   <Image src={img.src} alt={img.alt} fill className="object-cover group-hover:scale-[1.03] transition-transform duration-300" sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw" />
                   <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors" />
+                  {img.video && (
+                    <span className="absolute inset-0 flex items-center justify-center">
+                      <span className="w-14 h-14 rounded-full bg-white/90 flex items-center justify-center shadow-lg">
+                        <Play className="w-6 h-6 text-stone-900 ml-0.5" fill="currentColor" />
+                      </span>
+                    </span>
+                  )}
                   <div className="absolute bottom-0 left-0 right-0 p-3 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity">
                     <p className="text-white text-xs sm:text-sm font-medium truncate">{img.alt}</p>
                   </div>
@@ -77,9 +86,15 @@ export default function GalleryPage() {
             <button className="absolute left-2 sm:left-4 top-1/2 -translate-y-1/2 text-white p-2 sm:p-3 hover:bg-white/10 rounded-full z-10"
               onClick={(e) => { e.stopPropagation(); goPrev(); }}><ChevronLeft className="w-6 h-6 sm:w-8 sm:h-8" /></button>
             <div className="relative max-h-[80vh] w-full max-w-4xl mx-12 sm:mx-16" onClick={(e) => e.stopPropagation()}>
-              <Image src={filteredImages[lightboxIndex].src} alt={filteredImages[lightboxIndex].alt}
-                width={filteredImages[lightboxIndex].width} height={filteredImages[lightboxIndex].height}
-                className="object-contain w-full h-full max-h-[80vh]" />
+              {filteredImages[lightboxIndex].video ? (
+                <video key={filteredImages[lightboxIndex].video} src={filteredImages[lightboxIndex].video}
+                  poster={filteredImages[lightboxIndex].src} controls autoPlay playsInline
+                  className="w-full h-full max-h-[80vh] object-contain bg-black" />
+              ) : (
+                <Image src={filteredImages[lightboxIndex].src} alt={filteredImages[lightboxIndex].alt}
+                  width={filteredImages[lightboxIndex].width} height={filteredImages[lightboxIndex].height}
+                  className="object-contain w-full h-full max-h-[80vh]" />
+              )}
             </div>
             <button className="absolute right-2 sm:right-4 top-1/2 -translate-y-1/2 text-white p-2 sm:p-3 hover:bg-white/10 rounded-full z-10"
               onClick={(e) => { e.stopPropagation(); goNext(); }}><ChevronRight className="w-6 h-6 sm:w-8 sm:h-8" /></button>

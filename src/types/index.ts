@@ -83,9 +83,10 @@ export interface Booking {
 }
 
 export interface GalleryImage {
-  src: string;
+  src: string; // photo, or a video's poster frame
   alt: string;
   category: string;
   width: number;
   height: number;
+  video?: string; // set for videos: the .mp4 to play
 }
