@@ -17,15 +17,15 @@
     {
       "id": "horse-riding-lesson",
       "name": "Horse Riding Lesson",
-      "description": "Learn horse riding basics in our 1-acre arena with expert guidance",
+      "description": "Learn to ride in our training arena, with the latest equipment and an experienced trainer",
       "price": 1500,
       "duration": "1 hour",
       "icon": "horse"
     },
     {
       "id": "leisure-ride",
-      "name": "Leisure Ride",
-      "description": "Enjoy a peaceful ride through open fields around the property",
+      "name": "Leisure Horse Ride",
+      "description": "Enjoy a peaceful ride: you sit on the horse and our trainer leads it through the fields",
       "price": 2000,
       "duration": "45 mins",
       "icon": "mountain"
@@ -33,23 +33,26 @@
     {
       "id": "orchard-visit",
       "name": "Guava Orchard Pick",
-      "description": "Visit our guava orchard and hand-pick fresh guavas to enjoy",
+      "description": "Visit our guava orchard and hand-pick fresh guavas",
       "price": 500,
       "duration": "30 mins",
-      "icon": "trees"
+      "icon": "trees",
+      "note": "Seasonal · T&C apply"
     },
     {
       "id": "farm-experience",
       "name": "Kitchen Garden Harvest",
-      "description": "Harvest fresh vegetables from our kitchen garden and cook with our chef",
-      "price": 800,
+      "description": "Pick fresh vegetables from our kitchen garden, as available",
+      "price": 0,
       "duration": "1.5 hours",
-      "icon": "sprout"
+      "icon": "sprout",
+      "priceLabel": "As per quantity",
+      "note": "Seasonal · rates depend on the vegetable and quantity"
     },
     {
       "id": "farm-dinner",
-      "name": "Farm-to-Table Dinner",
-      "description": "Multi-course dinner prepared with organic ingredients from our farm",
+      "name": "Farm-to-Table Dinner (optional)",
+      "description": "Dinner cooked with seasonal vegetables fresh from the farm",
       "price": 1200,
       "duration": "2 hours",
       "icon": "utensils"
@@ -57,7 +60,7 @@
     {
       "id": "breakfast-spread",
       "name": "Farm Fresh Breakfast",
-      "description": "Hearty breakfast with fresh juice, eggs, bread, farm produce",
+      "description": "Farm fresh breakfast",
       "price": 600,
       "duration": "1 hour",
       "icon": "coffee"
@@ -79,5 +82,9 @@
       "icon": "footprints"
     }
   ],
-  "weekendDays": [0, 5, 6]
+  "weekendDays": [
+    0,
+    5,
+    6
+  ]
 }

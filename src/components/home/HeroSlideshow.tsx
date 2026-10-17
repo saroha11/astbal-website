@@ -25,10 +25,10 @@ const slides = [
     position: "center 40%",
   },
   {
-    src: "/images/gallery/night-lawn.jpg",
-    alt: "The container house and lawn lit up at night",
-    label: "The lawn at night",
-    position: "center 28%",
+    src: "/images/gallery/night-garden.jpg",
+    alt: "The garden path, lit-up trees and container house at night",
+    label: "The farm at night",
+    position: "center 55%",
   },
 ];
 

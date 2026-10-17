@@ -27,7 +27,7 @@ export default function BookingClient({ initialCheckIn, initialCheckOut, initial
   const [checkOut, setCheckOut] = useState<string | null>(initialCheckOut);
   const [guests, setGuests] = useState(initialGuests);
   const [selectedAddons, setSelectedAddons] = useState<string[]>([]);
-  const [formData, setFormData] = useState({ name: "", email: "", phone: "", specialRequests: "" });
+  const [formData, setFormData] = useState({ name: "", email: "", phone: "" });
   const [submitted, setSubmitted] = useState(false);
   const [whatsappUrl, setWhatsappUrl] = useState("");
 
@@ -66,7 +66,6 @@ export default function BookingClient({ initialCheckIn, initialCheckOut, initial
           checkOut,
           guests,
           addons: selectedAddons,
-          specialRequests: formData.specialRequests,
         }),
       });
 
@@ -85,7 +84,7 @@ export default function BookingClient({ initialCheckIn, initialCheckOut, initial
       } else {
         // No automatic alerts set up yet: open WhatsApp with the full details so the guest can send them to us
         const addonNames = pricing.addons.map((a) => a.name);
-        const message = `🌿 *New Booking — ASTBAL*\n\n*Booking #:* ${data.id}\n*Name:* ${formData.name}\n*Phone:* ${formData.phone}\n*Email:* ${formData.email}\n*Check-in:* ${prettyDate(checkIn)}\n*Check-out:* ${prettyDate(checkOut)}\n*Guests:* ${guests}\n*Add-ons:* ${addonNames.length > 0 ? addonNames.join(", ") : "None"}\n*Requests:* ${formData.specialRequests || "None"}\n*Total:* ${formatPrice(data.total ?? pricing.total)}`;
+        const message = `🌿 *New Booking — ASTBAL*\n\n*Booking #:* ${data.id}\n*Name:* ${formData.name}\n*Phone:* ${formData.phone}\n*Email:* ${formData.email}\n*Check-in:* ${prettyDate(checkIn)}\n*Check-out:* ${prettyDate(checkOut)}\n*Guests:* ${guests}\n*Add-ons:* ${addonNames.length > 0 ? addonNames.join(", ") : "None"}\n*Total:* ${formatPrice(data.total ?? pricing.total)}`;
         const url = `https://wa.me/${siteConfig.whatsapp}?text=${encodeURIComponent(message)}`;
         setWhatsappUrl(url);
         window.open(url, "_blank");
@@ -137,7 +136,7 @@ export default function BookingClient({ initialCheckIn, initialCheckOut, initial
                   <MessageSquare className="w-4 h-4" /> Questions? Chat with us on WhatsApp
                 </a>
               )}
-              <button onClick={() => { setSubmitted(false); setWhatsappUrl(""); setCheckIn(null); setCheckOut(null); setSelectedAddons([]); setFormData({ name: "", email: "", phone: "", specialRequests: "" }); }}
+              <button onClick={() => { setSubmitted(false); setWhatsappUrl(""); setCheckIn(null); setCheckOut(null); setSelectedAddons([]); setFormData({ name: "", email: "", phone: "" }); }}
                 className="text-stone-500 px-6 py-2 rounded-full font-medium text-sm hover:text-stone-800 transition-colors">
                 Book another stay
               </button>
@@ -190,12 +189,6 @@ export default function BookingClient({ initialCheckIn, initialCheckOut, initial
                       onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
                       className="w-full pl-10 pr-4 py-3 rounded-xl border border-stone-200 focus:border-green-500 focus:ring-2 focus:ring-green-100 outline-none text-sm text-stone-800 bg-stone-50" />
                   </div>
-                  <div className="relative">
-                    <MessageSquare className="absolute left-3.5 top-3.5 w-4 h-4 text-stone-400" />
-                    <textarea placeholder="Special Requests (optional)" rows={3} aria-label="Special requests" value={formData.specialRequests}
-                      onChange={(e) => setFormData({ ...formData, specialRequests: e.target.value })}
-                      className="w-full pl-10 pr-4 py-3 rounded-xl border border-stone-200 focus:border-green-500 focus:ring-2 focus:ring-green-100 outline-none text-sm text-stone-800 bg-stone-50 resize-none" />
-                  </div>
                   {submitError && (
                     <p role="alert" className="flex items-center gap-2 text-sm text-red-600 bg-red-50 rounded-xl px-3.5 py-2.5">
                       <AlertCircle className="w-4 h-4 shrink-0" /> {submitError}
@@ -215,7 +208,7 @@ export default function BookingClient({ initialCheckIn, initialCheckOut, initial
                     </p>
                   )}
                   <button type="submit"
-                    disabled={!pricing || !formData.name || !formData.phone || isSubmitting}
+                    disabled={!pricing || !formData.name || !formData.email || !formData.phone || isSubmitting}
                     className="w-full flex items-center justify-center gap-2 bg-green-600 text-white py-3.5 rounded-full font-semibold text-sm sm:text-base hover:bg-green-700 transition-all shadow-sm disabled:bg-stone-300 disabled:cursor-not-allowed">
                     <Send className="w-4 h-4" /> {isSubmitting ? "Sending..." : "Request Booking"}
                   </button>

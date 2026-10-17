@@ -18,7 +18,7 @@ interface PriceBreakdownProps {
     accommodationCost: number;
     extraGuestCost: number;
     addonsCost: number;
-    addons: { name: string; price: number }[];
+    addons: { name: string; price: number; priceLabel?: string }[];
     total: number;
     currencySymbol: string;
   } | null;
@@ -86,7 +86,7 @@ export default function PriceBreakdown({ checkIn, checkOut, guests, pricing, onG
         {pricing.addons.map((addon, i) => (
           <div key={i} className="flex justify-between">
             <span className="text-stone-500 flex items-center gap-1"><Sparkles className="w-3 h-3 text-amber-500" />{addon.name}</span>
-            <span className="font-medium text-stone-800">{formatPrice(addon.price)}</span>
+            <span className="font-medium text-stone-800">{addon.priceLabel ?? formatPrice(addon.price)}</span>
           </div>
         ))}
       </div>

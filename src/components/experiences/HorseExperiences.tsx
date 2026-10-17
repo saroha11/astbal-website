@@ -6,12 +6,12 @@ import { ArrowRight } from "lucide-react";
 const horseActivities = [
   {
     title: "Riding Lessons",
-    text: "Learn to ride in our 1-acre arena with a handler by your side, at your own pace.",
+    text: "Learn to ride in our training arena, with the latest equipment and an experienced trainer by your side.",
     image: "/images/gallery/rider-trot.jpg",
   },
   {
-    title: "Horse Walk in the Fields",
-    text: "A gentle walk or ride on horseback through the open fields around the farm.",
+    title: "Leisure Horse Ride",
+    text: "A peaceful ride through the fields: you sit on the horse and our trainer leads it.",
     image: "/images/gallery/rider-arena.jpg",
   },
   {

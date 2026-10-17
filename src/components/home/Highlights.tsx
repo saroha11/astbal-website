@@ -17,7 +17,7 @@ const highlights = [
   {
     icon: PawPrint,
     title: "Horse Riding",
-    description: "A 1-acre arena with trained horses and handlers",
+    description: "A training arena with the latest equipment and a trainer",
     image: "/images/experiences/horse-riding.jpg",
     href: "/experiences",
     span: "row-span-2",

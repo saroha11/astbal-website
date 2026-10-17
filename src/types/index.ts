@@ -10,7 +10,9 @@ export interface AddonItem {
   id: string;
   name: string;
   description: string;
-  price: number;
+  price: number; // 0 = no fixed price (see priceLabel)
+  priceLabel?: string; // shown instead of the price, e.g. "As per quantity"
+  note?: string; // small print, e.g. "Seasonal · T&C apply"
   duration: string;
   icon: string;
 }

@@ -8,6 +8,10 @@ const P = { w: 800, h: 1200 }; // portrait photos (2:3)
 const F = { w: 800, h: 600 }; // phone photos (4:3)
 
 export const galleryImages: GalleryImage[] = [
+  { src: "/images/gallery/night-garden.jpg", alt: "The Garden Lit Up at Night", category: "Property", width: F.w, height: F.h },
+  { src: "/images/gallery/container-night.jpg", alt: "The Container House at Night", category: "Property", width: F.w, height: F.h },
+  { src: "/images/gallery/path-night.jpg", alt: "The Path Home at Night", category: "Property", width: F.w, height: F.h },
+  { src: "/images/gallery/lawn-lamps-night.jpg", alt: "The Lawn under the Lamps", category: "Property", width: F.w, height: F.h },
   { src: "/images/gallery/night-lawn.jpg", alt: "The Container House Lawn at Night", category: "Property", width: 600, height: 800 },
   { src: "/images/gallery/entrance-path.jpg", alt: "Path to the Container House", category: "Property", width: F.w, height: F.h },
   { src: "/images/property/container-house.jpg", alt: "Container House & Lawn Seating", category: "Property", width: L.w, height: L.h },

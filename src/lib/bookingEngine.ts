@@ -100,7 +100,7 @@ export function calculateTotalPrice(
   accommodationCost: number;
   extraGuestCost: number;
   addonsCost: number;
-  addons: { name: string; price: number }[];
+  addons: { name: string; price: number; priceLabel?: string }[];
   total: number;
   currencySymbol: string;
 } {
@@ -117,13 +117,13 @@ export function calculateTotalPrice(
   const extraGuests = Math.max(0, guestCount - pricing.accommodation.baseGuests);
   const extraGuestCost = extraGuests * pricing.accommodation.extraGuest * nights;
 
-  const addons: { name: string; price: number }[] = [];
+  const addons: { name: string; price: number; priceLabel?: string }[] = [];
   let addonsCost = 0;
 
   for (const addonId of selectedAddonIds) {
     const addon = pricing.addons.find((a) => a.id === addonId);
     if (addon) {
-      addons.push({ name: addon.name, price: addon.price });
+      addons.push({ name: addon.name, price: addon.price, priceLabel: "priceLabel" in addon ? addon.priceLabel : undefined });
       addonsCost += addon.price;
     }
   }

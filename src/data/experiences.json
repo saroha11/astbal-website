@@ -3,8 +3,8 @@
     "id": "horse-riding",
     "title": "Horse Riding",
     "subtitle": "Ride through open fields",
-    "description": "Experience the thrill of horseback riding in our expansive 1-acre riding arena surrounded by open fields. Whether you're a beginner or an experienced rider, our horses and handlers will ensure a memorable experience. We offer structured riding lessons and leisurely rides through the scenic countryside.",
-    "longDescription": "Our stable houses beautiful, well-trained horses that love company. Take a riding lesson in the arena, or go for a gentle horse walk or ride through the fields around the farm. Beginners get a safety briefing and a basic lesson first. You can also spend time with the horses on the ground: take photos with them, learn their daily routine of feeding and grooming, and learn about the different horse breeds.",
+    "description": "Ride at ASTBAL in our training arena, equipped with the latest riding equipment and run by an experienced trainer. Beginners and experienced riders are both welcome. Take a riding lesson, or relax on a leisure ride while our trainer leads your horse through the fields.",
+    "longDescription": "Our stable houses beautiful, well-trained horses that love company. Take a riding lesson in the training arena, or enjoy a peaceful leisure ride: you sit on the horse and our trainer leads it through the fields around the farm. Beginners get a safety briefing first. You can also spend time with the horses on the ground: take photos with them, learn their daily routine of feeding and grooming, and learn about the different horse breeds.",
     "image": "/images/experiences/horse-riding.jpg",
     "gallery": [
       "/images/experiences/horse-riding.jpg",
@@ -15,13 +15,13 @@
     "included": true,
     "addonId": "horse-riding-lesson",
     "highlights": [
-      "1-acre dedicated riding arena",
+      "Training arena with the latest equipment",
+      "Experienced trainer with you throughout",
       "Riding lessons for beginners and experienced riders",
-      "Horse walks and rides through the fields",
+      "Leisure rides through the fields, led by our trainer",
       "Photos with the horses",
       "Learn the daily routine: feeding and grooming",
-      "Lessons on horse breeds",
-      "Safety equipment provided"
+      "Lessons on horse breeds"
     ]
   },
   {
@@ -35,33 +35,33 @@
       "/images/experiences/guava-orchard.jpg",
       "/images/experiences/kitchen-garden.jpg"
     ],
-    "included": true,
+    "included": false,
     "addonId": "orchard-visit",
     "highlights": [
       "Hand-pick fresh guavas",
       "Organic & pesticide-free",
       "Seasonal — best from July to February",
-      "Take your harvest to the kitchen",
+      "₹500 · terms & conditions apply",
       "Perfect for families with kids"
     ]
   },
   {
     "id": "kitchen-garden",
     "title": "Kitchen Garden",
-    "subtitle": "Harvest & cook with our chef",
-    "description": "Visit our kitchen garden where we grow fresh vegetables, herbs, and greens. Pick your favorites and head straight to the kitchen where our cook will transform your harvest into a delicious meal. It doesn't get fresher than this!",
-    "longDescription": "Our kitchen garden is the heart of ASTBAL's farm-to-table philosophy. Rows of tomatoes, peppers, spinach, herbs, seasonal vegetables — all grown organically on the property. Our cook will guide you through the garden, help you pick the best produce, and then show you how to turn it into a mouth-watering dish in our in-house kitchen.",
+    "subtitle": "Pick fresh, seasonal vegetables",
+    "description": "Visit our kitchen garden where we grow fresh vegetables, herbs and greens through the seasons. Pick what's ready and take home the freshest vegetables you'll find.",
+    "longDescription": "Our kitchen garden is the heart of ASTBAL's farm-to-table food. Rows of tomatoes, peppers, spinach, herbs and other seasonal vegetables, all grown on the property. Walk the beds with us and pick what's in season. What's available depends on the time of year, and rates depend on the vegetable and the quantity you pick.",
     "image": "/images/experiences/kitchen-garden.jpg",
     "gallery": [
       "/images/experiences/kitchen-garden.jpg",
       "/images/experiences/guava-orchard.jpg"
     ],
-    "included": true,
+    "included": false,
     "addonId": "farm-experience",
     "highlights": [
-      "Fresh organic vegetables & herbs",
-      "Guided harvest with our cook",
-      "Cook what you pick",
+      "Fresh vegetables & herbs",
+      "Seasonal, as per availability",
+      "Rates as per vegetable and quantity",
       "Seasonal varieties throughout the year",
       "Great activity for children"
     ]
@@ -70,7 +70,7 @@
     "id": "farm-restaurant",
     "title": "In-House Restaurant",
     "subtitle": "Farm-to-table dining",
-    "description": "Our in-house kitchen serves delicious, home-style meals prepared by our talented cook using fresh ingredients from the property. From hearty breakfasts to multi-course dinners, every meal is a celebration of local flavors and farm freshness.",
+    "description": "Our in-house kitchen serves home-style meals made with fresh ingredients from the property. Start the day with a farm fresh breakfast, and add an optional farm-to-table dinner cooked with seasonal vegetables from the farm.",
     "longDescription": "Food at ASTBAL is more than just meals — it's an experience. Our cook specializes in rustic, home-style cooking that showcases the best of Haryana's culinary traditions. Every dish uses ingredients sourced from our kitchen garden, guava orchard, and local farms. Enjoy your meals al fresco with views of the open fields, or cozy up indoors during the cooler months.",
     "image": "/images/property/container-house.jpg",
     "gallery": [
@@ -80,10 +80,10 @@
     "included": false,
     "addonId": "farm-dinner",
     "highlights": [
-      "Farm-to-table cuisine",
+      "Farm fresh breakfast",
+      "Optional farm-to-table dinner",
+      "Seasonal vegetables from our garden",
       "Home-style Haryanvi cooking",
-      "Fresh ingredients from our garden",
-      "Breakfast, lunch & dinner available",
       "Al fresco dining with field views"
     ]
   },
