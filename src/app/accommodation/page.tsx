@@ -1,8 +1,8 @@
 import Image from "next/image";
 import Link from "next/link";
 import {
-  Bed, Wifi, AirVent, Bath, UtensilsCrossed, Car, Tv, Coffee, MapPin, Clock,
-  PawPrint, Trees, CalendarCheck, Sun, ArrowRight, Navigation,
+  Bed, Wifi, AirVent, Bath, UtensilsCrossed, Car, Tv, Coffee, MapPin,
+  PawPrint, Dog, PartyPopper, Wheat, Navigation, Quote,
 } from "lucide-react";
 import { formatPrice } from "@/lib/bookingEngine";
 import { siteConfig } from "@/data/siteConfig";
@@ -10,6 +10,7 @@ import { galleryImages } from "@/data/gallery";
 import pricing from "@/data/pricing.json";
 import experiences from "@/data/experiences.json";
 import PhotoGrid from "@/components/stay/PhotoGrid";
+import BookingCard, { MobileReserveBar } from "@/components/stay/BookingCard";
 
 const { accommodation } = pricing;
 
@@ -35,8 +36,8 @@ const facts = [
 
 const highlights = [
   { icon: PawPrint, title: "Horse riding on site", text: "A 1-acre riding arena with trained horses and handlers, for beginners and experienced riders." },
-  { icon: Trees, title: "Pick your own guavas", text: "Walk the orchard and kitchen garden, then have our cook turn your harvest into a meal." },
-  { icon: CalendarCheck, title: "Free cancellation", text: "Cancel up to 48 hours before check-in. You only pay after we confirm your dates." },
+  { icon: Dog, title: "Pet friendly", text: "Bring your pets along. There's open space to run, and our farm dogs love company." },
+  { icon: Wheat, title: "Peace and quiet in the fields", text: "Surrounded by open farmland, far from traffic. Nights are calm and the stars are bright." },
 ];
 
 const amenities = [
@@ -48,12 +49,43 @@ const amenities = [
   { icon: UtensilsCrossed, label: "Mini kitchen" },
   { icon: Coffee, label: "Coffee & tea maker" },
   { icon: Car, label: "Free parking on premises" },
+  { icon: Dog, label: "Pets allowed" },
+  { icon: PartyPopper, label: "Parties & celebrations allowed" },
 ];
 
 const driveTimes = [
   { from: "Delhi", time: "~1 hr" },
   { from: "Gurgaon", time: "~45 min" },
   { from: "Faridabad", time: "~50 min" },
+];
+
+const thingsToKnow = [
+  {
+    title: "House rules",
+    items: [
+      `Check-in after ${siteConfig.checkIn.label}`,
+      `Checkout before ${siteConfig.checkOut.label}`,
+      `Up to ${accommodation.maxGuests} guests`,
+      "Pets welcome",
+      "Parties & celebrations welcome",
+    ],
+  },
+  {
+    title: "Safety & property",
+    items: [
+      "Friendly dogs and horses live on the farm",
+      "Horse riding is always with our handlers",
+      "Open fields all around, so keep an eye on kids near the arena",
+    ],
+  },
+  {
+    title: "Cancellation",
+    items: [
+      "Free cancellation up to 48 hours before check-in",
+      "No payment until we confirm your dates on WhatsApp",
+      "Pay by UPI or bank transfer",
+    ],
+  },
 ];
 
 const prices = [
@@ -76,7 +108,7 @@ function SectionTitle({ children }: { children: React.ReactNode }) {
 
 export default function AccommodationPage() {
   return (
-    <div className="bg-white pt-20 lg:pt-24 pb-16">
+    <div className="bg-white pt-20 lg:pt-24 pb-28 lg:pb-16">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Title */}
         <div className="mb-4 sm:mb-6">
@@ -117,15 +149,32 @@ export default function AccommodationPage() {
 
             <Divider />
 
+            <figure className="rounded-2xl bg-green-50 px-6 py-6 sm:px-8">
+              <Quote className="w-7 h-7 text-green-600 mb-2" strokeWidth={1.5} />
+              <blockquote
+                className="text-lg sm:text-xl text-stone-900 leading-snug"
+                style={{ fontFamily: "var(--font-heading)" }}
+              >
+                Looking for an escape from city life? Come to the farm. Slow down, breathe fresh air, and let
+                nature do the rest.
+              </blockquote>
+            </figure>
+
             <div className="space-y-4 text-stone-700 leading-relaxed">
               <p>
-                Our container house is a converted shipping container with large windows that frame the
-                surrounding farmland. Wake up to birdsong and green views, with air conditioning, WiFi, a smart
-                TV and a mini kitchen inside.
+                Trade traffic and screens for open fields and green trees. ASTBAL is a working farm just an hour
+                from Delhi, and once you arrive you&rsquo;ll feel the quiet straight away. The loudest sound at
+                night is the breeze through the orchard.
               </p>
               <p>
-                Step outside to the grass bed area for morning tea, yoga or stargazing. Around you: a riding
-                arena, a guava orchard, a kitchen garden and our friendly dogs.
+                Spend your days however makes you happy. Ride our horses, play with our dogs (and bring your own:
+                pets are welcome), walk through the guava orchard, and see how crops are planted and grown in the
+                fields around you. Pick fresh vegetables from the kitchen garden and enjoy them at your table.
+              </p>
+              <p>
+                Come for a peaceful weekend, a family getaway or a celebration with friends. At the end of the
+                day, relax in the container house with air conditioning, WiFi, a smart TV and a mini kitchen, or
+                lie back on the charpai and watch the stars.
               </p>
             </div>
 
@@ -185,6 +234,37 @@ export default function AccommodationPage() {
 
             <Divider />
 
+            {/* Things to know */}
+            <section>
+              <SectionTitle>Things to know</SectionTitle>
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-8">
+                {thingsToKnow.map((group) => (
+                  <div key={group.title}>
+                    <h3 className="font-semibold text-stone-900 mb-3">{group.title}</h3>
+                    <ul className="space-y-2 text-sm text-stone-600">
+                      {group.items.map((item) => <li key={item}>{item}</li>)}
+                    </ul>
+                  </div>
+                ))}
+              </div>
+              <h3 className="font-semibold text-stone-900 mt-8 mb-3">Prices per night</h3>
+              <ul className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                {prices.map((p) => (
+                  <li key={p.label} className="rounded-xl border border-stone-200 px-4 py-3">
+                    <p className="font-semibold text-stone-900">{formatPrice(p.price)}</p>
+                    <p className="text-sm text-stone-700">{p.label}</p>
+                    <p className="text-xs text-stone-500">{p.note}</p>
+                  </li>
+                ))}
+              </ul>
+              <p className="text-xs text-stone-500 mt-3">
+                {accommodation.baseGuests} guests included · extra guest {formatPrice(accommodation.extraGuest)} per night
+                · {accommodation.minNights}–{accommodation.maxNights} nights
+              </p>
+            </section>
+
+            <Divider />
+
             {/* Location */}
             <section>
               <SectionTitle>Where you&rsquo;ll be</SectionTitle>
@@ -208,59 +288,15 @@ export default function AccommodationPage() {
             </section>
           </div>
 
-          {/* Right: price card (sticks while scrolling on computers) */}
+          {/* Right: booking card (sticks while scrolling on computers) */}
           <aside className="lg:col-span-1">
-            <div className="lg:sticky lg:top-28 rounded-2xl border border-stone-200 shadow-[0_6px_16px_rgba(0,0,0,0.12)] p-6">
-              <p className="text-stone-900">
-                <span className="text-2xl font-bold">{formatPrice(accommodation.weekday)}</span>
-                <span className="text-stone-500"> night</span>
-                <span className="text-xs text-stone-400 ml-1">from</span>
-              </p>
-
-              <ul className="mt-5 rounded-xl border border-stone-200 divide-y divide-stone-200">
-                {prices.map((p) => (
-                  <li key={p.label} className="flex items-center justify-between px-4 py-3">
-                    <div>
-                      <p className="text-sm font-medium text-stone-900">{p.label}</p>
-                      <p className="text-[11px] text-stone-500">{p.note}</p>
-                    </div>
-                    <p className="font-semibold text-stone-900">{formatPrice(p.price)}</p>
-                  </li>
-                ))}
-              </ul>
-
-              <div className="grid grid-cols-2 mt-4 rounded-xl border border-stone-200 divide-x divide-stone-200">
-                <div className="px-4 py-2.5">
-                  <p className="flex items-center gap-1 text-[10px] font-bold uppercase tracking-wide text-stone-900">
-                    <Sun className="w-3 h-3" /> Check-in
-                  </p>
-                  <p className="text-sm text-stone-600">After {siteConfig.checkIn.label}</p>
-                </div>
-                <div className="px-4 py-2.5">
-                  <p className="flex items-center gap-1 text-[10px] font-bold uppercase tracking-wide text-stone-900">
-                    <Clock className="w-3 h-3" /> Checkout
-                  </p>
-                  <p className="text-sm text-stone-600">Before {siteConfig.checkOut.label}</p>
-                </div>
-              </div>
-
-              <Link
-                href="/book"
-                className="mt-5 w-full inline-flex items-center justify-center gap-2 bg-green-600 text-white py-3.5 rounded-xl font-semibold hover:bg-green-700 transition-colors"
-              >
-                Check availability <ArrowRight className="w-4 h-4" />
-              </Link>
-              <p className="text-center text-xs text-stone-500 mt-3">You won&rsquo;t pay anything yet</p>
-
-              <ul className="mt-5 pt-5 border-t border-stone-200 space-y-1.5 text-xs text-stone-500">
-                <li>{accommodation.baseGuests} guests included · extra guest {formatPrice(accommodation.extraGuest)}/night</li>
-                <li>Up to {accommodation.maxGuests} guests · {accommodation.minNights}–{accommodation.maxNights} nights</li>
-                <li>Free cancellation up to 48 hours before check-in</li>
-              </ul>
+            <div className="lg:sticky lg:top-28">
+              <BookingCard />
             </div>
           </aside>
         </div>
       </div>
+      <MobileReserveBar />
     </div>
   );
 }

@@ -122,3 +122,15 @@ h1, h2, h3, h4, h5, h6 {
 .react-datepicker__navigation-icon::before {
   border-color: var(--color-foreground) !important;
 }
+
+/* Stay page booking card: two months side by side, no extra box (the popover is the box) */
+.booking-calendar .react-datepicker {
+  display: flex !important;
+  justify-content: center;
+  gap: 1.5rem;
+  border: none !important;
+  box-shadow: none !important;
+  padding: 0 !important;
+  max-width: none !important;
+}
+.booking-calendar .react-datepicker__header { border-bottom: none !important; }
