@@ -1,15 +1,12 @@
 import Link from "next/link";
-import { ChevronDown, MapPin, ShieldCheck } from "lucide-react";
+import { ChevronDown, MapPin, PawPrint, ShieldCheck } from "lucide-react";
 import { BookNowButton } from "@/components/booking/BookingDialog";
-import { getStartingPrice } from "@/lib/bookingEngine";
 import HeroSlideshow from "@/components/home/HeroSlideshow";
 
 // Only claims that are true today. Add a rating here once there are real reviews.
 const trustBadges = ["Free cancellation", "WhatsApp confirmation", "Pay after we confirm", "No hidden charges"];
 
 export default function Hero() {
-  const pricePerNight = getStartingPrice();
-
   return (
     <section className="relative min-h-[88vh] flex items-center justify-center overflow-hidden bg-stone-900">
       {/* The farm from day to night: photos fade into each other (first one preloaded) */}
@@ -33,7 +30,9 @@ export default function Hero() {
           <span className="flex items-center gap-1.5">
             <ShieldCheck className="w-4 h-4" /> Entire farm, one group at a time
           </span>
-          <span className="text-amber-400 font-semibold">from ₹{pricePerNight.toLocaleString("en-IN")}/night</span>
+          <span className="flex items-center gap-1.5">
+            <PawPrint className="w-4 h-4" /> Pets welcome
+          </span>
         </div>
 
         <div className="flex flex-col sm:flex-row items-center justify-center gap-3">

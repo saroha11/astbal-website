@@ -5,7 +5,6 @@ import Footer from "@/components/layout/Footer";
 import WhatsAppButton from "@/components/layout/WhatsAppButton";
 import { Analytics } from "@vercel/analytics/next";
 import { siteConfig, siteUrl } from "@/data/siteConfig";
-import pricing from "@/data/pricing.json";
 import { BookingDialogProvider } from "@/components/booking/BookingDialog";
 
 export const metadata: Metadata = {
@@ -46,7 +45,6 @@ export const metadata: Metadata = {
 
 // Structured data so Google understands this is a bookable farm stay (location, price range, amenities).
 // No ratings here on purpose: add an aggregateRating only once there are real reviews.
-const { weekday, weekend, peakSeason } = pricing.accommodation;
 const jsonLd = {
   "@context": "https://schema.org",
   "@type": "LodgingBusiness",
@@ -69,7 +67,6 @@ const jsonLd = {
   hasMap: siteConfig.mapUrl,
   petsAllowed: true,
   numberOfRooms: 1,
-  priceRange: `₹${Math.min(weekday, weekend, peakSeason).toLocaleString("en-IN")} – ₹${Math.max(weekday, weekend, peakSeason).toLocaleString("en-IN")} per night`,
   currenciesAccepted: "INR",
   checkinTime: siteConfig.checkIn.time,
   checkoutTime: siteConfig.checkOut.time,

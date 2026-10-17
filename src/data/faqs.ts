@@ -1,7 +1,7 @@
 import pricing from "@/data/pricing.json";
 import { siteConfig } from "@/data/siteConfig";
 
-const { maxGuests, baseGuests, extraGuest } = pricing.accommodation;
+const { maxGuests } = pricing.accommodation;
 
 // Shown on the homepage and sent to Google as FAQ structured data. Keep every answer true.
 export const faqs: { q: string; a: string }[] = [
@@ -15,7 +15,7 @@ export const faqs: { q: string; a: string }[] = [
   },
   {
     q: "How many guests can stay?",
-    a: `Up to ${maxGuests} guests. The price includes ${baseGuests} guests, and each extra guest is ₹${extraGuest.toLocaleString("en-IN")} per night.`,
+    a: `Up to ${maxGuests} guests. Add your dates and number of guests when booking to see the price for your group.`,
   },
   {
     q: "What are the check-in and check-out times?",

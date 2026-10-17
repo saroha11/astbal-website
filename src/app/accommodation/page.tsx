@@ -4,7 +4,6 @@ import {
   Bed, Wifi, AirVent, Bath, UtensilsCrossed, Car, Tv, Coffee, MapPin,
   PawPrint, Dog, PartyPopper, Wheat, Quote, ShieldCheck,
 } from "lucide-react";
-import { formatPrice } from "@/lib/bookingEngine";
 import { siteConfig } from "@/data/siteConfig";
 import { galleryImages } from "@/data/gallery";
 import pricing from "@/data/pricing.json";
@@ -93,11 +92,6 @@ const thingsToKnow = [
   },
 ];
 
-const prices = [
-  { label: "Weekday", note: "Mon – Thu nights", price: accommodation.weekday },
-  { label: "Weekend", note: "Fri – Sun nights", price: accommodation.weekend },
-  { label: "Peak season", note: "20 Dec – 5 Jan", price: accommodation.peakSeason },
-];
 
 function Divider() {
   return <hr className="border-stone-200" />;
@@ -278,19 +272,8 @@ export default function AccommodationPage() {
                   </div>
                 ))}
               </div>
-              <h3 className="font-semibold text-stone-900 mt-8 mb-3">Prices per night</h3>
-              <ul className="grid grid-cols-1 sm:grid-cols-3 gap-3">
-                {prices.map((p) => (
-                  <li key={p.label} className="rounded-xl border border-stone-200 px-4 py-3">
-                    <p className="font-semibold text-stone-900">{formatPrice(p.price)}</p>
-                    <p className="text-sm text-stone-700">{p.label}</p>
-                    <p className="text-xs text-stone-500">{p.note}</p>
-                  </li>
-                ))}
-              </ul>
-              <p className="text-xs text-stone-500 mt-3">
-                {accommodation.baseGuests} guests included · extra guest {formatPrice(accommodation.extraGuest)} per night
-                · {accommodation.minNights}–{accommodation.maxNights} nights
+              <p className="text-sm text-stone-500 mt-8">
+                Stays of {accommodation.minNights}–{accommodation.maxNights} nights. Add your dates to see prices for your group.
               </p>
             </section>
 

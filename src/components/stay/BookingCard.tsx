@@ -112,11 +112,8 @@ export default function BookingCard({ startOpen = false, id = "reserve" }: { sta
               <span className="text-stone-500"> night avg</span>
             </>
           ) : (
-            <>
-              <span className="text-xs text-stone-500 mr-1">from</span>
-              <span className="text-2xl font-bold">{formatPrice(accommodation.weekday)}</span>
-              <span className="text-stone-500"> night</span>
-            </>
+            // No price until dates are picked
+            <span className="text-xl font-bold">Add dates for prices</span>
           )}
         </p>
 
@@ -271,9 +268,7 @@ export function MobileReserveBar() {
   return (
     <div className="lg:hidden fixed bottom-0 inset-x-0 z-40 bg-white border-t border-stone-200 px-4 py-3 flex items-center justify-between">
       <p className="text-stone-900">
-        <span className="text-xs text-stone-500 mr-1">from</span>
-        <span className="font-bold">{formatPrice(accommodation.weekday)}</span>
-        <span className="text-stone-500 text-sm"> night</span>
+        <span className="font-bold">Add dates for prices</span>
         <span className="block text-xs text-stone-500">Free cancellation · 48 hrs</span>
       </p>
       <a
