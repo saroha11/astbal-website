@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { TreePine, Phone, Mail, MapPin } from "lucide-react";
+import { TreePine, MessageCircle, Mail, MapPin } from "lucide-react";
 import { siteConfig } from "@/data/siteConfig";
 
 const quickLinks = [
@@ -104,9 +104,9 @@ export default function Footer() {
                 <span className="text-white/60 text-sm">{siteConfig.address}</span>
               </li>
               <li className="flex items-center gap-3">
-                <Phone className="w-5 h-5 text-primary shrink-0" />
-                <a href={siteConfig.phoneHref} className="text-white/60 hover:text-primary text-sm">
-                  {siteConfig.phone}
+                <MessageCircle className="w-5 h-5 text-primary shrink-0" />
+                <a href={`https://wa.me/${siteConfig.whatsapp}`} target="_blank" rel="noopener noreferrer" className="text-white/60 hover:text-primary text-sm">
+                  WhatsApp us
                 </a>
               </li>
               <li className="flex items-center gap-3">

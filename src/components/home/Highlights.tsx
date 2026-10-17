@@ -48,8 +48,8 @@ const highlights = [
   },
   {
     icon: Wheat,
-    title: "2 Acres of Open Fields",
-    description: "Quiet nights, starry skies, just 1 hr from Delhi",
+    title: "Your Own Private Farm",
+    description: "The entire property is yours. We host one group at a time",
     image: "/images/gallery/horse-gallop-poster.jpg",
     video: "/images/gallery/horse-gallop.mp4",
     href: "/gallery",

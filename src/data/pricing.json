@@ -73,7 +73,7 @@
     {
       "id": "nature-walk",
       "name": "Guided Nature Walk",
-      "description": "Explore the 2-acre property and learn about local flora and fauna",
+      "description": "Explore the property and learn about local flora and fauna",
       "price": 300,
       "duration": "45 mins",
       "icon": "footprints"

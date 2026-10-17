@@ -54,7 +54,7 @@ export async function POST(request: Request) {
       .or(`phone.eq.${b.phone.replace(/[,()]/g, "")},email.eq.${b.email.replace(/[,()]/g, "")}`);
     if ((count ?? 0) >= 3) {
       return NextResponse.json(
-        { error: "Too many pending requests. Please call or WhatsApp us." },
+        { error: "Too many pending requests. Please WhatsApp or email us." },
         { status: 429 }
       );
     }

@@ -14,11 +14,12 @@ const { accommodation } = pricing;
 const ymd = (d: Date) => format(d, "yyyy-MM-dd");
 
 // Airbnb-style reserve card: pick dates + guests, see the live total, then continue to /book pre-filled.
-export default function BookingCard() {
+// `startOpen` opens the calendar straight away (used in the Book Now panel).
+export default function BookingCard({ startOpen = false, id = "reserve" }: { startOpen?: boolean; id?: string }) {
   const [checkIn, setCheckIn] = useState<Date | null>(null);
   const [checkOut, setCheckOut] = useState<Date | null>(null);
   const [guests, setGuests] = useState(accommodation.baseGuests);
-  const [calendarOpen, setCalendarOpen] = useState(false);
+  const [calendarOpen, setCalendarOpen] = useState(startOpen);
   const [booked, setBooked] = useState<Set<string>>(() => getBlockedDates());
   const [wide, setWide] = useState(false);
   const cardRef = useRef<HTMLDivElement>(null);
@@ -102,7 +103,7 @@ export default function BookingCard() {
   );
 
   return (
-    <div ref={cardRef} id="reserve" className="relative scroll-mt-28">
+    <div ref={cardRef} id={id} className="relative scroll-mt-28">
       <div className="rounded-2xl border border-stone-200 shadow-[0_6px_16px_rgba(0,0,0,0.12)] p-6 bg-white">
         <p className="text-stone-900">
           {quote ? (

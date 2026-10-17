@@ -6,7 +6,7 @@ import { TreePine, MapPin, Clock, Home, Maximize, Dog, Sprout } from "lucide-rea
 import PageHero from "@/components/layout/PageHero";
 
 const stats = [
-  { icon: Maximize, label: "Total Area", value: "2 Acres", description: "Lush green farmland" },
+  { icon: Maximize, label: "Privacy", value: "1 Group", description: "The whole farm is yours" },
   { icon: TreePine, label: "Riding Arena", value: "1 Acre", description: "Open field arena" },
   { icon: Clock, label: "From Delhi", value: "1 Hour", description: "Easy weekend drive" },
   { icon: Home, label: "Accommodation", value: "1 BHK", description: "Modern container house" },
@@ -33,7 +33,7 @@ export default function AboutPage() {
                 Where Nature Meets Comfort
               </h2>
               <div className="space-y-4 text-stone-600 leading-relaxed text-sm sm:text-base">
-                <p>ASTBAL was born from a simple dream — to create a space where city dwellers could disconnect from the chaos and reconnect with nature. Just one hour from Delhi NCR, our 2-acre farm retreat offers an experience that&rsquo;s increasingly rare: the chance to slow down, breathe fresh air, and live simply, beautifully.</p>
+                <p>ASTBAL was born from a simple dream — to create a space where city dwellers could disconnect from the chaos and reconnect with nature. Just one hour from Delhi NCR, our private farm retreat offers an experience that&rsquo;s increasingly rare: the chance to slow down, breathe fresh air, and live simply, beautifully.</p>
                 <p>Our modern container house is the heart of the stay — a thoughtfully designed 1 BHK that proves sustainable living doesn&rsquo;t mean compromising on comfort. Step outside, and you&rsquo;re greeted by a 1-acre horse riding arena set against open fields, a guava orchard heavy with fruit, and a kitchen garden brimming with fresh vegetables.</p>
                 <p>What makes ASTBAL truly special is the warmth — our cook who transforms farm-fresh ingredients into memorable meals, our friendly dogs (Labradors and Indian canines) who greet you like family, and the gentle pace of countryside life that heals without you even noticing.</p>
               </div>
@@ -44,8 +44,8 @@ export default function AboutPage() {
                 <Image src="/images/property/container-house.jpg" alt="ASTBAL Container House" fill className="object-cover" />
               </div>
               <div className="absolute -bottom-4 left-0 sm:-left-4 bg-green-600 text-white p-4 sm:p-5 rounded-xl shadow-lg">
-                <p className="text-xl sm:text-2xl font-bold" style={{ fontFamily: "var(--font-heading)" }}>2 Acres</p>
-                <p className="text-white/80 text-xs sm:text-sm">of Pure Nature</p>
+                <p className="text-xl sm:text-2xl font-bold" style={{ fontFamily: "var(--font-heading)" }}>All Yours</p>
+                <p className="text-white/80 text-xs sm:text-sm">One group at a time</p>
               </div>
             </motion.div>
           </div>

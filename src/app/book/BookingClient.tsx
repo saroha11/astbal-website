@@ -102,7 +102,7 @@ export default function BookingClient({ initialCheckIn, initialCheckOut, initial
 
   if (submitted) {
     const nextSteps = [
-      "We've received your request and will call or WhatsApp you within a few hours to confirm.",
+      "We've received your request and will WhatsApp or email you within a few hours to confirm.",
       "Once confirmed, pay by UPI or bank transfer to lock your dates.",
       "Free cancellation up to 48 hours before check-in.",
     ];
@@ -220,8 +220,8 @@ export default function BookingClient({ initialCheckIn, initialCheckOut, initial
                     <Send className="w-4 h-4" /> {isSubmitting ? "Sending..." : "Request Booking"}
                   </button>
                   <p className="text-center text-[10px] sm:text-xs text-stone-400">
-                    No payment now. We&rsquo;ll contact you to confirm. Questions? Call{" "}
-                    <a href={siteConfig.phoneHref} className="text-green-600">{siteConfig.phone}</a>
+                    No payment now. We&rsquo;ll contact you to confirm. Questions?{" "}
+                    <a href={`https://wa.me/${siteConfig.whatsapp}`} target="_blank" rel="noopener noreferrer" className="text-green-600">WhatsApp us</a>
                   </p>
                 </form>
               </div>

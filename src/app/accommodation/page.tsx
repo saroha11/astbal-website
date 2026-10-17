@@ -2,7 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import {
   Bed, Wifi, AirVent, Bath, UtensilsCrossed, Car, Tv, Coffee, MapPin,
-  PawPrint, Dog, PartyPopper, Wheat, Navigation, Quote,
+  PawPrint, Dog, PartyPopper, Wheat, Navigation, Quote, ShieldCheck,
 } from "lucide-react";
 import { formatPrice } from "@/lib/bookingEngine";
 import { siteConfig } from "@/data/siteConfig";
@@ -29,6 +29,7 @@ const photos = [
 ];
 
 const facts = [
+  "Entire property",
   `Up to ${accommodation.maxGuests} guests`,
   "1 bedroom",
   "1 queen bed",
@@ -36,6 +37,7 @@ const facts = [
 ];
 
 const highlights = [
+  { icon: ShieldCheck, title: "Complete privacy", text: "The entire property is yours. We host just one group at a time, so the farm, the fields and the quiet are all for you." },
   { icon: PawPrint, title: "Horse riding on site", text: "Riding lessons in a 1-acre arena, horse walks through the fields, and time with the horses: photos, grooming and learning about breeds." },
   { icon: Dog, title: "Pet friendly", text: "Bring your pets along. There's open space to run, and our farm dogs love company." },
   { icon: Wheat, title: "Peace and quiet in the fields", text: "Surrounded by open farmland, far from traffic. Nights are calm and the stars are bright." },
@@ -67,6 +69,7 @@ const thingsToKnow = [
       `Check-in after ${siteConfig.checkIn.label}`,
       `Checkout before ${siteConfig.checkOut.label}`,
       `Up to ${accommodation.maxGuests} guests`,
+      "One group at a time: the whole property is yours",
       "Pets welcome",
       "Parties & celebrations welcome",
     ],
@@ -129,7 +132,7 @@ export default function AccommodationPage() {
           <div className="lg:col-span-2 space-y-8">
             <div>
               <h2 className="text-xl sm:text-2xl font-bold text-stone-900" style={{ fontFamily: "var(--font-heading)" }}>
-                Private container house on a 2-acre farm
+                The entire farm, just for your group
               </h2>
               <p className="text-stone-600 mt-1">{facts.join(" · ")}</p>
             </div>

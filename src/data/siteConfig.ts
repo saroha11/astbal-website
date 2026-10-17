@@ -2,7 +2,7 @@ export const siteConfig = {
   name: "ASTBAL",
   tagline: "Experience Nature, Just 1 Hour from Delhi",
   description:
-    "A boutique nature retreat on 2 acres of lush farmland near Delhi NCR. Stay in our container house, ride horses through open fields, pick fresh guavas from our orchard, harvest vegetables from our kitchen garden, and savor farm-to-table meals — all in one unforgettable experience.",
+    "A private nature retreat on lush farmland near Delhi NCR, booked by one group at a time. Stay in our container house, ride horses through open fields, pick fresh guavas from our orchard, harvest vegetables from our kitchen garden, and savor farm-to-table meals — all in one unforgettable experience.",
   url: "https://astbal.in",
   phone: "+91 70186 19039",
   phoneHref: "tel:+917018619039",

@@ -4,6 +4,7 @@ import { useState } from "react";
 import Link from "next/link";
 import { Menu, X, TreePine } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
+import { BookNowButton } from "@/components/booking/BookingDialog";
 
 const navLinks = [
   { href: "/", label: "Home" },
@@ -51,12 +52,7 @@ export default function Navbar() {
 
           {/* Book Button + Mobile Toggle */}
           <div className="flex items-center gap-2 sm:gap-3 shrink-0">
-            <Link
-              href="/book"
-              className="hidden sm:lg:inline-flex lg:inline-flex items-center bg-green-600 text-white px-5 py-2.5 rounded-full text-sm font-semibold hover:bg-green-700 transition-colors shadow-sm whitespace-nowrap"
-            >
-              Book Now
-            </Link>
+            <BookNowButton className="inline-flex items-center bg-green-600 text-white px-4 py-2 lg:px-5 lg:py-2.5 rounded-full text-sm font-semibold hover:bg-green-700 transition-colors shadow-sm whitespace-nowrap" />
             <button
               onClick={() => setIsOpen(!isOpen)}
               className="lg:hidden p-2 rounded-lg hover:bg-stone-100 transition-colors"
@@ -88,15 +84,6 @@ export default function Navbar() {
                   {link.label}
                 </Link>
               ))}
-              <div className="pt-2">
-                <Link
-                  href="/book"
-                  onClick={() => setIsOpen(false)}
-                  className="block py-3 px-4 bg-green-600 text-white rounded-full text-center font-semibold text-sm"
-                >
-                  Book Now
-                </Link>
-              </div>
             </div>
           </motion.div>
         )}
