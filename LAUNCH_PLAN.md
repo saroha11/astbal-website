@@ -17,7 +17,8 @@ No online payment yet: payment is collected by you off-site. See "Phase 2".
 6. Test: make a booking, see it in `/admin`, confirm it, see the date blocked on `/book`; check phone layout.
 
 ## Phase 2 - Soon after launch
-- Email/WhatsApp notification to you on each new booking (Resend or WhatsApp Cloud API).
+- Booking alerts: built in (`src/lib/notify.ts`). Add `RESEND_API_KEY` in Vercel (Settings -> Environment Variables, Production) and redeploy; alerts go to hello@astbal.in. Until it's set, guests' WhatsApp opens with the booking details instead. Optional Telegram: `TELEGRAM_BOT_TOKEN` + `TELEGRAM_CHAT_ID`.
+- Later: verify astbal.in in Resend (DNS records at GoDaddy) and set `RESEND_FROM` to send from bookings@astbal.in; then guest confirmation emails become possible. WhatsApp Business API only if WhatsApp alerts are wanted (needs a second number + Meta approval).
 - Confirmation email to the guest.
 - Online advance payment (Razorpay) so dates are held only when paid.
 - Real bedroom/bathroom/kitchen-garden/restaurant photos.

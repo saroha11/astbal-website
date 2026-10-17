@@ -1,7 +1,8 @@
-import { NextResponse } from "next/server";
+import { NextResponse, after } from "next/server";
 import { getSupabase } from "@/lib/supabase";
 import { bookingSchema, hasBlockedNight } from "@/lib/bookingRules";
 import { calculateTotalPrice } from "@/lib/bookingEngine";
+import { alertsConfigured, notifyNewBooking } from "@/lib/notify";
 
 // POST /api/bookings - create a pending booking request.
 // The total is always recomputed here; the client's number is ignored.
@@ -58,7 +59,7 @@ export async function POST(request: Request) {
       );
     }
 
-    const { total } = calculateTotalPrice(b.checkIn, b.checkOut, b.guests, b.addons);
+    const { total, nights, addons } = calculateTotalPrice(b.checkIn, b.checkOut, b.guests, b.addons);
 
     const { data, error } = await supabase
       .from("bookings")
@@ -78,7 +79,26 @@ export async function POST(request: Request) {
       .single();
 
     if (error) throw error;
-    return NextResponse.json({ id: data.id, total }, { status: 201 });
+
+    // Alert the owner (email / Telegram) after the response is sent, so the guest isn't kept waiting
+    after(() =>
+      notifyNewBooking({
+        id: data.id,
+        name: b.name,
+        email: b.email,
+        phone: b.phone,
+        checkIn: b.checkIn,
+        checkOut: b.checkOut,
+        nights,
+        guests: b.guests,
+        addons: addons.map((a) => a.name),
+        specialRequests: b.specialRequests ?? "",
+        total,
+      })
+    );
+
+    // `alerted` tells the page whether we were notified automatically (otherwise it falls back to WhatsApp)
+    return NextResponse.json({ id: data.id, total, alerted: alertsConfigured() }, { status: 201 });
   } catch (err) {
     console.error("Booking error:", err);
     return NextResponse.json({ error: "Could not save booking. Please try again." }, { status: 500 });

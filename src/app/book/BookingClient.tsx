@@ -78,12 +78,18 @@ export default function BookingClient({ initialCheckIn, initialCheckOut, initial
       }
 
       // Also send WhatsApp so the owner is notified right away
-      const addonNames = pricing.addons.map((a) => a.name);
-      const message = `🌿 *New Booking — ASTBAL*\n\n*Booking #:* ${data.id}\n*Name:* ${formData.name}\n*Phone:* ${formData.phone}\n*Email:* ${formData.email}\n*Check-in:* ${prettyDate(checkIn)}\n*Check-out:* ${prettyDate(checkOut)}\n*Guests:* ${guests}\n*Add-ons:* ${addonNames.length > 0 ? addonNames.join(", ") : "None"}\n*Requests:* ${formData.specialRequests || "None"}\n*Total:* ${formatPrice(data.total ?? pricing.total)}`;
-      const url = `https://wa.me/${siteConfig.whatsapp}?text=${encodeURIComponent(message)}`;
-      setWhatsappUrl(url);
-      // Phones often block pop-ups opened after a network request; the success screen has a button as backup.
-      window.open(url, "_blank");
+      if (data.alerted) {
+        // We were alerted automatically (email/Telegram); WhatsApp is just an optional button
+        const message = `Hi ASTBAL! I just sent booking request #${data.id} for ${prettyDate(checkIn)} to ${prettyDate(checkOut)} (${guests} guests).`;
+        setWhatsappUrl(`https://wa.me/${siteConfig.whatsapp}?text=${encodeURIComponent(message)}`);
+      } else {
+        // No automatic alerts set up yet: open WhatsApp with the full details so the guest can send them to us
+        const addonNames = pricing.addons.map((a) => a.name);
+        const message = `🌿 *New Booking — ASTBAL*\n\n*Booking #:* ${data.id}\n*Name:* ${formData.name}\n*Phone:* ${formData.phone}\n*Email:* ${formData.email}\n*Check-in:* ${prettyDate(checkIn)}\n*Check-out:* ${prettyDate(checkOut)}\n*Guests:* ${guests}\n*Add-ons:* ${addonNames.length > 0 ? addonNames.join(", ") : "None"}\n*Requests:* ${formData.specialRequests || "None"}\n*Total:* ${formatPrice(data.total ?? pricing.total)}`;
+        const url = `https://wa.me/${siteConfig.whatsapp}?text=${encodeURIComponent(message)}`;
+        setWhatsappUrl(url);
+        window.open(url, "_blank");
+      }
 
       setSubmitted(true);
       window.scrollTo({ top: 0 });
@@ -96,7 +102,7 @@ export default function BookingClient({ initialCheckIn, initialCheckOut, initial
 
   if (submitted) {
     const nextSteps = [
-      "We'll call or WhatsApp you within a few hours to confirm.",
+      "We've received your request and will call or WhatsApp you within a few hours to confirm.",
       "Once confirmed, pay by UPI or bank transfer to lock your dates.",
       "Free cancellation up to 48 hours before check-in.",
     ];
@@ -128,7 +134,7 @@ export default function BookingClient({ initialCheckIn, initialCheckOut, initial
               {whatsappUrl && (
                 <a href={whatsappUrl} target="_blank" rel="noopener noreferrer"
                   className="inline-flex items-center justify-center gap-2 bg-green-600 text-white px-6 py-3 rounded-full font-semibold text-sm hover:bg-green-700 transition-colors">
-                  <MessageSquare className="w-4 h-4" /> Send details on WhatsApp
+                  <MessageSquare className="w-4 h-4" /> Questions? Chat with us on WhatsApp
                 </a>
               )}
               <button onClick={() => { setSubmitted(false); setWhatsappUrl(""); setCheckIn(null); setCheckOut(null); setSelectedAddons([]); setFormData({ name: "", email: "", phone: "", specialRequests: "" }); }}
@@ -214,7 +220,7 @@ export default function BookingClient({ initialCheckIn, initialCheckOut, initial
                     <Send className="w-4 h-4" /> {isSubmitting ? "Sending..." : "Request Booking"}
                   </button>
                   <p className="text-center text-[10px] sm:text-xs text-stone-400">
-                    No payment now. We confirm on WhatsApp first. Questions? Call{" "}
+                    No payment now. We&rsquo;ll contact you to confirm. Questions? Call{" "}
                     <a href={siteConfig.phoneHref} className="text-green-600">{siteConfig.phone}</a>
                   </p>
                 </form>
