@@ -21,6 +21,8 @@ export const galleryImages: GalleryImage[] = [
   { src: "/images/gallery/rider-trot.jpg", alt: "Riding Lesson in the Arena", category: "Horses", width: L.w, height: L.h },
   { src: "/images/gallery/white-horse-gallop.jpg", alt: "White Horse Galloping", category: "Horses", width: L.w, height: L.h },
   { src: "/images/gallery/rider-arena.jpg", alt: "Rider in the Jumping Arena", category: "Horses", width: L.w, height: L.h },
+  { src: "/images/gallery/white-horse-portrait.jpg", alt: "Our White Horse", category: "Horses", width: L.w, height: L.h },
+  { src: "/images/gallery/chestnut-gallop.jpg", alt: "Chestnut Horse Galloping", category: "Horses", width: L.w, height: L.h },
   { src: "/images/gallery/pony-running.jpg", alt: "Pony at Play", category: "Horses", width: P.w, height: P.h },
   { src: "/images/dogs/labrador.jpg", alt: "Our Labrador", category: "Dogs", width: P.w, height: P.h },
   { src: "/images/dogs/labrador-resting.jpg", alt: "Labrador Resting", category: "Dogs", width: L.w, height: L.h },

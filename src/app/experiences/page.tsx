@@ -7,6 +7,7 @@ import { CheckCircle2, ArrowRight } from "lucide-react";
 import experiences from "@/data/experiences.json";
 import PageHero from "@/components/layout/PageHero";
 import FieldExperiences from "@/components/experiences/FieldExperiences";
+import HorseExperiences from "@/components/experiences/HorseExperiences";
 
 export default function ExperiencesPage() {
   return (
@@ -59,6 +60,7 @@ export default function ExperiencesPage() {
       </section>
 
       <FieldExperiences />
+      <HorseExperiences />
 
       {/* CTA */}
       <section className="py-12 sm:py-16 lg:py-20 bg-green-600">

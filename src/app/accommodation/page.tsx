@@ -36,7 +36,7 @@ const facts = [
 ];
 
 const highlights = [
-  { icon: PawPrint, title: "Horse riding on site", text: "A 1-acre riding arena with trained horses and handlers, for beginners and experienced riders." },
+  { icon: PawPrint, title: "Horse riding on site", text: "Riding lessons in a 1-acre arena, horse walks through the fields, and time with the horses: photos, grooming and learning about breeds." },
   { icon: Dog, title: "Pet friendly", text: "Bring your pets along. There's open space to run, and our farm dogs love company." },
   { icon: Wheat, title: "Peace and quiet in the fields", text: "Surrounded by open farmland, far from traffic. Nights are calm and the stars are bright." },
 ];
