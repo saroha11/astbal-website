@@ -63,7 +63,7 @@ export default function Footer() {
 
           {/* Quick Links */}
           <div>
-            <h3 className="text-lg font-heading font-semibold mb-4">Quick Links</h3>
+            <h2 className="text-lg font-heading font-semibold mb-4">Quick Links</h2>
             <ul className="space-y-2">
               {quickLinks.map((link) => (
                 <li key={link.href}>
@@ -80,7 +80,7 @@ export default function Footer() {
 
           {/* Experiences */}
           <div>
-            <h3 className="text-lg font-heading font-semibold mb-4">Experiences</h3>
+            <h2 className="text-lg font-heading font-semibold mb-4">Experiences</h2>
             <ul className="space-y-2">
               {experienceLinks.map((link) => (
                 <li key={link.href}>
@@ -97,7 +97,7 @@ export default function Footer() {
 
           {/* Contact */}
           <div>
-            <h3 className="text-lg font-heading font-semibold mb-4">Contact Us</h3>
+            <h2 className="text-lg font-heading font-semibold mb-4">Contact Us</h2>
             <ul className="space-y-3">
               <li className="flex items-start gap-3">
                 <MapPin className="w-5 h-5 text-primary shrink-0 mt-0.5" />

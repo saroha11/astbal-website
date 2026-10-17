@@ -29,7 +29,7 @@ export default function PriceBreakdown({ checkIn, checkOut, guests, pricing, onG
   if (!pricing) {
     return (
       <div className="bg-white rounded-2xl shadow-sm border border-stone-100 p-4 sm:p-6">
-        <h3 className="text-base sm:text-lg font-bold text-stone-900 mb-4" style={{ fontFamily: "var(--font-heading)" }}>Booking Summary</h3>
+        <h2 className="text-base sm:text-lg font-bold text-stone-900 mb-4" style={{ fontFamily: "var(--font-heading)" }}>Booking Summary</h2>
         <div className="text-center py-6">
           <Calendar className="w-10 h-10 text-stone-200 mx-auto mb-3" />
           <p className="text-stone-400 text-xs sm:text-sm">Select your check-in and check-out dates to see pricing</p>
@@ -41,7 +41,7 @@ export default function PriceBreakdown({ checkIn, checkOut, guests, pricing, onG
   return (
     <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }}
       className="bg-white rounded-2xl shadow-sm border border-stone-100 p-4 sm:p-6">
-      <h3 className="text-base sm:text-lg font-bold text-stone-900 mb-4" style={{ fontFamily: "var(--font-heading)" }}>Price Breakdown</h3>
+      <h2 className="text-base sm:text-lg font-bold text-stone-900 mb-4" style={{ fontFamily: "var(--font-heading)" }}>Price Breakdown</h2>
 
       {/* Dates */}
       <div className="grid grid-cols-2 gap-2.5 mb-4">

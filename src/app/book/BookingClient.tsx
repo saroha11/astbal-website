@@ -167,7 +167,7 @@ export default function BookingClient({ initialCheckIn, initialCheckOut, initial
 
               {/* Booking Form */}
               <div className="bg-white rounded-2xl shadow-sm border border-stone-100 p-4 sm:p-6">
-                <h3 className="text-base sm:text-lg font-bold text-stone-900 mb-4" style={{ fontFamily: "var(--font-heading)" }}>Your Details</h3>
+                <h2 className="text-base sm:text-lg font-bold text-stone-900 mb-4" style={{ fontFamily: "var(--font-heading)" }}>Your Details</h2>
                 <form onSubmit={handleSubmit} className="space-y-3.5">
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
                     <div className="relative">
@@ -225,7 +225,7 @@ export default function BookingClient({ initialCheckIn, initialCheckOut, initial
               <div className="lg:sticky lg:top-24 space-y-6">
                 <PriceBreakdown checkIn={checkIn} checkOut={checkOut} guests={guests} pricing={pricing} onGuestsChange={setGuests} />
                 <div className="bg-white rounded-2xl shadow-sm border border-stone-100 p-4 sm:p-5">
-                  <h4 className="font-semibold text-stone-800 text-sm mb-3">Why Book With Us</h4>
+                  <h3 className="font-semibold text-stone-800 text-sm mb-3">Why Book With Us</h3>
                   <div className="space-y-2 text-[10px] sm:text-xs text-stone-500">
                     <p>✓ No hidden charges</p>
                     <p>✓ Free cancellation (48 hrs before)</p>

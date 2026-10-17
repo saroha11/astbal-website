@@ -23,7 +23,7 @@ export default function Hero() {
           Experience Nature at <span className="text-green-400">ASTBAL</span>
         </h1>
         <p className="text-base sm:text-xl text-white/90 max-w-2xl mx-auto mb-4 leading-relaxed">
-          Stay • Ride • Harvest • Dine, on a private farm an hour from Delhi
+          Stay • Ride • Harvest • Dine: a private farm stay an hour from Delhi
         </p>
 
         <div className="flex flex-wrap items-center justify-center gap-x-5 gap-y-2 mb-8 text-white/90 text-sm">

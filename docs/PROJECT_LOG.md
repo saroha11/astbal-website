@@ -33,6 +33,8 @@ Live site: **https://astbal.in** (Next.js 16 on Vercel, bookings in Supabase). P
 | Stay page (Airbnb-style listing) | `src/app/accommodation/page.tsx`, `src/components/stay/PhotoGrid.tsx` |
 | Experiences | `src/app/experiences/page.tsx`, `src/components/experiences/*`, `src/data/experiences.json`, `src/data/fieldExperiences.ts` |
 | Gallery (photos and videos) | `src/data/gallery.ts`, `src/app/gallery/page.tsx` |
+| SEO: page titles/descriptions/canonicals | `src/lib/seo.ts` + each `src/app/*/layout.tsx`; homepage in `src/app/layout.tsx` |
+| FAQ (visible + Google FAQ data) | `src/data/faqs.ts`, `src/components/home/FAQ.tsx`, `src/app/page.tsx` |
 | Booking API and alerts | `src/app/api/bookings/route.ts`, `src/lib/notify.ts` (email through Resend, optional Telegram) |
 
 ## Services
@@ -88,6 +90,12 @@ All photos were edited (haze, colour, sharpening) and all videos were trimmed an
 - Photos (sharp): `normalise(1–99.5) → clahe 96/2 → linear(1.06,-10) → saturation 1.22 → sharpen`, JPEG q86 mozjpeg. For sunsets, use gentler normalise and clahe. For night shots, use median(3) and a gamma lift.
 - Videos (ffmpeg): `hqdn3d, eq contrast 1.08 / saturation 1.2, unsharp`, with short fades, x264 with faststart. Loops have no audio and no fades, and are capped near 1 Mbps.
 
+## SEO
+
+- OpenSEO project `astbal.in` (India, English). Use only free tools (site audit, project info). Keyword research is paid.
+- Main target: **"farm stay near Delhi"** (~390 searches/month in India, very low competition). Also "farm stay near Delhi NCR".
+- Keep titles under ~60 characters and descriptions under 160. Every page has one H1 and a canonical URL.
+
 ## Notes and gotchas
 
 - Next 16: use `preload` on `next/image` (`priority` is deprecated), and don't combine it with `loading` or `fetchPriority`. Read `node_modules/next/dist/docs/` before using new APIs.
@@ -96,12 +104,13 @@ All photos were edited (haze, colour, sharpening) and all videos were trimmed an
 
 ## History (newest first)
 
-1. View-only map of the real farm location (Stay and Contact pages). Booking page asks before showing add-ons; dinner and breakfast priced per person; add-on prices removed from the Experiences page.
-2. Add-ons reworded: training arena (no acre size), Leisure Horse Ride led by the trainer, Guava ₹500 seasonal with T&C, Kitchen Garden priced as per quantity, Farm-to-Table Dinner marked optional, plain Farm Fresh Breakfast. Booking form trimmed to name, email and phone. Four night photos added (hero, Stay page, Gallery).
-3. The homepage hero is a photo slideshow. Added the "A Day at ASTBAL" and "Farm Moments" reels sections. Real photos replace gradients and headers on the Experiences, Contact and Stay pages. The drone clip was added to the Gallery.
-4. Gallery: 4 new photos and 4 trimmed videos.
-5. Book Now panel, aerial hero photo, WhatsApp/email only, privacy wording.
-6. Automatic booking alerts (email through Resend, optional Telegram).
-7. Horse activities and Life in the Fields sections. Named Lohri and Baisakhi.
-8. Airbnb-style Stay page with photo grid, booking card and live total. Photos enhanced.
-9. Launch on Vercel and Supabase with the astbal.in domain.
+1. SEO: keyword-focused titles and descriptions, canonical URLs, FAQ section with FAQ structured data, farm coordinates in structured data, sitemap dates, heading-order fixes.
+2. View-only map of the real farm location (Stay and Contact pages). Booking page asks before showing add-ons; dinner and breakfast priced per person; add-on prices removed from the Experiences page.
+3. Add-ons reworded: training arena (no acre size), Leisure Horse Ride led by the trainer, Guava ₹500 seasonal with T&C, Kitchen Garden priced as per quantity, Farm-to-Table Dinner marked optional, plain Farm Fresh Breakfast. Booking form trimmed to name, email and phone. Four night photos added (hero, Stay page, Gallery).
+4. The homepage hero is a photo slideshow. Added the "A Day at ASTBAL" and "Farm Moments" reels sections. Real photos replace gradients and headers on the Experiences, Contact and Stay pages. The drone clip was added to the Gallery.
+5. Gallery: 4 new photos and 4 trimmed videos.
+6. Book Now panel, aerial hero photo, WhatsApp/email only, privacy wording.
+7. Automatic booking alerts (email through Resend, optional Telegram).
+8. Horse activities and Life in the Fields sections. Named Lohri and Baisakhi.
+9. Airbnb-style Stay page with photo grid, booking card and live total. Photos enhanced.
+10. Launch on Vercel and Supabase with the astbal.in domain.

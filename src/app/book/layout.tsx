@@ -1,9 +1,11 @@
 import { Metadata } from "next";
+import { pageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: "Book Your Stay — Check Availability & Pricing",
-  description: "Book your stay at ASTBAL. Check availability on our live calendar, see pricing per date, add horse riding, orchard visits & more. Just 1 hour from Delhi NCR.",
-};
+export const metadata: Metadata = pageMetadata(
+  "/book",
+  "Book Your Farm Stay",
+  "Check live availability and book your private farm stay near Delhi. No payment now: we confirm on WhatsApp or email first."
+);
 
 export default function BookLayout({ children }: { children: React.ReactNode }) {
   return <>{children}</>;

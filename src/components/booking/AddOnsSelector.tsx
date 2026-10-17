@@ -30,9 +30,9 @@ export default function AddOnsSelector({ selectedAddons, onToggle, onClear }: Ad
             <Sparkles className="w-5 h-5" />
           </span>
           <div>
-            <h3 className="text-base sm:text-lg font-bold text-stone-900" style={{ fontFamily: "var(--font-heading)" }}>
+            <h2 className="text-base sm:text-lg font-bold text-stone-900" style={{ fontFamily: "var(--font-heading)" }}>
               Would you like to add any experiences?
-            </h3>
+            </h2>
             <p className="text-xs sm:text-sm text-stone-500 mt-0.5">
               Horse rides, farm meals, a bonfire and more. They&rsquo;re all optional, and you can also add them at the farm.
             </p>
@@ -65,7 +65,7 @@ export default function AddOnsSelector({ selectedAddons, onToggle, onClear }: Ad
     <div className="bg-white rounded-2xl shadow-sm border border-stone-100 p-4 sm:p-6">
       <div className="flex items-start justify-between gap-3 mb-4">
         <div>
-          <h3 className="text-base sm:text-lg font-bold text-stone-900 mb-0.5" style={{ fontFamily: "var(--font-heading)" }}>Optional Add-Ons</h3>
+          <h2 className="text-base sm:text-lg font-bold text-stone-900 mb-0.5" style={{ fontFamily: "var(--font-heading)" }}>Optional Add-Ons</h2>
           <p className="text-[10px] sm:text-xs text-stone-400">Pick any you like, or add them at the farm</p>
         </div>
         <button type="button" onClick={() => { onClear(); setChoice("later"); }}

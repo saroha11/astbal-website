@@ -1,9 +1,11 @@
 import { Metadata } from "next";
+import { pageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: "Contact & Location — Find ASTBAL",
-  description: "Get in touch with ASTBAL Farm & Retreat. Find us on Google Maps, get driving directions from Delhi, Gurgaon, or Faridabad. Call, email, or WhatsApp us.",
-};
+export const metadata: Metadata = pageMetadata(
+  "/contact",
+  "Contact & Location",
+  "Reach ASTBAL Farm & Retreat on WhatsApp or email, and see where the farm is on the map, about an hour's drive from Delhi."
+);
 
 export default function ContactLayout({ children }: { children: React.ReactNode }) {
   return <>{children}</>;

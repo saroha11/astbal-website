@@ -95,12 +95,12 @@ export default function AvailabilityCalendar({
         >
           <ChevronLeft className="w-5 h-5 text-stone-600" />
         </button>
-        <h3
+        <h2
           className="text-lg sm:text-xl font-bold text-stone-900"
           style={{ fontFamily: "var(--font-heading)" }}
         >
           {monthNames[month]} {year}
-        </h3>
+        </h2>
         <button
           onClick={nextMonth}
           className="w-10 h-10 rounded-full border border-stone-200 flex items-center justify-center hover:bg-stone-50 hover:border-stone-300 transition-colors shrink-0"
