@@ -21,8 +21,9 @@ export default function PageHero({ image, title, subtitle, height = "md" }: Page
           src={image}
           alt={title}
           fill
+          sizes="100vw"
           className="object-cover"
-          priority
+          preload
         />
         <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/50 to-black/70" />
         <div className="absolute bottom-0 left-0 right-0 px-4 sm:px-6 lg:px-8 pb-8 sm:pb-10">

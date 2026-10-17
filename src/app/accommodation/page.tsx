@@ -183,6 +183,19 @@ export default function AccommodationPage() {
               </p>
             </div>
 
+            <figure className="relative aspect-[16/10] rounded-2xl overflow-hidden bg-stone-200">
+              <Image
+                src="/images/gallery/night-lawn.jpg"
+                alt="The container house and lawn lit up at night"
+                fill
+                sizes="(max-width: 1024px) 100vw, 60vw"
+                className="object-cover object-[center_32%]"
+              />
+              <figcaption className="absolute bottom-0 inset-x-0 bg-gradient-to-t from-black/70 to-transparent px-4 pt-10 pb-3 text-sm text-white">
+                Evenings on the lawn, all to yourselves
+              </figcaption>
+            </figure>
+
             <Divider />
 
             {/* Where you'll sleep */}

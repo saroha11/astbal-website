@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { MessageCircle } from "lucide-react";
 import { fieldExperiences } from "@/data/fieldExperiences";
 import { siteConfig } from "@/data/siteConfig";
@@ -32,18 +33,25 @@ export default function FieldExperiences() {
               key={exp.title}
               className={`relative overflow-hidden rounded-2xl bg-gradient-to-br ${exp.tint} p-6 min-h-[190px] flex flex-col justify-end text-white`}
             >
-              <exp.icon
-                className="absolute -right-4 -top-4 w-32 h-32 text-white/15"
-                strokeWidth={1.25}
-                aria-hidden="true"
-              />
-              <span className="w-11 h-11 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center mb-auto">
+              {exp.image ? (
+                <>
+                  <Image src={exp.image} alt="" fill sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw" className="object-cover" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/25 to-black/10" />
+                </>
+              ) : (
+                <exp.icon
+                  className="absolute -right-4 -top-4 w-32 h-32 text-white/15"
+                  strokeWidth={1.25}
+                  aria-hidden="true"
+                />
+              )}
+              <span className="relative w-11 h-11 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center mb-auto">
                 <exp.icon className="w-5 h-5" />
               </span>
-              <h3 className="text-lg font-bold mt-6" style={{ fontFamily: "var(--font-heading)" }}>
+              <h3 className="relative text-lg font-bold mt-6" style={{ fontFamily: "var(--font-heading)" }}>
                 {exp.title}
               </h3>
-              <p className="text-sm text-white/90 mt-1">{exp.text}</p>
+              <p className="relative text-sm text-white/90 mt-1">{exp.text}</p>
             </li>
           ))}
         </ul>

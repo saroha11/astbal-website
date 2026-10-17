@@ -1,8 +1,8 @@
-import Image from "next/image";
 import Link from "next/link";
 import { ChevronDown, MapPin, ShieldCheck } from "lucide-react";
 import { BookNowButton } from "@/components/booking/BookingDialog";
 import { getStartingPrice } from "@/lib/bookingEngine";
+import HeroSlideshow from "@/components/home/HeroSlideshow";
 
 // Only claims that are true today. Add a rating here once there are real reviews.
 const trustBadges = ["Free cancellation", "WhatsApp confirmation", "Pay after we confirm", "No hidden charges"];
@@ -12,16 +12,8 @@ export default function Hero() {
 
   return (
     <section className="relative min-h-[88vh] flex items-center justify-center overflow-hidden bg-stone-900">
-      {/* Aerial photo of the farm (a still from our drone video), optimized and preloaded */}
-      <Image
-        src="/images/hero/farm-aerial.jpg"
-        alt="Aerial view of the ASTBAL farm: orchard, horse arena and container house surrounded by green fields"
-        fill
-        preload
-        sizes="100vw"
-        className="object-cover"
-      />
-      <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/50 to-black/65" />
+      {/* The farm from day to night: photos fade into each other (first one preloaded) */}
+      <HeroSlideshow />
 
       <div className="relative z-10 text-center px-5 sm:px-6 w-full max-w-4xl mx-auto pt-24 pb-20 [text-shadow:0_1px_12px_rgba(0,0,0,0.55)]">
         <h1

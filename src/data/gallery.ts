@@ -40,6 +40,7 @@ export const galleryImages: GalleryImage[] = [
   // Videos: `src` is the poster frame shown in the grid, `video` plays in the viewer
   { src: "/videos/horse-ride-video.jpg", video: "/videos/horse-ride-video.mp4", alt: "Riding in the Arena (video)", category: "Horses", width: 720, height: 1292 },
   { src: "/videos/horses-field-video.jpg", video: "/videos/horses-field-video.mp4", alt: "Horses by the Fields (video)", category: "Horses", width: 1280, height: 722 },
+  { src: "/videos/farm-aerial-video.jpg", video: "/videos/farm-aerial-video.mp4", alt: "The Farm from Above (video)", category: "Property", width: 1280, height: 720 },
   { src: "/videos/sunset-farm-video.jpg", video: "/videos/sunset-farm-video.mp4", alt: "Sunset over the Farm (video)", category: "Nature", width: 1280, height: 714 },
   { src: "/videos/dogs-play-video.jpg", video: "/videos/dogs-play-video.mp4", alt: "Our Dogs at Play (video)", category: "Dogs", width: 720, height: 800 },
 ];

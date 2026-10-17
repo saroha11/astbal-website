@@ -13,7 +13,7 @@ export default function ExperiencesPage() {
   return (
     <>
       <PageHero
-        image="/images/experiences/horse-arena.jpg"
+        image="/images/gallery/sunset-arena.jpg"
         title="Experiences"
         subtitle="Unforgettable moments await at every turn"
       />

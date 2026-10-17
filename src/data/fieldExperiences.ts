@@ -1,13 +1,14 @@
 import { Footprints, PersonStanding, Sunrise, Sunset, Sprout, PartyPopper, type LucideIcon } from "lucide-react";
 
 // Experiences out in the fields around the farm (no fixed price; guests ask on WhatsApp).
-// `tint` is the card's gradient, chosen to match the time of day or season.
-export const fieldExperiences: { icon: LucideIcon; title: string; text: string; tint: string }[] = [
+// `tint` is the card's gradient, chosen to match the time of day or season; cards with an `image` show that photo instead.
+export const fieldExperiences: { icon: LucideIcon; title: string; text: string; tint: string; image?: string }[] = [
   {
     icon: Footprints,
     title: "Guided Field Tour",
     text: "Walk the fields with us and see what grows here through the seasons.",
     tint: "from-green-500 to-emerald-700",
+    image: "/images/gallery/front-farm-view.jpg",
   },
   {
     icon: PersonStanding,
@@ -26,6 +27,7 @@ export const fieldExperiences: { icon: LucideIcon; title: string; text: string; 
     title: "Sunset Watching",
     text: "End the day as the sky turns gold and orange over the crops.",
     tint: "from-orange-400 to-purple-600",
+    image: "/videos/sunset-farm-video.jpg",
   },
   {
     icon: Sprout,
