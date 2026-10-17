@@ -171,7 +171,7 @@ export default function AccommodationPage() {
                 Spend your days however makes you happy. Ride our horses, play with our dogs (and bring your own:
                 pets are welcome) and walk through the guava orchard. Go for a morning run on the farm tracks,
                 watch the sunrise and sunset over the fields, and join a guided crop tour to see how crops are
-                planted, grown and harvested. Visit at harvest time and celebrate the festival with us in the fields.
+                planted, grown and harvested. Come for Lohri in January or Baisakhi in April and celebrate with us in the fields.
               </p>
               <p>
                 Come for a peaceful weekend, a family getaway or a celebration with friends. At the end of the

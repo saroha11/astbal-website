@@ -36,7 +36,7 @@ export const fieldExperiences: { icon: LucideIcon; title: string; text: string; 
   {
     icon: PartyPopper,
     title: "Harvest Festivals",
-    text: "Celebrate India's harvest festivals like Baisakhi and Lohri in the fields, when in season.",
+    text: "Celebrate Lohri around the bonfire in January and Baisakhi at harvest time in April, out in the fields.",
     tint: "from-yellow-400 to-orange-600",
   },
 ];
