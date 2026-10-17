@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { MapPin, Mail, Clock, Navigation, Send } from "lucide-react";
 import { siteConfig } from "@/data/siteConfig";
 import PageHero from "@/components/layout/PageHero";
+import LocationMap from "@/components/LocationMap";
 
 export default function ContactPage() {
   return (
@@ -93,8 +94,7 @@ export default function ContactPage() {
                   <MapPin className="w-4 h-4 text-red-500" />
                   <h3 className="font-bold text-stone-800 text-sm" style={{ fontFamily: "var(--font-heading)" }}>Our Location</h3>
                 </div>
-                <iframe src={siteConfig.mapEmbedUrl} width="100%" height="300" style={{ border: 0 }}
-                  allowFullScreen loading="lazy" referrerPolicy="no-referrer-when-downgrade" className="w-full" title="ASTBAL Map" />
+                <LocationMap className="h-[300px]" />
                 <div className="p-4">
                   <a href={siteConfig.mapUrl} target="_blank" rel="noopener noreferrer"
                     className="inline-flex items-center gap-1.5 text-green-600 font-semibold text-xs sm:text-sm hover:text-green-700">

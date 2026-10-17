@@ -41,7 +41,7 @@
       "Hand-pick fresh guavas",
       "Organic & pesticide-free",
       "Seasonal — best from July to February",
-      "₹500 · terms & conditions apply",
+      "Terms & conditions apply",
       "Perfect for families with kids"
     ]
   },
@@ -50,7 +50,7 @@
     "title": "Kitchen Garden",
     "subtitle": "Pick fresh, seasonal vegetables",
     "description": "Visit our kitchen garden where we grow fresh vegetables, herbs and greens through the seasons. Pick what's ready and take home the freshest vegetables you'll find.",
-    "longDescription": "Our kitchen garden is the heart of ASTBAL's farm-to-table food. Rows of tomatoes, peppers, spinach, herbs and other seasonal vegetables, all grown on the property. Walk the beds with us and pick what's in season. What's available depends on the time of year, and rates depend on the vegetable and the quantity you pick.",
+    "longDescription": "Our kitchen garden is the heart of ASTBAL's farm-to-table food. Rows of tomatoes, peppers, spinach, herbs and other seasonal vegetables, all grown on the property. Walk the beds with us and pick what's in season. What's available depends on the time of year.",
     "image": "/images/experiences/kitchen-garden.jpg",
     "gallery": [
       "/images/experiences/kitchen-garden.jpg",
@@ -61,7 +61,7 @@
     "highlights": [
       "Fresh vegetables & herbs",
       "Seasonal, as per availability",
-      "Rates as per vegetable and quantity",
+      "Pick what's ready",
       "Seasonal varieties throughout the year",
       "Great activity for children"
     ]

@@ -8,7 +8,7 @@ const steps = [
   {
     icon: CalendarCheck,
     title: "Pick your dates",
-    description: "Choose your nights and any add-on experiences. The price updates as you go.",
+    description: "Choose your nights and see the price straight away. Optional add-ons can be added now or at the farm.",
   },
   {
     icon: MessageCircle,

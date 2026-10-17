@@ -15,6 +15,8 @@ Live site: **https://astbal.in** (Next.js 16 on Vercel, bookings in Supabase). P
 - Show options before implementing bigger changes.
 - Never mention the arena's size (no "1 acre"). Say: a training arena with the latest equipment and an experienced trainer.
 - Booking form asks only for full name, email and phone.
+- Add-on prices appear only on the booking page, after the guest says they want add-ons (or they can add them at the farm). All add-ons are optional; dinner and breakfast are per person.
+- Maps are view-only (`src/components/LocationMap.tsx`). Farm location: 28.894349, 76.751490.
 
 ## Where things are
 
@@ -94,11 +96,12 @@ All photos were edited (haze, colour, sharpening) and all videos were trimmed an
 
 ## History (newest first)
 
-1. Add-ons reworded: training arena (no acre size), Leisure Horse Ride led by the trainer, Guava ₹500 seasonal with T&C, Kitchen Garden priced as per quantity, Farm-to-Table Dinner marked optional, plain Farm Fresh Breakfast. Booking form trimmed to name, email and phone. Four night photos added (hero, Stay page, Gallery).
-2. The homepage hero is a photo slideshow. Added the "A Day at ASTBAL" and "Farm Moments" reels sections. Real photos replace gradients and headers on the Experiences, Contact and Stay pages. The drone clip was added to the Gallery.
-3. Gallery: 4 new photos and 4 trimmed videos.
-4. Book Now panel, aerial hero photo, WhatsApp/email only, privacy wording.
-5. Automatic booking alerts (email through Resend, optional Telegram).
-6. Horse activities and Life in the Fields sections. Named Lohri and Baisakhi.
-7. Airbnb-style Stay page with photo grid, booking card and live total. Photos enhanced.
-8. Launch on Vercel and Supabase with the astbal.in domain.
+1. View-only map of the real farm location (Stay and Contact pages). Booking page asks before showing add-ons; dinner and breakfast priced per person; add-on prices removed from the Experiences page.
+2. Add-ons reworded: training arena (no acre size), Leisure Horse Ride led by the trainer, Guava ₹500 seasonal with T&C, Kitchen Garden priced as per quantity, Farm-to-Table Dinner marked optional, plain Farm Fresh Breakfast. Booking form trimmed to name, email and phone. Four night photos added (hero, Stay page, Gallery).
+3. The homepage hero is a photo slideshow. Added the "A Day at ASTBAL" and "Farm Moments" reels sections. Real photos replace gradients and headers on the Experiences, Contact and Stay pages. The drone clip was added to the Gallery.
+4. Gallery: 4 new photos and 4 trimmed videos.
+5. Book Now panel, aerial hero photo, WhatsApp/email only, privacy wording.
+6. Automatic booking alerts (email through Resend, optional Telegram).
+7. Horse activities and Life in the Fields sections. Named Lohri and Baisakhi.
+8. Airbnb-style Stay page with photo grid, booking card and live total. Photos enhanced.
+9. Launch on Vercel and Supabase with the astbal.in domain.

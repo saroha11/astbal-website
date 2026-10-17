@@ -123,8 +123,14 @@ export function calculateTotalPrice(
   for (const addonId of selectedAddonIds) {
     const addon = pricing.addons.find((a) => a.id === addonId);
     if (addon) {
-      addons.push({ name: addon.name, price: addon.price, priceLabel: "priceLabel" in addon ? addon.priceLabel : undefined });
-      addonsCost += addon.price;
+      const perPerson = "perPerson" in addon && addon.perPerson;
+      const price = perPerson ? addon.price * guestCount : addon.price;
+      addons.push({
+        name: perPerson ? `${addon.name} × ${guestCount}` : addon.name,
+        price,
+        priceLabel: "priceLabel" in addon ? addon.priceLabel : undefined,
+      });
+      addonsCost += price;
     }
   }
 

@@ -51,11 +51,12 @@
     },
     {
       "id": "farm-dinner",
-      "name": "Farm-to-Table Dinner (optional)",
+      "name": "Farm-to-Table Dinner",
       "description": "Dinner cooked with seasonal vegetables fresh from the farm",
       "price": 1200,
       "duration": "2 hours",
-      "icon": "utensils"
+      "icon": "utensils",
+      "perPerson": true
     },
     {
       "id": "breakfast-spread",
@@ -63,7 +64,8 @@
       "description": "Farm fresh breakfast",
       "price": 600,
       "duration": "1 hour",
-      "icon": "coffee"
+      "icon": "coffee",
+      "perPerson": true
     },
     {
       "id": "bonfire-night",

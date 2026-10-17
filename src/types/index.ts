@@ -13,6 +13,7 @@ export interface AddonItem {
   price: number; // 0 = no fixed price (see priceLabel)
   priceLabel?: string; // shown instead of the price, e.g. "As per quantity"
   note?: string; // small print, e.g. "Seasonal · T&C apply"
+  perPerson?: boolean; // price is per guest (multiplied by the number of guests)
   duration: string;
   icon: string;
 }

@@ -163,7 +163,7 @@ export default function BookingClient({ initialCheckIn, initialCheckOut, initial
             {/* Left Column */}
             <div className="lg:col-span-2 space-y-6 lg:space-y-8">
               <AvailabilityCalendar onSelectDates={handleSelectDates} selectedCheckIn={checkIn} selectedCheckOut={checkOut} />
-              <AddOnsSelector selectedAddons={selectedAddons} onToggle={toggleAddon} />
+              <AddOnsSelector selectedAddons={selectedAddons} onToggle={toggleAddon} onClear={() => setSelectedAddons([])} />
 
               {/* Booking Form */}
               <div className="bg-white rounded-2xl shadow-sm border border-stone-100 p-4 sm:p-6">

@@ -2,7 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import {
   Bed, Wifi, AirVent, Bath, UtensilsCrossed, Car, Tv, Coffee, MapPin,
-  PawPrint, Dog, PartyPopper, Wheat, Navigation, Quote, ShieldCheck,
+  PawPrint, Dog, PartyPopper, Wheat, Quote, ShieldCheck,
 } from "lucide-react";
 import { formatPrice } from "@/lib/bookingEngine";
 import { siteConfig } from "@/data/siteConfig";
@@ -11,6 +11,7 @@ import pricing from "@/data/pricing.json";
 import experiences from "@/data/experiences.json";
 import { fieldExperiences } from "@/data/fieldExperiences";
 import PhotoGrid from "@/components/stay/PhotoGrid";
+import LocationMap from "@/components/LocationMap";
 import BookingCard, { MobileReserveBar } from "@/components/stay/BookingCard";
 
 const { accommodation } = pricing;
@@ -307,14 +308,7 @@ export default function AccommodationPage() {
                   </li>
                 ))}
               </ul>
-              <a
-                href={siteConfig.mapUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 text-sm font-semibold text-stone-900 underline underline-offset-4 hover:text-green-700"
-              >
-                <Navigation className="w-4 h-4" /> Open in Google Maps
-              </a>
+              <LocationMap className="h-64 sm:h-80 rounded-2xl" />
             </section>
           </div>
 

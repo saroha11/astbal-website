@@ -1,7 +1,8 @@
 "use client";
 
+import { useState } from "react";
 import {
-  Mountain, Trees, Sprout, Utensils, Coffee, Flame, Footprints, TreePine,
+  Mountain, Trees, Sprout, Utensils, Coffee, Flame, Footprints, TreePine, Sparkles,
 } from "lucide-react";
 import pricingData from "@/data/pricing.json";
 import { formatPrice } from "@/lib/bookingEngine";
@@ -14,13 +15,64 @@ const iconMap: Record<string, React.ComponentType<{ className?: string }>> = {
 interface AddOnsSelectorProps {
   selectedAddons: string[];
   onToggle: (addonId: string) => void;
+  onClear: () => void;
 }
 
-export default function AddOnsSelector({ selectedAddons, onToggle }: AddOnsSelectorProps) {
+// All add-ons are optional. We ask first; the list (with prices) only opens if the guest wants it.
+export default function AddOnsSelector({ selectedAddons, onToggle, onClear }: AddOnsSelectorProps) {
+  const [choice, setChoice] = useState<"ask" | "now" | "later">(selectedAddons.length ? "now" : "ask");
+
+  if (choice !== "now") {
+    return (
+      <div className="bg-white rounded-2xl shadow-sm border border-stone-100 p-4 sm:p-6">
+        <div className="flex items-start gap-3">
+          <span className="w-10 h-10 rounded-full bg-green-50 text-green-600 flex items-center justify-center shrink-0">
+            <Sparkles className="w-5 h-5" />
+          </span>
+          <div>
+            <h3 className="text-base sm:text-lg font-bold text-stone-900" style={{ fontFamily: "var(--font-heading)" }}>
+              Would you like to add any experiences?
+            </h3>
+            <p className="text-xs sm:text-sm text-stone-500 mt-0.5">
+              Horse rides, farm meals, a bonfire and more. They&rsquo;re all optional, and you can also add them at the farm.
+            </p>
+          </div>
+        </div>
+        {choice === "later" ? (
+          <p className="mt-4 text-sm text-green-700 bg-green-50 rounded-xl px-4 py-3">
+            No problem. Just tell us at the farm.{" "}
+            <button type="button" onClick={() => setChoice("now")} className="font-semibold underline underline-offset-2">
+              Show add-ons
+            </button>
+          </p>
+        ) : (
+          <div className="mt-4 flex flex-col sm:flex-row gap-2.5">
+            <button type="button" onClick={() => setChoice("now")}
+              className="flex-1 bg-green-600 text-white rounded-full py-3 text-sm font-semibold hover:bg-green-700 transition-colors">
+              Yes, show me the add-ons
+            </button>
+            <button type="button" onClick={() => setChoice("later")}
+              className="flex-1 border border-stone-300 text-stone-800 rounded-full py-3 text-sm font-semibold hover:bg-stone-50 transition-colors">
+              I&rsquo;ll decide at the farm
+            </button>
+          </div>
+        )}
+      </div>
+    );
+  }
+
   return (
     <div className="bg-white rounded-2xl shadow-sm border border-stone-100 p-4 sm:p-6">
-      <h3 className="text-base sm:text-lg font-bold text-stone-900 mb-0.5" style={{ fontFamily: "var(--font-heading)" }}>Add-On Experiences</h3>
-      <p className="text-[10px] sm:text-xs text-stone-400 mb-4">Enhance your stay with these experiences</p>
+      <div className="flex items-start justify-between gap-3 mb-4">
+        <div>
+          <h3 className="text-base sm:text-lg font-bold text-stone-900 mb-0.5" style={{ fontFamily: "var(--font-heading)" }}>Optional Add-Ons</h3>
+          <p className="text-[10px] sm:text-xs text-stone-400">Pick any you like, or add them at the farm</p>
+        </div>
+        <button type="button" onClick={() => { onClear(); setChoice("later"); }}
+          className="text-xs font-semibold text-stone-500 underline underline-offset-2 hover:text-stone-800 shrink-0">
+          Decide at the farm
+        </button>
+      </div>
 
       <div className="space-y-2.5">
         {pricingData.addons.map((addon) => {
@@ -48,6 +100,9 @@ export default function AddOnsSelector({ selectedAddons, onToggle }: AddOnsSelec
                 <p className="font-bold text-stone-800 text-xs sm:text-sm">
                   {"priceLabel" in addon && addon.priceLabel ? addon.priceLabel : formatPrice(addon.price)}
                 </p>
+                {"perPerson" in addon && addon.perPerson && (
+                  <p className="text-[9px] sm:text-[10px] text-stone-500">per person</p>
+                )}
                 <p className="text-[9px] sm:text-[10px] text-stone-400">{addon.duration}</p>
               </div>
               <div className={`w-5 h-5 rounded-full border-2 flex items-center justify-center shrink-0 ${
