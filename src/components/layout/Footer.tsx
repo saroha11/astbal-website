@@ -105,7 +105,7 @@ export default function Footer() {
               </li>
               <li className="flex items-center gap-3">
                 <Phone className="w-5 h-5 text-primary shrink-0" />
-                <a href={`tel:${siteConfig.phone}`} className="text-white/60 hover:text-primary text-sm">
+                <a href={siteConfig.phoneHref} className="text-white/60 hover:text-primary text-sm">
                   {siteConfig.phone}
                 </a>
               </li>

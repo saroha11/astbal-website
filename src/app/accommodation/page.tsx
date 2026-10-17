@@ -9,6 +9,7 @@ import { siteConfig } from "@/data/siteConfig";
 import { galleryImages } from "@/data/gallery";
 import pricing from "@/data/pricing.json";
 import experiences from "@/data/experiences.json";
+import { fieldExperiences } from "@/data/fieldExperiences";
 import PhotoGrid from "@/components/stay/PhotoGrid";
 import BookingCard, { MobileReserveBar } from "@/components/stay/BookingCard";
 
@@ -168,8 +169,9 @@ export default function AccommodationPage() {
               </p>
               <p>
                 Spend your days however makes you happy. Ride our horses, play with our dogs (and bring your own:
-                pets are welcome), walk through the guava orchard, and see how crops are planted and grown in the
-                fields around you. Pick fresh vegetables from the kitchen garden and enjoy them at your table.
+                pets are welcome) and walk through the guava orchard. Go for a morning run on the farm tracks,
+                watch the sunrise and sunset over the fields, and join a guided crop tour to see how crops are
+                planted, grown and harvested. Visit at harvest time and celebrate the festival with us in the fields.
               </p>
               <p>
                 Come for a peaceful weekend, a family getaway or a celebration with friends. At the end of the
@@ -230,6 +232,18 @@ export default function AccommodationPage() {
                   </Link>
                 ))}
               </div>
+              <h3 className="font-semibold text-stone-900 mt-8 mb-3">Life in the fields</h3>
+              <ul className="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-4">
+                {fieldExperiences.map((f) => (
+                  <li key={f.title} className="flex items-start gap-4">
+                    <f.icon className="w-6 h-6 text-stone-800 shrink-0 mt-0.5" strokeWidth={1.5} />
+                    <div>
+                      <p className="text-stone-900">{f.title}</p>
+                      <p className="text-sm text-stone-500">{f.text}</p>
+                    </div>
+                  </li>
+                ))}
+              </ul>
             </section>
 
             <Divider />

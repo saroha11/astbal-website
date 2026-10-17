@@ -28,7 +28,7 @@ export default function ContactPage() {
               {/* Contact Cards */}
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 {[
-                  { icon: Phone, label: "Call Us", value: siteConfig.phone, href: `tel:${siteConfig.phone}`, color: "bg-green-50 text-green-600 hover:bg-green-600 hover:text-white" },
+                  { icon: Phone, label: "Call Us", value: siteConfig.phone, href: siteConfig.phoneHref, color: "bg-green-50 text-green-600 hover:bg-green-600 hover:text-white" },
                   { icon: Mail, label: "Email Us", value: siteConfig.email, href: `mailto:${siteConfig.email}`, color: "bg-sky-50 text-sky-600 hover:bg-sky-600 hover:text-white" },
                   { icon: Send, label: "WhatsApp", value: "Chat Now", href: `https://wa.me/${siteConfig.whatsapp}`, color: "bg-green-50 text-green-600 hover:bg-green-600 hover:text-white" },
                   { icon: Clock, label: "Timings", value: "Check-in 2PM · Out 11AM", href: null, color: "bg-amber-50 text-amber-600" },

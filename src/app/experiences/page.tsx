@@ -6,6 +6,7 @@ import { motion } from "framer-motion";
 import { CheckCircle2, ArrowRight } from "lucide-react";
 import experiences from "@/data/experiences.json";
 import PageHero from "@/components/layout/PageHero";
+import FieldExperiences from "@/components/experiences/FieldExperiences";
 
 export default function ExperiencesPage() {
   return (
@@ -56,6 +57,8 @@ export default function ExperiencesPage() {
           </div>
         </div>
       </section>
+
+      <FieldExperiences />
 
       {/* CTA */}
       <section className="py-12 sm:py-16 lg:py-20 bg-green-600">

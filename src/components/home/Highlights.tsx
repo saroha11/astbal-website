@@ -50,7 +50,8 @@ const highlights = [
     icon: Wheat,
     title: "2 Acres of Open Fields",
     description: "Quiet nights, starry skies, just 1 hr from Delhi",
-    image: "/images/gallery/arena-wide.jpg",
+    image: "/images/gallery/horse-gallop-poster.jpg",
+    video: "/images/gallery/horse-gallop.mp4",
     href: "/gallery",
     span: "col-span-2",
   },
@@ -97,6 +98,19 @@ export default function Highlights() {
                   sizes={item.big ? "(max-width: 1024px) 100vw, 50vw" : "(max-width: 1024px) 50vw, 25vw"}
                   className="object-cover transition-transform duration-700 group-hover:scale-105"
                 />
+                {item.video && (
+                  // Short looping clip over its own first frame; hidden for people who prefer reduced motion
+                  <video
+                    autoPlay
+                    loop
+                    muted
+                    playsInline
+                    aria-hidden="true"
+                    className="absolute inset-0 w-full h-full object-cover object-[center_70%] motion-reduce:hidden"
+                  >
+                    <source src={item.video} type="video/mp4" />
+                  </video>
+                )}
                 <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/15 to-transparent" />
                 <div className="absolute inset-x-0 bottom-0 p-4 sm:p-5">
                   <span className="inline-flex w-9 h-9 rounded-full bg-white/20 backdrop-blur-sm items-center justify-center mb-2.5">

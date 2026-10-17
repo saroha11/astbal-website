@@ -215,7 +215,7 @@ export default function BookingClient({ initialCheckIn, initialCheckOut, initial
                   </button>
                   <p className="text-center text-[10px] sm:text-xs text-stone-400">
                     No payment now. We confirm on WhatsApp first. Questions? Call{" "}
-                    <a href={`tel:${siteConfig.phone}`} className="text-green-600">{siteConfig.phone}</a>
+                    <a href={siteConfig.phoneHref} className="text-green-600">{siteConfig.phone}</a>
                   </p>
                 </form>
               </div>

@@ -4,7 +4,8 @@ export const siteConfig = {
   description:
     "A boutique nature retreat on 2 acres of lush farmland near Delhi NCR. Stay in our container house, ride horses through open fields, pick fresh guavas from our orchard, harvest vegetables from our kitchen garden, and savor farm-to-table meals — all in one unforgettable experience.",
   url: "https://astbal.in",
-  phone: "+91 98765 43210",
+  phone: "+91 70186 19039",
+  phoneHref: "tel:+917018619039",
   email: "hello@astbal.in",
   whatsapp: "917018619039",
   mapUrl: "https://maps.app.goo.gl/qG2CSzdSGSiXXQf86",
