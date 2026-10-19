@@ -10,6 +10,10 @@ export const faqs: { q: string; a: string }[] = [
     a: "ASTBAL is a farm stay about an hour's drive from Delhi, in Haryana. You can see exactly where we are on the map on our Contact page, and we're happy to send directions on WhatsApp.",
   },
   {
+    q: "Is ASTBAL a good weekend getaway from Delhi or Gurgaon?",
+    a: "Yes. It's an easy weekend outing from Delhi NCR: about an hour from Delhi and around 45 minutes from Gurgaon. Arrive on Saturday afternoon for horse riding and a bonfire, and head home Sunday morning.",
+  },
+  {
     q: "Is the farm private?",
     a: "Yes. We host one group at a time, so the entire property (the container house, lawns, orchard and fields) is just for your group during your stay.",
   },
