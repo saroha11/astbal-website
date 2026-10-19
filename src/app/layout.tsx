@@ -4,8 +4,12 @@ import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import WhatsAppButton from "@/components/layout/WhatsAppButton";
 import { Analytics } from "@vercel/analytics/next";
+import { GoogleAnalytics } from "@next/third-parties/google";
 import { siteConfig, siteUrl } from "@/data/siteConfig";
 import { BookingDialogProvider } from "@/components/booking/BookingDialog";
+
+// Google Analytics 4 measurement ID (G-...). Tracking is switched on only when this is set in Vercel.
+const gaId = process.env.NEXT_PUBLIC_GA_ID;
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
@@ -98,6 +102,7 @@ export default function RootLayout({
         </BookingDialogProvider>
         <Analytics />
       </body>
+      {gaId && <GoogleAnalytics gaId={gaId} />}
     </html>
   );
 }
