@@ -9,6 +9,8 @@ export const siteConfig = {
   email: "hello@astbal.in",
   whatsapp: "917018619039",
   mapUrl: "https://maps.app.goo.gl/qG2CSzdSGSiXXQf86",
+  // Google Analytics 4 measurement ID (public: it appears in every page's HTML)
+  gaId: "G-PNRTNDWHWK",
   // Farm location (from the Google Maps link above), shown as a view-only map
   geo: { lat: 28.894349, lng: 76.75149 },
   mapEmbedUrl: "https://maps.google.com/maps?q=28.894349,76.751490&z=13&output=embed",

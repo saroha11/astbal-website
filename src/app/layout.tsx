@@ -8,8 +8,9 @@ import { GoogleAnalytics } from "@next/third-parties/google";
 import { siteConfig, siteUrl } from "@/data/siteConfig";
 import { BookingDialogProvider } from "@/components/booking/BookingDialog";
 
-// Google Analytics 4 measurement ID (G-...). Tracking is switched on only when this is set in Vercel.
-const gaId = process.env.NEXT_PUBLIC_GA_ID;
+// Google Analytics 4 measurement ID (G-...). NEXT_PUBLIC_GA_ID overrides the one in siteConfig;
+// production builds only, so local testing doesn't show up as visitors.
+const gaId = process.env.NODE_ENV === "production" ? process.env.NEXT_PUBLIC_GA_ID || siteConfig.gaId : undefined;
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
