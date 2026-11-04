@@ -3,6 +3,7 @@ import "./globals.css";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import WhatsAppButton from "@/components/layout/WhatsAppButton";
+import ClickTracking from "@/components/layout/ClickTracking";
 import { Analytics } from "@vercel/analytics/next";
 import { GoogleAnalytics } from "@next/third-parties/google";
 import { siteConfig, siteUrl } from "@/data/siteConfig";
@@ -101,6 +102,7 @@ export default function RootLayout({
           <Footer />
           <WhatsAppButton />
         </BookingDialogProvider>
+        <ClickTracking />
         <Analytics />
       </body>
       {gaId && <GoogleAnalytics gaId={gaId} />}

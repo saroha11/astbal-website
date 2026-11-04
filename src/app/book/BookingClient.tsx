@@ -10,6 +10,7 @@ import PriceBreakdown from "@/components/booking/PriceBreakdown";
 import PageHero from "@/components/layout/PageHero";
 import { calculateTotalPrice, formatPrice } from "@/lib/bookingEngine";
 import { siteConfig } from "@/data/siteConfig";
+import { trackEvent } from "@/lib/analytics";
 
 // "2026-11-09" -> "Mon, 9 Nov 2026"
 function prettyDate(date: string) {
@@ -75,6 +76,9 @@ export default function BookingClient({ initialCheckIn, initialCheckOut, initial
         setSubmitError(data.error || "Booking failed. Please try again.");
         return;
       }
+
+      // GA4 conversion: booking request sent. Counts only, never the guest's details or dates.
+      trackEvent("generate_lead", { nights: pricing.nights, guests, addon_count: selectedAddons.length });
 
       // Also send WhatsApp so the owner is notified right away
       if (data.alerted) {

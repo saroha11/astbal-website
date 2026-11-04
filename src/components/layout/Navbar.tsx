@@ -52,7 +52,7 @@ export default function Navbar() {
 
           {/* Book Button + Mobile Toggle */}
           <div className="flex items-center gap-2 sm:gap-3 shrink-0">
-            <BookNowButton className="inline-flex items-center bg-green-600 text-white px-4 py-2 lg:px-5 lg:py-2.5 rounded-full text-sm font-semibold hover:bg-green-700 transition-colors shadow-sm whitespace-nowrap" />
+            <BookNowButton location="navbar" className="inline-flex items-center bg-green-600 text-white px-4 py-2 lg:px-5 lg:py-2.5 rounded-full text-sm font-semibold hover:bg-green-700 transition-colors shadow-sm whitespace-nowrap" />
             <button
               onClick={() => setIsOpen(!isOpen)}
               className="lg:hidden p-2 rounded-lg hover:bg-stone-100 transition-colors"

@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import { MapPin, Mail, Clock, Navigation, Send } from "lucide-react";
 import { siteConfig } from "@/data/siteConfig";
+import { trackEvent } from "@/lib/analytics";
 import PageHero from "@/components/layout/PageHero";
 import LocationMap from "@/components/LocationMap";
 
@@ -68,6 +69,7 @@ export default function ContactPage() {
                   const name = (form.elements.namedItem("name") as HTMLInputElement).value;
                   const email = (form.elements.namedItem("email") as HTMLInputElement).value;
                   const message = (form.elements.namedItem("message") as HTMLTextAreaElement).value;
+                  trackEvent("whatsapp_click", { link_location: "contact_form" });
                   window.open(`https://wa.me/${siteConfig.whatsapp}?text=${encodeURIComponent(`Hi ASTBAL!\n\nName: ${name}\nEmail: ${email}\n\n${message}`)}`, "_blank");
                 }} className="space-y-3.5">
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">

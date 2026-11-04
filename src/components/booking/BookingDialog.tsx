@@ -4,6 +4,7 @@ import { createContext, useContext, useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
 import { X } from "lucide-react";
 import BookingCard from "@/components/stay/BookingCard";
+import { trackEvent } from "@/lib/analytics";
 
 // One "Book Now" panel for the whole site: any BookNowButton opens it, showing the
 // booking card with its calendar already open (dates, guests, live total -> /book).
@@ -72,13 +73,23 @@ export function BookingDialogProvider({ children }: { children: React.ReactNode 
 export function BookNowButton({
   className,
   children = "Book Now",
+  location,
 }: {
   className?: string;
   children?: React.ReactNode;
+  // Sent to GA with book_click, e.g. "navbar" or "hero"
+  location: string;
 }) {
   const open = useContext(BookingDialogContext);
   return (
-    <button type="button" onClick={open} className={className}>
+    <button
+      type="button"
+      onClick={() => {
+        trackEvent("book_click", { method: "dialog", link_location: location });
+        open();
+      }}
+      className={className}
+    >
       {children}
     </button>
   );
