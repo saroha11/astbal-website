@@ -15,6 +15,7 @@ const experienceLinks = [
   { href: "/experiences#horse-riding", label: "Horse Riding" },
   { href: "/experiences#guava-orchard", label: "Guava Orchard" },
   { href: "/experiences#kitchen-garden", label: "Kitchen Garden" },
+  { href: "/experiences#pottery", label: "Pottery" },
   { href: "/experiences#farm-restaurant", label: "Restaurant" },
   { href: "/experiences#meet-dogs", label: "Meet Our Dogs" },
 ];

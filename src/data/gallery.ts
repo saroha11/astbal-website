@@ -8,12 +8,17 @@ const P = { w: 800, h: 1200 }; // portrait photos (2:3)
 const F = { w: 800, h: 600 }; // phone photos (4:3)
 
 export const galleryImages: GalleryImage[] = [
+  { src: "/images/gallery/lit-tree-night.jpg", alt: "The Lit-Up Tree by the Container House at Night", category: "Property", width: 600, height: 864 },
+  { src: "/images/gallery/farm-dusk.jpg", alt: "The Lawn, Garden Path and Farmhouse at Dusk", category: "Property", width: 800, height: 450 },
   { src: "/images/gallery/night-garden.jpg", alt: "The Garden Lit Up at Night", category: "Property", width: F.w, height: F.h },
   { src: "/images/gallery/container-night.jpg", alt: "The Container House at Night", category: "Property", width: F.w, height: F.h },
   { src: "/images/gallery/path-night.jpg", alt: "The Path Home at Night", category: "Property", width: F.w, height: F.h },
   { src: "/images/gallery/lawn-lamps-night.jpg", alt: "The Lawn under the Lamps", category: "Property", width: F.w, height: F.h },
   { src: "/images/gallery/night-lawn.jpg", alt: "The Container House Lawn at Night", category: "Property", width: 600, height: 800 },
   { src: "/images/gallery/entrance-path.jpg", alt: "Path to the Container House", category: "Property", width: F.w, height: F.h },
+  { src: "/images/property/container-front.jpg", alt: "The Container House with its New Hedge, Tree and Lights", category: "Property", width: F.w, height: F.h },
+  { src: "/images/gallery/container-garden.jpg", alt: "The Container House Garden", category: "Property", width: F.w, height: F.h },
+  { src: "/images/gallery/astbal-sign-clean.jpg", alt: "The ASTBAL Sign: No Hour of Life Is Wasted That Is Spent in the Saddle", category: "Property", width: 600, height: 836 },
   { src: "/images/property/container-house.jpg", alt: "Container House & Lawn Seating", category: "Property", width: L.w, height: L.h },
   { src: "/images/hero/farmhouse-luxury.jpg", alt: "Container House Lawn", category: "Property", width: L.w, height: L.h },
   { src: "/images/property/grass-bed.jpg", alt: "Outdoor Grass Bed Area", category: "Property", width: L.w, height: L.h },
@@ -36,6 +41,9 @@ export const galleryImages: GalleryImage[] = [
   { src: "/images/dogs/malinois.jpg", alt: "Our Malinois", category: "Dogs", width: P.w, height: P.h },
   { src: "/images/dogs/canine.jpg", alt: "Our Malinois at the Farm", category: "Dogs", width: P.w, height: P.h },
   { src: "/images/experiences/guava-orchard.jpg", alt: "Guava Orchard from Above", category: "Orchard", width: L.w, height: L.h },
+  { src: "/images/gallery/guava-tree.jpg", alt: "Guava Tree Full of Fruit", category: "Orchard", width: 600, height: 800 },
+  { src: "/images/gallery/guava-fruit.jpg", alt: "Guavas Ripening on the Tree", category: "Orchard", width: 600, height: 800 },
+  { src: "/images/gallery/guava-bird.jpg", alt: "A Bird among the Guavas", category: "Orchard", width: 600, height: 800 },
   { src: "/images/experiences/kitchen-garden.jpg", alt: "Orchard Rows", category: "Orchard", width: L.w, height: L.h },
   { src: "/images/gallery/farm-walkway.jpg", alt: "Farm Walkway", category: "Nature", width: L.w, height: L.h },
   { src: "/images/gallery/sunset-arena.jpg", alt: "Sunset over the Arena", category: "Nature", width: F.w, height: F.h },
@@ -44,6 +52,7 @@ export const galleryImages: GalleryImage[] = [
   // Videos: `src` is the poster frame shown in the grid, `video` plays in the viewer
   { src: "/videos/horse-ride-video.jpg", video: "/videos/horse-ride-video.mp4", alt: "Riding in the Arena (video)", category: "Horses", width: 720, height: 1292 },
   { src: "/videos/horses-field-video.jpg", video: "/videos/horses-field-video.mp4", alt: "Horses by the Fields (video)", category: "Horses", width: 1280, height: 722 },
+  { src: "/videos/farm-walk-video.jpg", video: "/videos/farm-walk-video.mp4", alt: "A Walk around the Container House (video)", category: "Property", width: 720, height: 1280 },
   { src: "/videos/farm-aerial-video.jpg", video: "/videos/farm-aerial-video.mp4", alt: "The Farm from Above (video)", category: "Property", width: 1280, height: 720 },
   { src: "/videos/sunset-farm-video.jpg", video: "/videos/sunset-farm-video.mp4", alt: "Sunset over the Farm (video)", category: "Nature", width: 1280, height: 714 },
   { src: "/videos/dogs-play-video.jpg", video: "/videos/dogs-play-video.mp4", alt: "Our Dogs at Play (video)", category: "Dogs", width: 720, height: 800 },

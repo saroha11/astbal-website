@@ -7,6 +7,7 @@ import LoopVideo from "@/components/LoopVideo";
 
 // "Farm Moments": short silent loops (like reels). Tapping one plays the full clip with sound.
 const reels = [
+  { title: "A walk around the farm", loop: "/videos/farm-walk-reel", full: "/videos/farm-walk-video.mp4" },
   { title: "Riding in the arena", loop: "/videos/horse-ride-reel", full: "/videos/horse-ride-video.mp4" },
   { title: "The dogs at play", loop: "/videos/dogs-play-reel", full: "/videos/dogs-play-video.mp4" },
   { title: "Sunset over the farm", loop: "/videos/sunset-farm-reel", full: "/videos/sunset-farm-video.mp4" },
@@ -48,8 +49,8 @@ export default function FarmMoments() {
           </Link>
         </div>
 
-        {/* Swipe on phones, 4 across on large screens */}
-        <ul className="flex lg:grid lg:grid-cols-4 gap-3 sm:gap-4 overflow-x-auto lg:overflow-visible snap-x snap-mandatory -mx-4 px-4 sm:mx-0 sm:px-0 pb-2 [scrollbar-width:none]">
+        {/* Swipe on phones, all in one row on large screens */}
+        <ul className="flex lg:grid lg:grid-cols-5 gap-3 sm:gap-4 overflow-x-auto lg:overflow-visible snap-x snap-mandatory -mx-4 px-4 sm:mx-0 sm:px-0 pb-2 [scrollbar-width:none]">
           {reels.map((reel, i) => (
             <li key={reel.title} className="snap-start shrink-0 w-[62%] sm:w-[40%] lg:w-auto">
               <button

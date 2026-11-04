@@ -1,8 +1,8 @@
-import { Footprints, PersonStanding, Sunrise, Sunset, Sprout, PartyPopper, type LucideIcon } from "lucide-react";
+import { Amphora, Footprints, PersonStanding, Sunrise, Sunset, Sprout, PartyPopper, type LucideIcon } from "lucide-react";
 
 // Experiences out in the fields around the farm (no fixed price; guests ask on WhatsApp).
-// `tint` is the card's gradient, chosen to match the time of day or season; cards with an `image` show that photo instead.
-export const fieldExperiences: { icon: LucideIcon; title: string; text: string; tint: string; image?: string }[] = [
+// `wide` cards fill their whole row (keeps the grid even). `tint` is the card's gradient, chosen to match the time of day or season; cards with an `image` show that photo instead.
+export const fieldExperiences: { icon: LucideIcon; title: string; text: string; tint: string; image?: string; wide?: boolean }[] = [
   {
     icon: Footprints,
     title: "Guided Field Tour",
@@ -36,9 +36,17 @@ export const fieldExperiences: { icon: LucideIcon; title: string; text: string; 
     tint: "from-lime-500 to-green-700",
   },
   {
+    icon: Amphora,
+    title: "Pottery",
+    text: "Get your hands in the clay and shape your own pot, cup or bowl in a relaxed, hands-on session.",
+    tint: "from-orange-600 to-amber-800",
+    image: "/images/experiences/pottery.jpg",
+  },
+  {
     icon: PartyPopper,
     title: "Harvest Festivals",
     text: "Celebrate Lohri around the bonfire in January and Baisakhi at harvest time in April, out in the fields.",
     tint: "from-yellow-400 to-orange-600",
+    wide: true,
   },
 ];

@@ -6,9 +6,9 @@ import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 
 const images = [
-  { src: "/images/property/container-house.jpg", alt: "Container House at ASTBAL", span: "row-span-2" },
+  { src: "/images/gallery/lit-tree-night.jpg", alt: "The lit-up tree by the container house at night", span: "row-span-2" },
   { src: "/images/experiences/horse-riding.jpg", alt: "Horse Riding", span: "" },
-  { src: "/images/experiences/kitchen-garden.jpg", alt: "Kitchen Garden", span: "" },
+  { src: "/images/gallery/farm-dusk.jpg", alt: "The lawn and farmhouse at dusk", span: "" },
   { src: "/images/dogs/labrador.jpg", alt: "Labradors", span: "" },
   { src: "/images/experiences/guava-orchard.jpg", alt: "Guava Orchard", span: "row-span-2" },
   { src: "/images/gallery/horse-white.jpg", alt: "White Horse", span: "" },

@@ -5,7 +5,7 @@
     "subtitle": "Ride through open fields",
     "description": "Ride at ASTBAL in our training arena, equipped with the latest riding equipment and run by an experienced trainer. Beginners and experienced riders are both welcome. Take a riding lesson, or relax on a leisure ride while our trainer leads your horse through the fields.",
     "longDescription": "Our stable houses beautiful, well-trained horses that love company. Take a riding lesson in the training arena, or enjoy a peaceful leisure ride: you sit on the horse and our trainer leads it through the fields around the farm. Beginners get a safety briefing first. You can also spend time with the horses on the ground: take photos with them, learn their daily routine of feeding and grooming, and learn about the different horse breeds.",
-    "image": "/images/experiences/horse-riding.jpg",
+    "image": "/images/gallery/rider-trot.jpg",
     "gallery": [
       "/images/experiences/horse-riding.jpg",
       "/images/experiences/horse-arena.jpg",
@@ -30,8 +30,10 @@
     "subtitle": "Pick your own fresh guavas",
     "description": "Step into our lush guava orchard and hand-pick the freshest, juiciest guavas you've ever tasted. There's nothing quite like eating fruit straight from the tree. Take a basket, wander through the trees, and fill it with nature's candy.",
     "longDescription": "Our guava orchard is a labor of love — rows upon rows of guava trees heavy with fruit. The experience of walking among the trees, smelling the sweet fragrance, and picking guavas at peak ripeness is something that connects you to the land. You can eat them fresh or take some back to the kitchen where our cook can prepare guava desserts and salads.",
-    "image": "/images/experiences/guava-orchard.jpg",
+    "image": "/images/gallery/guava-fruit.jpg",
     "gallery": [
+      "/images/gallery/guava-fruit.jpg",
+      "/images/gallery/guava-tree.jpg",
       "/images/experiences/guava-orchard.jpg",
       "/images/experiences/kitchen-garden.jpg"
     ],
@@ -64,6 +66,25 @@
       "Pick what's ready",
       "Seasonal varieties throughout the year",
       "Great activity for children"
+    ]
+  },
+  {
+    "id": "pottery",
+    "title": "Pottery",
+    "subtitle": "Shape something with your hands",
+    "description": "Sit down with soft clay and make something of your own. Shape a pot, a cup or a bowl in a relaxed, hands-on pottery session at the farm.",
+    "longDescription": "Slow down and get your hands in the clay. In our pottery session you shape your own pot, cup or bowl, at your own pace, with the open fields around you. It is a calm, creative break between horse rides and meals, and a fun thing to do together as a group.",
+    "image": "/images/experiences/pottery.jpg",
+    "gallery": [
+      "/images/experiences/pottery.jpg"
+    ],
+    "included": false,
+    "addonId": null,
+    "highlights": [
+      "Hands-on session with real clay",
+      "Shape your own pot, cup or bowl",
+      "Go at your own pace",
+      "A creative activity to do as a group"
     ]
   },
   {

@@ -19,6 +19,12 @@ const slides = [
     position: "center 60%",
   },
   {
+    src: "/images/gallery/farm-dusk.jpg",
+    alt: "The lawn, garden path and lit-up farmhouse at dusk",
+    label: "The farm at dusk",
+    position: "center 60%",
+  },
+  {
     src: "/images/gallery/sunset-arena.jpg",
     alt: "Sunset over the horse arena and fields",
     label: "Sunset over the arena",
@@ -29,6 +35,12 @@ const slides = [
     alt: "The garden path, lit-up trees and container house at night",
     label: "The farm at night",
     position: "center 55%",
+  },
+  {
+    src: "/images/gallery/lit-tree-night.jpg",
+    alt: "The lit-up tree beside the container house at night",
+    label: "The lit tree at night",
+    position: "center 50%",
   },
 ];
 

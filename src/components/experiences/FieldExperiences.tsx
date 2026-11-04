@@ -4,7 +4,7 @@ import { fieldExperiences } from "@/data/fieldExperiences";
 import { siteConfig } from "@/data/siteConfig";
 
 const askUrl = `https://wa.me/${siteConfig.whatsapp}?text=${encodeURIComponent(
-  "Hi ASTBAL! I'd like to know more about the field experiences (field tour, sunrise/sunset, crop tour)."
+  "Hi ASTBAL! I'd like to know more about the field experiences (field tour, sunrise/sunset, crop tour, pottery)."
 )}`;
 
 // "Life in the Fields": colourful cards for the outdoor, time-of-day experiences
@@ -23,7 +23,7 @@ export default function FieldExperiences() {
             Life in the Fields
           </h2>
           <p className="text-stone-500 mt-2">
-            Slow mornings, golden evenings and a real look at farm life. Join us out in the fields around ASTBAL.
+            Slow mornings, golden evenings, a real look at farm life and a little pottery. Join us around the farm at ASTBAL.
           </p>
         </div>
 
@@ -31,7 +31,7 @@ export default function FieldExperiences() {
           {fieldExperiences.map((exp) => (
             <li
               key={exp.title}
-              className={`relative overflow-hidden rounded-2xl bg-gradient-to-br ${exp.tint} p-6 min-h-[190px] flex flex-col justify-end text-white`}
+              className={`relative overflow-hidden rounded-2xl bg-gradient-to-br ${exp.tint} ${exp.wide ? "sm:col-span-2 lg:col-span-3" : ""} p-6 min-h-[190px] flex flex-col justify-end text-white`}
             >
               {exp.image ? (
                 <>

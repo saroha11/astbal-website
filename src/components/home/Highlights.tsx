@@ -10,7 +10,9 @@ const highlights = [
     icon: Home,
     title: "Container House",
     description: "A cosy, modern 1 BHK with AC and WiFi, surrounded by green fields",
-    image: "/images/property/container-house.jpg",
+    image: "/images/property/container-front.jpg",
+    // The house sits in the lower half of this photo; keep it (not the sky) in frame
+    imageClass: "object-[center_80%]",
     href: "/accommodation",
     span: "col-span-2 lg:row-span-2",
     big: true,
@@ -27,7 +29,7 @@ const highlights = [
     icon: TreePine,
     title: "Guava Orchard",
     description: "Pick guavas straight from the tree",
-    image: "/images/experiences/guava-orchard.jpg",
+    image: "/images/gallery/guava-fruit.jpg",
     href: "/experiences",
     span: "",
   },
@@ -97,7 +99,7 @@ export default function Highlights() {
                   alt={item.title}
                   fill
                   sizes={item.big ? "(max-width: 1024px) 100vw, 50vw" : "(max-width: 1024px) 50vw, 25vw"}
-                  className="object-cover transition-transform duration-700 group-hover:scale-105"
+                  className={`object-cover ${item.imageClass ?? ""} transition-transform duration-700 group-hover:scale-105`}
                 />
                 {item.video && (
                   // Short looping clip over its own first frame; downloads only once scrolled near

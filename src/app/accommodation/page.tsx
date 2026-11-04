@@ -17,7 +17,7 @@ const { accommodation } = pricing;
 
 // The five photos shown in the grid; the photo tour shows all of them, these first
 const featured = [
-  "/images/property/container-house.jpg",
+  "/images/property/container-front.jpg",
   "/images/property/grass-bed.jpg",
   "/images/hero/farmhouse-luxury.jpg",
   "/images/experiences/horse-arena.jpg",
