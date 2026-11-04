@@ -36,3 +36,11 @@ export async function verifySessionToken(token: string | undefined): Promise<boo
   if (!exp || !sig || Number(exp) < Date.now() / 1000) return false;
   return safeEqual(sig, await sign(exp, key));
 }
+
+// Checks the admin session inside a route handler, so each admin API verifies
+// the caller itself and does not rely on src/proxy.ts (middleware) alone.
+export async function isAdminRequest(): Promise<boolean> {
+  const { cookies } = await import("next/headers");
+  const store = await cookies();
+  return verifySessionToken(store.get(SESSION_COOKIE)?.value);
+}

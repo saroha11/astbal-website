@@ -1,11 +1,16 @@
 import { NextResponse } from "next/server";
 import { getSupabase } from "@/lib/supabase";
+import { isAdminRequest } from "@/lib/adminSession";
 
-// PATCH /api/admin/bookings/[id] - protected by src/proxy.ts
+// PATCH /api/admin/bookings/[id] - gated by src/proxy.ts and re-checked here (defence in depth).
 export async function PATCH(
   request: Request,
   { params }: { params: Promise<{ id: string }> }
 ) {
+  if (!(await isAdminRequest())) {
+    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+  }
+
   const { id } = await params;
   const bookingId = Number(id);
   if (!Number.isInteger(bookingId)) {
