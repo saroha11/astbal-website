@@ -7,7 +7,7 @@ import { ArrowRight } from "lucide-react";
 
 const images = [
   { src: "/images/gallery/lit-tree-night.jpg", alt: "The lit-up tree by the container house at night", span: "row-span-2" },
-  { src: "/images/experiences/horse-riding.jpg", alt: "Horse Riding", span: "" },
+  { src: "/images/gallery/chestnut-gallop.jpg", alt: "Chestnut horse galloping in the arena", span: "" },
   { src: "/images/gallery/farm-dusk.jpg", alt: "The lawn and farmhouse at dusk", span: "" },
   { src: "/images/dogs/labrador.jpg", alt: "Labradors", span: "" },
   { src: "/images/experiences/guava-orchard.jpg", alt: "Guava Orchard", span: "row-span-2" },
