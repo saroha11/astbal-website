@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ChevronDown, MapPin, PawPrint, ShieldCheck } from "lucide-react";
+import { ChevronDown, PawPrint, ShieldCheck } from "lucide-react";
 import { BookNowButton } from "@/components/booking/BookingDialog";
 import HeroSlideshow from "@/components/home/HeroSlideshow";
 
@@ -17,16 +17,13 @@ export default function Hero() {
           className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white leading-tight mb-4"
           style={{ fontFamily: "var(--font-heading)" }}
         >
-          Experience Nature at <span className="text-green-400">ASTBAL</span>
+          Your own <span className="text-green-400">private farm</span>, an hour from Delhi
         </h1>
         <p className="text-base sm:text-xl text-white/90 max-w-2xl mx-auto mb-4 leading-relaxed">
-          Stay • Ride • Harvest • Dine: a private farm stay an hour from Delhi
+          Ride horses, pick guavas from the orchard and unwind in a cosy container house.
         </p>
 
         <div className="flex flex-wrap items-center justify-center gap-x-5 gap-y-2 mb-8 text-white/90 text-sm">
-          <span className="flex items-center gap-1.5">
-            <MapPin className="w-4 h-4" /> 1hr from Delhi NCR
-          </span>
           <span className="flex items-center gap-1.5">
             <ShieldCheck className="w-4 h-4" /> Entire farm, one group at a time
           </span>
@@ -36,8 +33,8 @@ export default function Hero() {
         </div>
 
         <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
-          <BookNowButton className="w-full sm:w-auto bg-green-600 text-white px-10 py-4 rounded-full text-lg font-semibold hover:bg-green-700 transition-colors shadow-xl">
-            Book Now
+          <BookNowButton location="hero" className="w-full sm:w-auto bg-green-600 text-white px-10 py-4 rounded-full text-lg font-semibold hover:bg-green-700 transition-colors shadow-xl">
+            Check Dates
           </BookNowButton>
           <Link
             href="/accommodation"

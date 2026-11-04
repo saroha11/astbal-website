@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import LoopVideo from "@/components/LoopVideo";
 import { Home, TreePine, UtensilsCrossed, Dog, Wheat, PawPrint, ArrowUpRight } from "lucide-react";
 
 // Photo grid ("bento"): on large screens 4 columns x 3 rows, on phones 2 columns.
@@ -99,17 +100,12 @@ export default function Highlights() {
                   className="object-cover transition-transform duration-700 group-hover:scale-105"
                 />
                 {item.video && (
-                  // Short looping clip over its own first frame; hidden for people who prefer reduced motion
-                  <video
-                    autoPlay
-                    loop
-                    muted
-                    playsInline
-                    aria-hidden="true"
-                    className="absolute inset-0 w-full h-full object-cover object-[center_70%] motion-reduce:hidden"
-                  >
-                    <source src={item.video} type="video/mp4" />
-                  </video>
+                  // Short looping clip over its own first frame; downloads only once scrolled near
+                  <LoopVideo
+                    src={item.video}
+                    poster={item.image}
+                    className="absolute inset-0 w-full h-full object-cover object-[center_70%]"
+                  />
                 )}
                 <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/15 to-transparent" />
                 <div className="absolute inset-x-0 bottom-0 p-4 sm:p-5">
