@@ -30,6 +30,14 @@ export default function DialogBooking({ onClose }: { onClose?: () => void }) {
   const [submitError, setSubmitError] = useState<string | null>(null);
   const [submitted, setSubmitted] = useState(false);
   const [whatsappUrl, setWhatsappUrl] = useState("");
+  const [bookingId, setBookingId] = useState<number | null>(null);
+
+  // WhatsApp-to-book: for guests who would rather message than fill the form.
+  const waBookUrl = `https://wa.me/${siteConfig.whatsapp}?text=${encodeURIComponent(
+    checkIn && checkOut
+      ? `Hi ASTBAL! I'd like to book ${prettyDate(checkIn)} to ${prettyDate(checkOut)} for ${guests} guest${guests > 1 ? "s" : ""}.`
+      : "Hi ASTBAL! I'd like to book a stay.",
+  )}`;
 
   const pricing = useMemo(
     () => (checkIn && checkOut ? calculateTotalPrice(checkIn, checkOut, guests, selectedAddons) : null),
@@ -65,6 +73,7 @@ export default function DialogBooking({ onClose }: { onClose?: () => void }) {
         : `🌿 *New Booking — ASTBAL*\n\n*Booking #:* ${data.id}\n*Name:* ${form.name}\n*Phone:* ${form.phone}\n*Check-in:* ${prettyDate(checkIn)}\n*Check-out:* ${prettyDate(checkOut)}\n*Guests:* ${guests}\n*Add-ons:* ${addonNames.length ? addonNames.join(", ") : "None"}\n*Total:* ${formatPrice(data.total ?? pricing.total)}`;
       const url = `https://wa.me/${siteConfig.whatsapp}?text=${encodeURIComponent(message)}`;
       setWhatsappUrl(url);
+      setBookingId(data.id ?? null);
       if (!data.alerted) window.open(url, "_blank");
       setSubmitted(true);
     } catch {
@@ -83,9 +92,13 @@ export default function DialogBooking({ onClose }: { onClose?: () => void }) {
         <h3 className="text-xl font-bold text-stone-900" style={{ fontFamily: "var(--font-heading)" }}>
           Request sent!
         </h3>
+        {bookingId && (
+          <p className="text-xs text-stone-500 mt-1">Reference #{bookingId}</p>
+        )}
         <p className="text-sm text-stone-600 mt-2 max-w-sm mx-auto">
-          We&rsquo;ll WhatsApp or call you within a few hours to confirm your dates. No payment until we confirm.
+          Thanks! We usually reply within a few hours on WhatsApp or by phone to confirm your dates. You pay nothing until we confirm.
         </p>
+        <p className="text-xs text-stone-500 mt-2">Tap below to send us your request on WhatsApp so we see it right away.</p>
         <div className="mt-5 flex flex-col items-center gap-3">
           {whatsappUrl && (
             <a
@@ -174,6 +187,20 @@ export default function DialogBooking({ onClose }: { onClose?: () => void }) {
         className="w-full flex items-center justify-center gap-2 bg-green-600 text-white py-3.5 rounded-full font-semibold text-sm sm:text-base hover:bg-green-700 transition-all shadow-sm disabled:bg-stone-300 disabled:cursor-not-allowed">
         <Send className="w-4 h-4" /> {isSubmitting ? "Sending..." : "Request Booking"}
       </button>
+
+      {/* Alternative for guests who'd rather not fill a form */}
+      <div className="flex items-center gap-3 text-[11px] text-stone-400">
+        <span className="h-px flex-1 bg-stone-200" /> or <span className="h-px flex-1 bg-stone-200" />
+      </div>
+      <a
+        href={waBookUrl}
+        target="_blank"
+        rel="noopener noreferrer"
+        data-track-location="dialog_whatsapp"
+        className="w-full flex items-center justify-center gap-2 border border-[#25D366] text-[#128C4B] py-3 rounded-full font-semibold text-sm hover:bg-green-50 transition-colors"
+      >
+        <MessageSquare className="w-4 h-4" /> Prefer WhatsApp? Chat to book
+      </a>
       <p className="text-center text-[10px] sm:text-xs text-stone-400">
         No payment now. We&rsquo;ll contact you to confirm.
       </p>

@@ -3,6 +3,7 @@ import "./globals.css";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import WhatsAppButton from "@/components/layout/WhatsAppButton";
+import MobileBookingBar from "@/components/layout/MobileBookingBar";
 import ClickTracking from "@/components/layout/ClickTracking";
 import { Analytics } from "@vercel/analytics/next";
 import { GoogleAnalytics } from "@next/third-parties/google";
@@ -98,9 +99,11 @@ export default function RootLayout({
         />
         <BookingDialogProvider>
           <Navbar />
-          <main className="flex-1">{children}</main>
+          {/* Pad the bottom on phones so the sticky Book/WhatsApp bar never hides content */}
+          <main className="flex-1 pb-16 lg:pb-0">{children}</main>
           <Footer />
           <WhatsAppButton />
+          <MobileBookingBar />
         </BookingDialogProvider>
         <ClickTracking />
         <Analytics />

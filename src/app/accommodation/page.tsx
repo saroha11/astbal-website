@@ -11,7 +11,7 @@ import experiences from "@/data/experiences.json";
 import { fieldExperiences } from "@/data/fieldExperiences";
 import PhotoGrid from "@/components/stay/PhotoGrid";
 import LocationMap from "@/components/LocationMap";
-import BookingCard, { MobileReserveBar } from "@/components/stay/BookingCard";
+import BookingCard from "@/components/stay/BookingCard";
 
 const { accommodation } = pricing;
 
@@ -303,7 +303,6 @@ export default function AccommodationPage() {
           </aside>
         </div>
       </div>
-      <MobileReserveBar />
     </div>
   );
 }
