@@ -38,7 +38,7 @@ async function sendEmail(b: BookingAlert) {
   const rows: [string, string][] = [
     ["Name", b.name],
     ["Phone", b.phone],
-    ["Email", b.email],
+    ["Email", b.email || "—"],
     ["Check-in", prettyDate(b.checkIn)],
     ["Check-out", `${prettyDate(b.checkOut)} (${b.nights} night${b.nights > 1 ? "s" : ""})`],
     ["Guests", String(b.guests)],
@@ -73,7 +73,7 @@ async function sendEmail(b: BookingAlert) {
       // Until astbal.in is verified in Resend, its shared test sender is used (it can only email the Resend account's own address)
       from: process.env.RESEND_FROM || "ASTBAL Bookings <onboarding@resend.dev>",
       to: [process.env.BOOKING_ALERT_EMAIL || siteConfig.email],
-      reply_to: b.email,
+      ...(b.email ? { reply_to: b.email } : {}),
       subject: `New booking #${b.id}: ${b.name}, ${format(parseISO(b.checkIn), "d MMM")}–${format(parseISO(b.checkOut), "d MMM")} (${formatPrice(b.total)})`,
       html,
     }),

@@ -11,7 +11,14 @@ const dateString = z
 export const bookingSchema = z
   .object({
     name: z.string().trim().min(2).max(100),
-    email: z.string().trim().email().max(200),
+    // Email is optional: we confirm by WhatsApp/phone. If given, it must be valid.
+    email: z
+      .string()
+      .trim()
+      .max(200)
+      .optional()
+      .transform((s) => s ?? "")
+      .refine((s) => s === "" || z.string().email().safeParse(s).success, "Invalid email"),
     phone: z.string().trim().regex(/^[+\d][\d\s-]{6,18}$/, "Invalid phone number"),
     checkIn: dateString,
     checkOut: dateString,

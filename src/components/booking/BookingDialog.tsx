@@ -3,7 +3,7 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
 import { X } from "lucide-react";
-import BookingCard from "@/components/stay/BookingCard";
+import DialogBooking from "@/components/booking/DialogBooking";
 import { trackEvent } from "@/lib/analytics";
 
 // One "Book Now" panel for the whole site: any BookNowButton opens it, showing the
@@ -60,8 +60,8 @@ export function BookingDialogProvider({ children }: { children: React.ReactNode 
                 <X className="w-5 h-5" />
               </button>
             </div>
-            <div className="p-4 sm:p-5 min-h-[560px]">
-              <BookingCard startOpen id="reserve-dialog" onNavigate={() => setOpen(false)} />
+            <div className="p-4 sm:p-5">
+              <DialogBooking onClose={() => setOpen(false)} />
             </div>
           </div>
         </div>

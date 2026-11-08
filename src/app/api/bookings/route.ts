@@ -44,14 +44,16 @@ export async function POST(request: Request) {
       return NextResponse.json({ error: "Dates not available" }, { status: 409 });
     }
 
-    // Basic abuse limit: max 3 pending requests per phone/email per 24h.
+    // Basic abuse limit: max 3 pending requests per phone (and email, if given) per 24h.
     const since = new Date(Date.now() - 24 * 60 * 60 * 1000).toISOString();
+    const orParts = [`phone.eq.${b.phone.replace(/[,()]/g, "")}`];
+    if (b.email) orParts.push(`email.eq.${b.email.replace(/[,()]/g, "")}`);
     const { count } = await supabase
       .from("bookings")
       .select("id", { count: "exact", head: true })
       .eq("status", "pending")
       .gte("created_at", since)
-      .or(`phone.eq.${b.phone.replace(/[,()]/g, "")},email.eq.${b.email.replace(/[,()]/g, "")}`);
+      .or(orParts.join(","));
     if ((count ?? 0) >= 3) {
       return NextResponse.json(
         { error: "Too many pending requests. Please WhatsApp or email us." },
