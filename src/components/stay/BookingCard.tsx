@@ -15,7 +15,17 @@ const ymd = (d: Date) => format(d, "yyyy-MM-dd");
 
 // Airbnb-style reserve card: pick dates + guests, see the live total, then continue to /book pre-filled.
 // `startOpen` opens the calendar straight away (used in the Book Now panel).
-export default function BookingCard({ startOpen = false, id = "reserve" }: { startOpen?: boolean; id?: string }) {
+// `onNavigate` runs when the guest taps Reserve, so the Book Now dialog can close itself
+// even when Reserve links to the page the guest is already on (/book -> /book?dates).
+export default function BookingCard({
+  startOpen = false,
+  id = "reserve",
+  onNavigate,
+}: {
+  startOpen?: boolean;
+  id?: string;
+  onNavigate?: () => void;
+}) {
   const [checkIn, setCheckIn] = useState<Date | null>(null);
   const [checkOut, setCheckOut] = useState<Date | null>(null);
   const [guests, setGuests] = useState(accommodation.baseGuests);
@@ -156,6 +166,7 @@ export default function BookingCard({ startOpen = false, id = "reserve" }: { sta
         {quote ? (
           <Link
             href={bookHref}
+            onClick={onNavigate}
             className="mt-4 w-full inline-flex items-center justify-center bg-green-600 text-white py-3.5 rounded-xl font-semibold hover:bg-green-700 transition-colors"
           >
             Reserve

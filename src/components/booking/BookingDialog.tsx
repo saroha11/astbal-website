@@ -61,7 +61,7 @@ export function BookingDialogProvider({ children }: { children: React.ReactNode 
               </button>
             </div>
             <div className="p-4 sm:p-5 min-h-[560px]">
-              <BookingCard startOpen id="reserve-dialog" />
+              <BookingCard startOpen id="reserve-dialog" onNavigate={() => setOpen(false)} />
             </div>
           </div>
         </div>

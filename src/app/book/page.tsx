@@ -20,5 +20,15 @@ export default async function BookPage({ searchParams }: { searchParams: SearchP
   const initialGuests =
     Number.isInteger(guests) && guests >= 1 && guests <= pricing.accommodation.maxGuests ? guests : 2;
 
-  return <BookingClient initialCheckIn={checkIn} initialCheckOut={checkOut} initialGuests={initialGuests} />;
+  // Key on the dates so that arriving at /book with new dates (e.g. from the Book Now
+  // dialog's Reserve, which can land on /book while already on /book) remounts the form
+  // with those dates instead of keeping the earlier, empty state.
+  return (
+    <BookingClient
+      key={`${checkIn ?? ""}-${checkOut ?? ""}-${initialGuests}`}
+      initialCheckIn={checkIn}
+      initialCheckOut={checkOut}
+      initialGuests={initialGuests}
+    />
+  );
 }
