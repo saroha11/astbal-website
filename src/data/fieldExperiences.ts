@@ -5,8 +5,8 @@ import { Amphora, Footprints, PersonStanding, Sunrise, Sunset, Sprout, PartyPopp
 export const fieldExperiences: { icon: LucideIcon; title: string; text: string; tint: string; image?: string; wide?: boolean }[] = [
   {
     icon: Footprints,
-    title: "Guided Field Tour",
-    text: "Walk the fields with us and see what grows here through the seasons.",
+    title: "Guided Farm Tour",
+    text: "Walk the whole farm with us — orchard, fields and stables — on a relaxed guided tour. We run it in the cool of the morning and again in the evening.",
     tint: "from-green-500 to-emerald-700",
     image: "/images/gallery/front-farm-view.jpg",
   },

@@ -4,7 +4,7 @@ import { fieldExperiences } from "@/data/fieldExperiences";
 import { siteConfig } from "@/data/siteConfig";
 
 const askUrl = `https://wa.me/${siteConfig.whatsapp}?text=${encodeURIComponent(
-  "Hi ASTBAL! I'd like to know more about the field experiences (field tour, sunrise/sunset, crop tour, pottery)."
+  "Hi ASTBAL! I'd like to know more about the farm experiences (guided farm tour, sunrise/sunset, crop tour, pottery)."
 )}`;
 
 // "Life in the Fields": colourful cards for the outdoor, time-of-day experiences
